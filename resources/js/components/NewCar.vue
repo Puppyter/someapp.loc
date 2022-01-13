@@ -2,7 +2,9 @@
     <form ref="newCarForm">
         <div class="input-group mb-3">
             <span class="input-group-text">Company</span>
-            <input type="text" class="form-control" v-model="manufacture">
+            <select type="text" class="form-control" v-for="manufact in manufactures" v-model="manufacture">
+                <option :value="manufact.id">{{manufact.name}}</option>
+            </select>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text">Model</span>
@@ -29,6 +31,7 @@
 <script>
 export default {
     name: "NewCar",
+    props: ['manufactures'],
     data: () => ({
         manufacture: '',
         model: '',

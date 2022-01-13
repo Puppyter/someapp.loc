@@ -16,6 +16,12 @@ class OfferRepository
         return Offer::find($id);
     }
 
+    public function search(string $param, $value)
+    {
+        return Offer::where($param, $value)->get();
+    }
+
+
     public function getAll()
     {
         return Offer::paginate(20);

@@ -24,21 +24,6 @@ class CarService
         return $this->carRepository->find($id);
     }
 
-    public function getAll()
-    {
-        $cars = $this->carRepository->getAll();
-        foreach ($cars as $car)
-        {
-            $car->image = $car->images;
-        }
-        return $cars;
-    }
-
-    public function search(string $param, $searchVal)
-    {
-        return $this->carRepository->search($param, $searchVal);
-    }
-
     public function update(int $carId,array $data)
     {
         return $this->carRepository->update($carId,$data);
@@ -48,4 +33,5 @@ class CarService
     {
         return $this->carRepository->destroy($offerId);
     }
+
 }

@@ -6,6 +6,7 @@ use App\Models\Car;
 
 class CarRepository
 {
+
     public function create(?array $data)
     {
         return Car::create($data);
@@ -14,6 +15,11 @@ class CarRepository
     public function find(int $carId)
     {
         return Car::find($carId);
+    }
+
+    public function search(string $param, $value)
+    {
+        return Car::where($param, $value)->get();
     }
 
     public function searchManufacture($searchValue)
