@@ -13,7 +13,7 @@ class ManufactureService
         $this->manufactureRepository = $manufactureRepository;
     }
 
-    public function createCar(array $data)
+    public function create(array $data)
     {
         return $this->manufactureRepository->create($data);
     }

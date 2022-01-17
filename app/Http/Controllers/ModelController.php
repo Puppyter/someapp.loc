@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ModelController extends Controller
 {
+    public function show()
+    {
+      return response()->view('createModel');
+    }
+
     public function  create(Request $request, ModelService $modelService)
     {
         $modelService->createCar($request->all());

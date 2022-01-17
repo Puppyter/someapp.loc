@@ -8,13 +8,13 @@
 
 <script>
 export default {
-    name: "createManufacture",
+    name: "create-manufacture",
     data:() =>({
         manufactureName: '',
     }),
     methods:{
         createManufacture(){
-            axios.post('/car/create/manufacture',{manufactureName: this.manufactureName}, {
+            axios.post('/car/create/manufacture',{name: this.manufactureName}, {
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                     }

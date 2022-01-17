@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CarRequest;
 use App\Models\Car;
 use App\Services\CarService;
+use App\Services\FuelService;
+use App\Services\ManufactureService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -16,7 +17,7 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ManufactureService $manufactureService, FuelService $fuelService)
     {
         return response()->view('createCar');
     }

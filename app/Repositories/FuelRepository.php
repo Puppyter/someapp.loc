@@ -21,4 +21,13 @@ class FuelRepository
         return Fuel::get();
     }
 
+    public function searchMotors(int $fuelId)
+    {
+        return $this->get($fuelId)->motors;
+    }
+
+    public function searchOffers(int $fuelId)
+    {
+        return $this->get($fuelId)->offers;
+    }
 }

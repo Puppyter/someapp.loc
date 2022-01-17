@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: "createFuel",
+    name: "create-fuel",
     data:() =>({
         name: ''
     }),

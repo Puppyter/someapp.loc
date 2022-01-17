@@ -24,4 +24,8 @@ class Motor extends Model
         return $this->belongsTo(BodyType::class);
     }
 
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }

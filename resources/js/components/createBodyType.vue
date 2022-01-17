@@ -2,18 +2,18 @@
     <div>
         <label>Create Fuel</label>
         <input type="text" v-model="name">
-        <button @click="createFuel">Submit</button>
+        <button @click="createBodyType">Submit</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: "createBodyType",
+    name: "create-body-type",
     data:() =>({
         name: ''
     }),
     methods:{
-        createFuel(){
+        createBodyType(){
             axios.post('/car/create/bt',{name: this.name}, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),

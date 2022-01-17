@@ -18,7 +18,16 @@ class BodyTypeRepository
 
     public function getAll()
     {
-        return BodyType::get();
+        return BodyType::all();
     }
 
+    public function searchMotors(int $id)
+    {
+        return $this->get($id)->motors;
+    }
+
+    public function searchModels(int $id)
+    {
+        return $this->get($id)->models;
+    }
 }

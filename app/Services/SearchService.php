@@ -2,30 +2,43 @@
 
 namespace App\Services;
 
+use App\Repositories\BodyTypeRepository;
 use App\Repositories\CarRepository;
+use App\Repositories\FuelRepository;
+use App\Repositories\ManufactureRepository;
+use App\Repositories\ModelRepository;
 use App\Repositories\OfferRepository;
 
 class SearchService
 {
+    private $repositories= [
+        'model' => ModelRepository::class,
+        'manufacture' => ManufactureRepository::class,
+        'fuel' => FuelRepository::class,
+        'bodyType' => BodyTypeRepository::class,
+    ];
 
-    public function searchManufacture(string $value)
+    public function searchModels(int $id, string $by)
     {
-        /** @var CarRepository $carRepository */
-        $carRepository = app(CarRepository::class);
-        return $carRepository->search('manufacture', $value);
+        $repository = app($this->repositories[$by]);
+        return $repository->searchModels($id);
     }
 
-    public function searchModel(string $value)
+    public function searchMotors(int $id, string $by)
     {
-        /** @var CarRepository $carRepository */
-        $carRepository = app(CarRepository::class);
-        return $carRepository->search('model', $value);
+        $repository = app($this->repositories[$by]);
+        return $repository->searchMotors($id);
     }
 
-    public function searchOffer(string $param, $value)
+    public function searchOffers(int $id, string $by)
     {
-        /** @var OfferRepository $offerRepository */
-        $offerRepository = app(OfferRepository::class);
-        return $offerRepository->search($param, $value);
+        $repository = app($this->repositories[$by]);
+        return $repository->searchOffers($id);
+    }
+
+    public function searchBodyTypes(int $id, string $by)
+    {
+        $repository = app($this->repositories[$by]);
+        return $repository->searchBodyType($id);
     }
 }

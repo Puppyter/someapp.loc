@@ -21,4 +21,13 @@ class ManufactureRepository
         return Manufacture::get();
     }
 
+    public function searchModels($manufactureId)
+    {
+        return $this->get($manufactureId)->models;
+    }
+
+    public function searchOffers($manufactureId)
+    {
+        return $this->get($manufactureId)->offers;
+    }
 }

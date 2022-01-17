@@ -21,5 +21,14 @@ class ModelRepository
         return Modell::get();
     }
 
+    public function searchOffers($modelId)
+    {
+        return $this->get($modelId)->offers;
+    }
+
+    public function searchBodyType($modelId)
+    {
+        return $this->get($modelId)->bodyType;
+    }
 
 }

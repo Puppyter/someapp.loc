@@ -14,6 +14,7 @@ class Modell extends Model
     protected $fillable = [
         'manufacture_id',
         'body_type_id',
+        'motor_id',
         'name'
     ];
 
@@ -25,5 +26,10 @@ class Modell extends Model
     public function bodyType()
     {
         return $this->belongsTo(BodyType::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'model_id', 'id');
     }
 }

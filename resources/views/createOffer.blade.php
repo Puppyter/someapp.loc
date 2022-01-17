@@ -1,4 +1,4 @@
 @extends('layouts.layout')
 @section('content')
-    <New-Offer></New-Offer>
+    <New-Offer :userId="{{Auth::id()}}" :manufactures="{{json_encode($manufactures)}}"></New-Offer>
 @endsection

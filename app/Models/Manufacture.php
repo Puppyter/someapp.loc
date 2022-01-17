@@ -15,4 +15,9 @@ class Manufacture extends Model
     {
         return $this->hasMany(Modell::class);
     }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }

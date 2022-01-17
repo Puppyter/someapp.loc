@@ -5284,11 +5284,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Cars",
-  props: ['cars'],
+  props: ['cars', 'manufactures'],
+  data: function data() {
+    return {
+      manufacture: '',
+      model: '',
+      models: ''
+    };
+  },
   methods: {
-    goToOffer: function goToOffer() {}
+    getModels: function getModels() {
+      var _this = this;
+
+      axios.post('/car/search/model', {
+        by: 'manufacture',
+        id: this.manufacture
+      }, {
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }).then(function (_ref) {
+        var data = _ref.data;
+        _this.models = data.models;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    searchOffers: function searchOffers() {
+      var _this2 = this;
+
+      axios.post('car/search/offer', {
+        by: 'model',
+        id: this.model
+      }, {
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.cars = data.offers;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
   }
 });
 
@@ -5412,59 +5478,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "NewCar",
-  props: ['manufactures'],
   data: function data() {
     return {
-      manufacture: '',
-      model: '',
-      motor: '',
-      year: '',
-      bodyType: ''
+      tabs: [{
+        name: 'model',
+        href: '/car/show/create/model'
+      }, {
+        name: 'motors',
+        href: '/car/show/create/motor'
+      }, {
+        name: 'body-type',
+        href: '/car/show/create/bt'
+      }, {
+        name: 'manufacture',
+        href: '/car/show/create/manufacture'
+      }, {
+        name: 'fuel',
+        href: '/car/show/create/fuel'
+      }],
+      currentTab: ''
     };
   },
+  mounted: function mounted() {
+    this.currentTab = this.tabs[3];
+  },
   methods: {
-    uploadData: function uploadData() {
-      var data = new FormData(this.$refs.newCarForm);
-      data.append('manufacture', this.manufacture);
-      data.append('model', this.model);
-      data.append('year', this.year);
-      data.append('body_type', this.bodyType);
-      data.append('motor', this.motor);
-      axios.post('/car/store', data, {
-        headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      }).then(function (_ref) {
-        var data = _ref.data;
-        console.log(data);
-
-        if (data.status === true) {
-          window.location.href = 'http://someapp.loc/offers/';
-        }
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
+    componentCurrentTab: function componentCurrentTab() {
+      return 'create-' + this.currentTab;
     }
   }
 });
@@ -5566,84 +5608,100 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "NewOffer",
-  props: ['userId'],
+  props: ['userId', 'manufactures'],
   data: function data() {
     return {
       images: '',
-      manufactures: {},
+      motors: '',
+      bodyTypes: '',
       models: {},
-      manufacture: '',
-      model: '',
-      motor: '',
-      countOwners: Number(0),
+      manufactureId: '',
+      modelId: '',
+      motorId: '',
+      countOwners: 0,
       color: '',
       mileage: '',
       year: '',
       description: '',
       accident: 0,
       insurance: 0,
-      bodyType: '',
+      bodyTypeId: '',
       city: '',
       region: '',
       technicalCondition: '',
-      repainted: 0
+      repainted: 0,
+      price: 0
     };
   },
   methods: {
     fileUpload: function fileUpload() {
       this.images = this.$refs.images.files;
     },
-    carInfo: function carInfo() {
+    searchManufacture: function searchManufacture() {},
+    getModels: function getModels() {
       var _this = this;
 
-      var data = new FormData(this.$refs.newOffer);
-      data.append('manufacture', this.manufacture);
-      data.append('model', this.model);
-      axios.post('/car/get/info', data, {
+      axios.post('/car/search/model', {
+        by: 'manufacture',
+        id: this.manufactureId
+      }, {
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       }).then(function (_ref) {
         var data = _ref.data;
         console.log(data);
-        _this.manufactures = data.manufactures;
+        _this.models = data.models;
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
-    searchManufacture: function searchManufacture() {
+    getBodyTypes: function getBodyTypes() {
       var _this2 = this;
 
-      var data = new FormData(this.$refs.newOffer);
-      data.append('manufacture', this.manufacture);
-      axios.post('/car/search/manufacture', data, {
+      axios.post('/car/search/bt', {
+        by: 'model',
+        id: this.modelId
+      }, {
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       }).then(function (_ref2) {
         var data = _ref2.data;
         console.log(data);
-        _this2.manufactures = data.manufactures;
+        _this2.bodyTypes = data.bodyTypes;
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
-    searchModel: function searchModel() {
+    getMotors: function getMotors() {
       var _this3 = this;
 
-      var data = new FormData(this.$refs.newOffer);
-      data.append('manufacture', this.manufacture);
-      data.append('model', this.model);
-      axios.post('/car/search/model', data, {
+      axios.post('/car/search/motor', {
+        by: 'bodyType',
+        id: this.bodyTypeId
+      }, {
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       }).then(function (_ref3) {
         var data = _ref3.data;
         console.log(data);
-        _this3.models = data.models;
+        _this3.motors = data.motors;
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -5656,9 +5714,11 @@ __webpack_require__.r(__webpack_exports__);
         data.append('images[' + i + ']', image);
       }
 
-      data.append('manufacture', this.manufacture);
-      data.append('model', this.model);
-      data.append('motor', this.motor);
+      data.append('price', this.price);
+      data.append('user_id', this.userId);
+      data.append('manufacture_id', this.manufactureId);
+      data.append('model_id', this.modelId);
+      data.append('motor_id', this.motorId);
       data.append('count_owners', this.countOwners);
       data.append('color', this.color);
       data.append('mileage', this.mileage);
@@ -5666,7 +5726,7 @@ __webpack_require__.r(__webpack_exports__);
       data.append('description', this.description);
       data.append('accident', this.accident);
       data.append('insurance', this.insurance);
-      data.append('body_type', this.bodyType);
+      data.append('body_type_id', this.bodyTypeId);
       data.append('city', this.city);
       data.append('region', this.region);
       data.append('technical_condition', this.technicalCondition);
@@ -5750,9 +5810,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Offer",
-  props: ['car'],
+  props: ['offer'],
   data: function data() {
     return {};
   }
@@ -5870,15 +5933,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "createBodyType",
+  name: "create-body-type",
   data: function data() {
     return {
       name: ''
     };
   },
   methods: {
-    createFuel: function createFuel() {
-      axios.post('/create/body/type', {
+    createBodyType: function createBodyType() {
+      axios.post('/car/create/bt', {
         name: this.name
       }, {
         headers: {
@@ -5918,7 +5981,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "createFuel",
+  name: "create-fuel",
   data: function data() {
     return {
       name: ''
@@ -5926,7 +5989,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createFuel: function createFuel() {
-      axios.post('/create/fuel', {
+      axios.post('/car/create/fuel', {
         name: this.name
       }, {
         headers: {
@@ -5966,7 +6029,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "createManufacture",
+  name: "create-manufacture",
   data: function data() {
     return {
       manufactureName: ''
@@ -5974,8 +6037,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createManufacture: function createManufacture() {
-      axios.post('/create/manufacture', {
-        manufactureName: this.manufactureName
+      axios.post('/car/create/manufacture', {
+        name: this.manufactureName
       }, {
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -6036,22 +6099,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "createModel",
-  props: ['motors', 'manufactures', 'bodyTypes'],
+  name: "create-model",
+  props: [],
   data: function data() {
     return {
+      motors: '',
+      manufactures: '',
+      bodyTypes: '',
       name: '',
       motorId: '',
       manufactureId: '',
       bodyTypeId: ''
     };
   },
+  mounted: function mounted() {
+    this.getManufactures();
+    this.getBodyTypes();
+  },
   methods: {
-    createFuel: function createFuel() {
-      axios.post('/create/model', {
+    createModel: function createModel() {
+      axios.post('/car/create/model', {
         name: this.name,
         motor_id: this.motorId,
-        manufacture_id: this.manufacture_id,
+        manufacture_id: this.manufactureId,
         body_type_id: this.bodyTypeId
       }, {
         headers: {
@@ -6064,7 +6134,66 @@ __webpack_require__.r(__webpack_exports__);
         if (data.status === true) {
           alert('Created!');
         }
+      })["catch"](function (error) {
+        console.log(error.response);
       });
+    },
+    getManufactures: function getManufactures() {
+      var _this = this;
+
+      axios.get('/car/all/manufacture', {
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        console.log(data);
+        _this.manufactures = data.manufactures;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    getMotors: function getMotors() {
+      var _this2 = this;
+
+      axios.post('/car/search/motor', {
+        by: 'bodyType',
+        id: this.bodyTypeId
+      }, {
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        console.log(data);
+        _this2.motors = data.motors;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    getBodyTypes: function getBodyTypes() {
+      var _this3 = this;
+
+      axios.get('/car/all/bt', {
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }).then(function (_ref4) {
+        var data = _ref4.data;
+        console.log(data);
+        _this3.bodyTypes = data.bodyTypes;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    changeManufacture: function changeManufacture(id) {
+      this.manufactureId = id;
+    },
+    changeMotor: function changeMotor(id) {
+      this.motorId = id;
+    },
+    changeBodyType: function changeBodyType(id) {
+      this.bodyTypeId = id;
     }
   }
 });
@@ -6107,8 +6236,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "createMotors",
-  props: ['bodyTypes', 'fuelTypes'],
+  name: "create-motors",
+  props: ['bodytypes', 'fuels'],
   data: function data() {
     return {
       name: '',
@@ -6117,8 +6246,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    createFuel: function createFuel() {
-      axios.post('/create/motor', {
+    createMotor: function createMotor() {
+      axios.post('/car/create/motor', {
         name: this.name,
         body_type_id: this.bodyTypeId,
         fuel_id: this.fuelTypeId
@@ -6133,9 +6262,207 @@ __webpack_require__.r(__webpack_exports__);
         if (data.status === true) {
           alert('Created!');
         }
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    changeFuel: function changeFuel(id) {
+      this.fuelTypeId = id;
+    },
+    changeBodyType: function changeBodyType(id) {
+      this.fuelTypeId = id;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/editOffer.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/editOffer.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "edit-offer",
+  props: ['offer'],
+  data: function data() {
+    return {
+      mileage: '',
+      price: '',
+      accident: '',
+      color: '',
+      countOwners: '',
+      year: '',
+      insurance: '',
+      city: '',
+      region: '',
+      technicalCondition: '',
+      repainted: '',
+      description: ''
+    };
+  },
+  mounted: function mounted() {
+    this.setOfferAttributes();
+  },
+  methods: {
+    setOfferAttributes: function setOfferAttributes() {
+      this.mileage = this.offer.mileage;
+      this.price = this.offer.price;
+      this.accident = this.offer.accident;
+      this.color = this.offer.color;
+      this.countOwners = this.offer.count_owners;
+      this.year = this.offer.year;
+      this.insurance = this.offer.insurance;
+      this.city = this.offer.city;
+      this.region = this.offer.region;
+      this.technicalCondition = this.offer.technical_condition;
+      this.repainted = this.offer.repainted;
+      this.description = this.offer.description;
+    },
+    uploadData: function uploadData() {
+      var data = new FormData(this.$refs.newOffer);
+
+      for (var i = 0; i < this.images.length; i++) {
+        var image = this.images[i];
+        data.append('images[' + i + ']', image);
+      }
+
+      data.append('price', this.price);
+      data.append('count_owners', this.countOwners);
+      data.append('color', this.color);
+      data.append('mileage', this.mileage);
+      data.append('year', this.year);
+      data.append('description', this.description);
+      data.append('accident', this.accident);
+      data.append('insurance', this.insurance);
+      data.append('city', this.city);
+      data.append('region', this.region);
+      data.append('technical_condition', this.technicalCondition);
+      data.append('repainted', this.repainted);
+      axios.post('/offers/' + this.offer.id + '/update', data, {
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (_ref) {
+        var data = _ref.data;
+        console.log(data);
+
+        if (data.status === true) {
+          window.location.href = 'http://someapp.loc/offers/';
+        }
+      })["catch"](function (error) {
+        console.log(error.response);
       });
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/searchComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/searchComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "search-component"
 });
 
 /***/ }),
@@ -29130,6 +29457,84 @@ component.options.__file = "resources/js/components/createMotors.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/editOffer.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/editOffer.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _editOffer_vue_vue_type_template_id_70c03892_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editOffer.vue?vue&type=template&id=70c03892&scoped=true& */ "./resources/js/components/editOffer.vue?vue&type=template&id=70c03892&scoped=true&");
+/* harmony import */ var _editOffer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editOffer.vue?vue&type=script&lang=js& */ "./resources/js/components/editOffer.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _editOffer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _editOffer_vue_vue_type_template_id_70c03892_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _editOffer_vue_vue_type_template_id_70c03892_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "70c03892",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/editOffer.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/searchComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/searchComponent.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _searchComponent_vue_vue_type_template_id_7073d63a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./searchComponent.vue?vue&type=template&id=7073d63a&scoped=true& */ "./resources/js/components/searchComponent.vue?vue&type=template&id=7073d63a&scoped=true&");
+/* harmony import */ var _searchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/searchComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _searchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _searchComponent_vue_vue_type_template_id_7073d63a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _searchComponent_vue_vue_type_template_id_7073d63a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "7073d63a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/searchComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Cars.vue?vue&type=script&lang=js&":
 /*!*******************************************************************!*\
   !*** ./resources/js/components/Cars.vue?vue&type=script&lang=js& ***!
@@ -29319,6 +29724,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_createMotors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./createMotors.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/createMotors.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_createMotors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/editOffer.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/editOffer.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editOffer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./editOffer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/editOffer.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editOffer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/searchComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/searchComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./searchComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/searchComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -29526,6 +29963,40 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/editOffer.vue?vue&type=template&id=70c03892&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/editOffer.vue?vue&type=template&id=70c03892&scoped=true& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editOffer_vue_vue_type_template_id_70c03892_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editOffer_vue_vue_type_template_id_70c03892_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editOffer_vue_vue_type_template_id_70c03892_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./editOffer.vue?vue&type=template&id=70c03892&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/editOffer.vue?vue&type=template&id=70c03892&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/searchComponent.vue?vue&type=template&id=7073d63a&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/searchComponent.vue?vue&type=template&id=7073d63a&scoped=true& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_searchComponent_vue_vue_type_template_id_7073d63a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_searchComponent_vue_vue_type_template_id_7073d63a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_searchComponent_vue_vue_type_template_id_7073d63a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./searchComponent.vue?vue&type=template&id=7073d63a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/searchComponent.vue?vue&type=template&id=7073d63a&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Cars.vue?vue&type=template&id=b8156aec&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Cars.vue?vue&type=template&id=b8156aec&scoped=true& ***!
@@ -29542,44 +30013,189 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", [
-    _vm.cars === ""
-      ? _c("div", [_c("h1", [_vm._v("No Orders Yet")])])
-      : _c("div", [
+  return _c("div", [
+    _c("div", { staticClass: "row border" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _c("span", { staticClass: "input-group-text" }, [
+            _vm._v("Manufacture"),
+          ]),
+          _vm._v(" "),
           _c(
-            "div",
-            { staticClass: "row row-cols-3" },
-            _vm._l(_vm.cars, function (car) {
-              return _c("div", { staticClass: "col" }, [
-                _c(
-                  "div",
-                  { staticClass: "card", staticStyle: { width: "18rem" } },
-                  [
-                    _c("img", {
-                      staticClass: "card-img-top",
-                      attrs: { src: car.image, alt: "..." },
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("h5", { staticClass: "card-title" }, [
-                        _vm._v(_vm._s(car.name)),
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "card-text" }, [
-                        _vm._v(_vm._s(car.description)),
-                      ]),
-                      _vm._v(" "),
-                      _c("a", { staticClass: "btn btn-primary" }, [
-                        _vm._v("View offer"),
-                      ]),
-                    ]),
-                  ]
-                ),
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.manufacture,
+                  expression: "manufacture",
+                },
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.manufacture = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.getModels,
+                ],
+              },
+            },
+            _vm._l(_vm.manufactures, function (manuf) {
+              return _c("option", { domProps: { value: manuf.id } }, [
+                _vm._v(_vm._s(manuf.name)),
               ])
             }),
             0
           ),
         ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _c("span", { staticClass: "input-group-text" }, [_vm._v("Model")]),
+          _vm._v(" "),
+          _vm.models === ""
+            ? _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.model,
+                      expression: "model",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { disabled: "" },
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.model = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                  },
+                },
+                _vm._l(_vm.models, function (mdl) {
+                  return _c("option", { domProps: { value: mdl.id } }, [
+                    _vm._v(_vm._s(mdl.name)),
+                  ])
+                }),
+                0
+              )
+            : _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.model,
+                      expression: "model",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.model = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                  },
+                },
+                _vm._l(_vm.models, function (mdl) {
+                  return _c("option", { domProps: { value: mdl.id } }, [
+                    _vm._v(_vm._s(mdl.name)),
+                  ])
+                }),
+                0
+              ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", on: { click: _vm.searchOffers } },
+          [_vm._v("Search")]
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("form", [
+      _vm.cars === ""
+        ? _c("div", [_c("h1", [_vm._v("No Orders Yet")])])
+        : _c("div", [
+            _c(
+              "div",
+              { staticClass: "row row-cols-3" },
+              _vm._l(_vm.cars, function (car) {
+                return _c("div", { staticClass: "col" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card", staticStyle: { width: "18rem" } },
+                    [
+                      _c("img", {
+                        staticClass: "card-img-top",
+                        attrs: { src: car.image, alt: "..." },
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h5", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(car.name)),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }, [
+                          _vm._v(_vm._s(car.description)),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: {
+                              href: "/offers/show" + "?" + "id=" + car.id,
+                            },
+                          },
+                          [_vm._v("View offer")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                ])
+              }),
+              0
+            ),
+          ]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -29738,165 +30354,31 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", { ref: "newCarForm" }, [
+  return _c("div", [
     _c(
       "div",
-      { staticClass: "input-group mb-3" },
-      [
-        _c("span", { staticClass: "input-group-text" }, [_vm._v("Company")]),
-        _vm._v(" "),
-        _vm._l(_vm.manufactures, function (manufact) {
-          return _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.manufacture,
-                  expression: "manufacture",
-                },
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              on: {
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.manufacture = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
+      _vm._l(_vm.tabs, function (tab) {
+        return _c(
+          "div",
+          {
+            staticClass: "btn-group",
+            on: {
+              click: function ($event) {
+                _vm.currentTab = tab
               },
             },
-            [
-              _c("option", { domProps: { value: manufact.id } }, [
-                _vm._v(_vm._s(manufact.name)),
-              ]),
-            ]
-          )
-        }),
-      ],
-      2
+          },
+          [
+            _c(
+              "a",
+              { staticClass: "btn btn-primary", attrs: { href: tab.href } },
+              [_vm._v(_vm._s(tab.name))]
+            ),
+          ]
+        )
+      }),
+      0
     ),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-group mb-3" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Model")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.model,
-            expression: "model",
-          },
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text" },
-        domProps: { value: _vm.model },
-        on: {
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.model = $event.target.value
-          },
-        },
-      }),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-group mb-3" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Motor")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.motor,
-            expression: "motor",
-          },
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text" },
-        domProps: { value: _vm.motor },
-        on: {
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.motor = $event.target.value
-          },
-        },
-      }),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-group mb-3" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Year")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.year,
-            expression: "year",
-          },
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text" },
-        domProps: { value: _vm.year },
-        on: {
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.year = $event.target.value
-          },
-        },
-      }),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-group mb-3" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Body Type")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.bodyType,
-            expression: "bodyType",
-          },
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text" },
-        domProps: { value: _vm.bodyType },
-        on: {
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.bodyType = $event.target.value
-          },
-        },
-      }),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col" }, [
-      _c("input", {
-        staticClass: "btn btn-primary",
-        attrs: { type: "button", value: "Create" },
-        on: { click: _vm.uploadData },
-      }),
-    ]),
   ])
 }
 var staticRenderFns = []
@@ -29940,24 +30422,67 @@ var render = function () {
       _c("div", { staticClass: "input-group mb-3" }, [
         _c("span", { staticClass: "input-group-text" }, [_vm._v("Company")]),
         _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.manufactureId,
+                expression: "manufactureId",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.manufactureId = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getModels,
+              ],
+            },
+          },
+          _vm._l(_vm.manufactures, function (manufacture) {
+            return _c("option", { domProps: { value: manufacture.id } }, [
+              _vm._v(_vm._s(manufacture.name)),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Price")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.manufacture,
-              expression: "manufacture",
+              value: _vm.price,
+              expression: "price",
             },
           ],
           staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.manufacture },
+          attrs: { type: "number" },
+          domProps: { value: _vm.price },
           on: {
             input: function ($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.manufacture = $event.target.value
+              _vm.price = $event.target.value
             },
           },
         }),
@@ -29966,53 +30491,127 @@ var render = function () {
       _c("div", { staticClass: "input-group mb-3" }, [
         _c("span", { staticClass: "input-group-text" }, [_vm._v("Model")]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.model,
-              expression: "model",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.model },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.model = $event.target.value
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.modelId,
+                expression: "modelId",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.modelId = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getBodyTypes,
+              ],
             },
           },
-        }),
+          _vm._l(_vm.models, function (model) {
+            return _c("option", { domProps: { value: model.id } }, [
+              _vm._v(_vm._s(model.name)),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Body Type")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.bodyTypeId,
+                expression: "bodyTypeId",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: [
+                function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.bodyTypeId = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getMotors,
+              ],
+            },
+          },
+          _vm._l(_vm.bodyTypes, function (bodyType) {
+            return _c("option", { domProps: { value: bodyType.id } }, [
+              _vm._v(_vm._s(bodyType.name)),
+            ])
+          }),
+          0
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group mb-3" }, [
         _c("span", { staticClass: "input-group-text" }, [_vm._v("Motor")]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.motor,
-              expression: "motor",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.motor },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.motor = $event.target.value
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.motorId,
+                expression: "motorId",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.motorId = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
             },
           },
-        }),
+          _vm._l(_vm.motors, function (motor) {
+            return _c("option", { domProps: { value: motor.id } }, [
+              _vm._v(_vm._s(motor.name)),
+            ])
+          }),
+          0
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group mb-3" }, [
@@ -30116,32 +30715,6 @@ var render = function () {
                 return
               }
               _vm.year = $event.target.value
-            },
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group mb-3" }, [
-        _c("span", { staticClass: "input-group-text" }, [_vm._v("Body Type")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.bodyType,
-              expression: "bodyType",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.bodyType },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.bodyType = $event.target.value
             },
           },
         }),
@@ -30315,11 +30888,11 @@ var render = function () {
             },
           },
           [
-            _c("option", { attrs: { selected: "", value: "not crushed" } }, [
+            _c("option", { attrs: { selected: "" }, domProps: { value: 1 } }, [
               _vm._v("not crushed"),
             ]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "crushed" } }, [_vm._v("crushed")]),
+            _c("option", { domProps: { value: 0 } }, [_vm._v("crushed")]),
           ]
         ),
       ]),
@@ -30430,61 +31003,67 @@ var render = function () {
       _c("span", [
         _c("h5", [_vm._v("Manufacture:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.manufacture))]),
+        _c("p", [_vm._v(_vm._s(_vm.offer.manufacture.name))]),
       ]),
       _vm._v(" "),
       _c("span", [
         _c("h5", [_vm._v("Model:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _c("p", [_vm._v(_vm._s(_vm.offer.model.name))]),
       ]),
       _vm._v(" "),
       _c("span", [
         _c("h5", [_vm._v("Motor:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.motor))]),
+        _c("p", [_vm._v(_vm._s(_vm.offer.motor.name))]),
       ]),
       _vm._v(" "),
       _c("span", [
-        _c("h5", [_vm._v("Model:")]),
+        _c("h5", [_vm._v("Body Type:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _c("p", [_vm._v(_vm._s(_vm.offer.body_type.name))]),
       ]),
       _vm._v(" "),
       _c("span", [
-        _c("h5", [_vm._v("Model:")]),
+        _c("h5", [_vm._v("Price:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _c("p", [_vm._v(_vm._s(_vm.offer.price))]),
       ]),
       _vm._v(" "),
       _c("span", [
-        _c("h5", [_vm._v("Model:")]),
+        _c("h5", [_vm._v("Accident:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _vm.offer.accident === 0
+          ? _c("p", [_vm._v("Not accidents")])
+          : _c("p", [_vm._v("Accidents")]),
       ]),
       _vm._v(" "),
       _c("span", [
-        _c("h5", [_vm._v("Model:")]),
+        _c("h5", [_vm._v("Insurance:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _vm.offer.insurance === 0
+          ? _c("p", [_vm._v("Without insurance")])
+          : _c("p", [_vm._v("Has insurance")]),
       ]),
       _vm._v(" "),
       _c("span", [
-        _c("h5", [_vm._v("Model:")]),
+        _c("h5", [_vm._v("Color:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _c("p", [_vm._v(_vm._s(_vm.offer.color))]),
       ]),
       _vm._v(" "),
       _c("span", [
-        _c("h5", [_vm._v("Model:")]),
+        _c("h5", [_vm._v("Mileage:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _c("p", [_vm._v(_vm._s(_vm.offer.mileage))]),
       ]),
       _vm._v(" "),
       _c("span", [
-        _c("h5", [_vm._v("Model:")]),
+        _c("h5", [_vm._v("Repainted:")]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.car.model))]),
+        _vm.offer.repainted === 0
+          ? _c("p", [_vm._v("No Repaint")])
+          : _c("p", [_vm._v("Repainted")]),
       ]),
     ]),
   ])
@@ -30732,7 +31311,7 @@ var render = function () {
       },
     }),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.createFuel } }, [_vm._v("Submit")]),
+    _c("button", { on: { click: _vm.createBodyType } }, [_vm._v("Submit")]),
   ])
 }
 var staticRenderFns = []
@@ -30884,140 +31463,128 @@ var render = function () {
       }),
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c("label", [_vm._v("Choose Manufacture")]),
-        _vm._v(" "),
+    _c("div", [
+      _c("label", [_vm._v("Choose Manufacture")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.manufactureId,
+              expression: "manufactureId",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.manufactureId = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
         _vm._l(_vm.manufactures, function (manufacture) {
-          return _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.manufactureId,
-                  expression: "manufactureId",
-                },
-              ],
-              on: {
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.manufactureId = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-              },
-            },
-            [
-              _c("option", { domProps: { value: manufacture.id } }, [
-                _vm._v(_vm._s(manufacture.name)),
-              ]),
-            ]
-          )
+          return _c("option", { domProps: { value: manufacture.id } }, [
+            _vm._v(_vm._s(manufacture.name)),
+          ])
         }),
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c("label", [_vm._v("Choose Body Type")]),
-        _vm._v(" "),
-        _vm._l(_vm.bodyTypes, function (bodyType) {
-          return _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.bodyTypeId,
-                  expression: "bodyTypeId",
-                },
-              ],
-              on: {
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.bodyTypeId = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-              },
-            },
-            [
-              _c("option", { domProps: { value: bodyType.id } }, [
-                _vm._v(_vm._s(bodyType.name)),
-              ]),
-            ]
-          )
-        }),
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c("label", [_vm._v("Choose Motor")]),
-        _vm._v(" "),
-        _vm._l(_vm.motors, function (motor) {
-          return _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.motorIdId,
-                  expression: "motorIdId",
-                },
-              ],
-              on: {
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.motorIdId = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-              },
-            },
-            [
-              _c("option", { domProps: { value: motor.id } }, [
-                _vm._v(_vm._s(motor.name)),
-              ]),
-            ]
-          )
-        }),
-      ],
-      2
-    ),
+        0
+      ),
+    ]),
     _vm._v(" "),
     _c("div", [
-      _c("button", { on: { click: _vm.createFuel } }, [_vm._v("Submit")]),
+      _c("label", [_vm._v("Choose Body Type")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.bodyTypeId,
+              expression: "bodyTypeId",
+            },
+          ],
+          on: {
+            change: [
+              function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.bodyTypeId = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.getMotors,
+            ],
+          },
+        },
+        _vm._l(_vm.bodyTypes, function (bodyType) {
+          return _c("option", { domProps: { value: bodyType.id } }, [
+            _vm._v(_vm._s(bodyType.name)),
+          ])
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("label", [_vm._v("Choose Motor")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.motorId,
+              expression: "motorId",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.motorId = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
+        _vm._l(_vm.motors, function (motor) {
+          return _c("option", { domProps: { value: motor.id } }, [
+            _vm._v(_vm._s(motor.name)),
+          ])
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("button", { on: { click: _vm.createModel } }, [_vm._v("Submit")]),
     ]),
   ])
 }
@@ -31070,96 +31637,580 @@ var render = function () {
       }),
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c("label", [_vm._v("Choose Body Type")]),
-        _vm._v(" "),
-        _vm._l(_vm.bodyTypes, function (bodyType) {
-          return _c(
-            "select",
+    _c("div", [
+      _c("label", [_vm._v("Choose Body Type")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
             {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.bodyTypeId,
-                  expression: "bodyTypeId",
-                },
-              ],
+              name: "model",
+              rawName: "v-model",
+              value: _vm.bodyTypeId,
+              expression: "bodyTypeId",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.bodyTypeId = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
+        _vm._l(_vm.bodytypes, function (bodyType) {
+          return _c(
+            "option",
+            {
+              domProps: { value: bodyType.id },
               on: {
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.bodyTypeId = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
+                click: function ($event) {
+                  return _vm.changeBodyType(bodyType.id)
                 },
               },
             },
-            [
-              _c("option", { domProps: { value: bodyType.id } }, [
-                _vm._v(_vm._s(bodyType.name)),
-              ]),
-            ]
+            [_vm._v(_vm._s(bodyType.name))]
           )
         }),
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c("label", [_vm._v("Choose Fuel Type")]),
-        _vm._v(" "),
-        _vm._l(_vm.fuelTypes, function (fuelType) {
-          return _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.fuelTypeId,
-                  expression: "fuelTypeId",
-                },
-              ],
-              on: {
-                change: function ($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function (o) {
-                      return o.selected
-                    })
-                    .map(function (o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.fuelTypeId = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-              },
-            },
-            [
-              _c("option", { domProps: { value: fuelType.id } }, [
-                _vm._v(_vm._s(fuelType.name)),
-              ]),
-            ]
-          )
-        }),
-      ],
-      2
-    ),
+        0
+      ),
+    ]),
     _vm._v(" "),
     _c("div", [
-      _c("button", { on: { click: _vm.createFuel } }, [_vm._v("Submit")]),
+      _c("label", [_vm._v("Choose Fuel Type")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fuelTypeId,
+              expression: "fuelTypeId",
+            },
+          ],
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.fuelTypeId = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
+        _vm._l(_vm.fuels, function (fuel) {
+          return _c(
+            "option",
+            {
+              domProps: { value: fuel.id },
+              on: {
+                click: function ($event) {
+                  return _vm.changeFuel(fuel.id)
+                },
+              },
+            },
+            [_vm._v(_vm._s(fuel.name))]
+          )
+        }),
+        0
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("button", { on: { click: _vm.createMotor } }, [_vm._v("Submit")]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/editOffer.vue?vue&type=template&id=70c03892&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/editOffer.vue?vue&type=template&id=70c03892&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    { ref: "newOffer", attrs: { enctype: "multipart/form-data" } },
+    [
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Images")]),
+        _vm._v(" "),
+        _c("input", {
+          ref: "images",
+          staticClass: "form-control",
+          attrs: { type: "file", multiple: "" },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.price,
+              expression: "price",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "number" },
+          domProps: { value: _vm.price },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.price = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Mileage")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.mileage,
+              expression: "mileage",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "number" },
+          domProps: { value: _vm.mileage },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.mileage = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Color")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.color,
+              expression: "color",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.color },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.color = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [
+          _vm._v("Count Owners"),
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.countOwners,
+              expression: "countOwners",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "number" },
+          domProps: { value: _vm.countOwners },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.countOwners = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Year")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.year,
+              expression: "year",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.year },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.year = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Insurance")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.insurance,
+                expression: "insurance",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.insurance = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { selected: "" }, domProps: { value: 0 } }, [
+              _vm._v("false"),
+            ]),
+            _vm._v(" "),
+            _c("option", { domProps: { value: 1 } }, [_vm._v("true")]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("City")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.city,
+              expression: "city",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.city },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.city = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Region")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.region,
+              expression: "region",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.region },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.region = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Accident")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.accident,
+                expression: "accident",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.accident = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { selected: "" }, domProps: { value: 0 } }, [
+              _vm._v("false"),
+            ]),
+            _vm._v(" "),
+            _c("option", { domProps: { value: 1 } }, [_vm._v("true")]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [
+          _vm._v("Technical condition"),
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.technicalCondition,
+                expression: "technicalCondition",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.technicalCondition = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { selected: "" }, domProps: { value: 1 } }, [
+              _vm._v("not crushed"),
+            ]),
+            _vm._v(" "),
+            _c("option", { domProps: { value: 0 } }, [_vm._v("crushed")]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Repainted")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.repainted,
+                expression: "repainted",
+              },
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function ($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function (o) {
+                    return o.selected
+                  })
+                  .map(function (o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.repainted = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+            },
+          },
+          [
+            _c("option", { attrs: { selected: "" }, domProps: { value: 0 } }, [
+              _vm._v("false"),
+            ]),
+            _vm._v(" "),
+            _c("option", { domProps: { value: 1 } }, [_vm._v("true")]),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [
+          _vm._v("Description"),
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.description,
+              expression: "description",
+            },
+          ],
+          staticClass: "form-control",
+          domProps: { value: _vm.description },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.description = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "/offer/" + _vm.offer.id + "/destroy" },
+        },
+        [_vm._v("Delete Offer")]
+      ),
+    ]
+  )
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col" }, [
+      _c("input", {
+        staticClass: "btn btn-primary",
+        attrs: { type: "button", value: "Create" },
+      }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/searchComponent.vue?vue&type=template&id=7073d63a&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/searchComponent.vue?vue&type=template&id=7073d63a&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("span", { staticClass: "input-group-text" }, [_vm._v("Images")]),
+        _vm._v(" "),
+        _c("input", {
+          ref: "images",
+          staticClass: "form-control",
+          attrs: { type: "file", multiple: "" },
+        }),
+      ]),
     ]),
   ])
 }
@@ -43345,7 +44396,9 @@ var map = {
 	"./components/createFuel.vue": "./resources/js/components/createFuel.vue",
 	"./components/createManufacture.vue": "./resources/js/components/createManufacture.vue",
 	"./components/createModel.vue": "./resources/js/components/createModel.vue",
-	"./components/createMotors.vue": "./resources/js/components/createMotors.vue"
+	"./components/createMotors.vue": "./resources/js/components/createMotors.vue",
+	"./components/editOffer.vue": "./resources/js/components/editOffer.vue",
+	"./components/searchComponent.vue": "./resources/js/components/searchComponent.vue"
 };
 
 

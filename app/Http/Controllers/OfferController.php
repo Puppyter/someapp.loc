@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CarRequest;
 use App\Services\CarService;
+use App\Services\ManufactureService;
 use App\Services\OfferService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +17,10 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(OfferService $offerService)
+    public function index(OfferService $offerService, ManufactureService $manufactureService)
     {
-        return response()->view('cars',['cars'=>$offerService->getAll()->items()]);
+        return response()->view('cars',['cars'=>$offerService->getAll()->items(),
+            'manufactures'=>$manufactureService->getAll()]);
     }
 
     /**
@@ -26,9 +28,9 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ManufactureService $manufactureService)
     {
-        return response()->view('createOffer');
+        return response()->view('createOffer',['manufactures'=>$manufactureService->getAll()]);
     }
 
     /**
@@ -56,10 +58,10 @@ class OfferController extends Controller
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,CarService $carService)
+    public function show(Request $request,OfferService $offerService)
     {
-        $car = $carService->get($request->id);
-        return response()->view('offer',['car'=>$car]);
+        $offer = $offerService->get($request->id);
+        return response()->view('offer',['offer'=>$offer]);
     }
 
     /**
@@ -68,9 +70,9 @@ class OfferController extends Controller
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,CarService $carService)
+    public function edit(Request $request,OfferService $offerService)
     {
-        $car = $carService->get($request->id);
+        $car = $offerService->get($request->offer);
         return response()->view('offerEdit',['car'=>$car]);
     }
 

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CarService;
 use App\Services\FuelService;
 use Illuminate\Http\Request;
 
 class FuelController extends Controller
 {
+    public function show()
+    {
+        return response()->view('createFuel');
+    }
+
     public function  create(Request $request, FuelService $fuelService)
     {
         $fuelService->createCar($request->all());

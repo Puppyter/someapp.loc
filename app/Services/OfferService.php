@@ -36,7 +36,13 @@ class OfferService
 
     public function get(int $offerId)
     {
-        return $this->offerRepository->find($offerId);
+        $offer = $this->offerRepository->find($offerId);
+        $offer->user = $offer->user->firstName;
+        $offer->model = $offer->model->name;
+        $offer->manufacture = $offer->manufacture->name;
+        $offer->body_type = $offer->bodyType->name;
+        $offer->motor = $offer->motor->name;
+        return $offer;
     }
 
     public function createImage(array $data)

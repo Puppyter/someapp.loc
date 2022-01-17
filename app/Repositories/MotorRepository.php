@@ -20,4 +20,15 @@ class MotorRepository
     {
         return Motor::get();
     }
+
+    public function searchFuel(int $motorId)
+    {
+        return $this->get($motorId)->fuel;
+    }
+
+    public function searchBodyType(int $motorId)
+    {
+        return $this->get($motorId)->bodyType;
+    }
+
 }
