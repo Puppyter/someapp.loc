@@ -15,15 +15,15 @@
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text">Phone Number</label>
-            <input type="text" name="phone" class="form-control" v-model="phone">
+            <input type="tel" class="form-control" v-model="phone">
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text">First Name</label>
-            <input type="text" name="phone" class="form-control" v-model="firstName">
+            <input type="text" class="form-control" v-model="firstName">
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text">Last Name</label>
-            <input type="text" name="phone" class="form-control" v-model="lastName">
+            <input type="text" class="form-control" v-model="lastName">
         </div>
         <div class="col">
             <input type="button" class="btn btn-primary" value="Register" @click="uploadData">

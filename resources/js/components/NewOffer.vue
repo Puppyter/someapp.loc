@@ -1,97 +1,109 @@
 <template>
+    <div class="container">
     <form ref="newOffer" enctype="multipart/form-data">
+        <div class="row">
+            <div class="border">
         <div class="input-group mb-3">
             <span class="input-group-text">Images</span>
-            <input type="file" ref="images" class="form-control" multiple @change="fileUpload">
+            <input type="file" ref="images" multiple @change="fileUpload">
         </div>
-        <div class="input-group mb-3">
+            </div>
+            <div class="border" style="margin-top: 1em">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Company</span>
             <select class="form-control" @change="getModels" v-model="manufactureId">
                 <option v-for="manufacture in manufactures" :value="manufacture.id">{{manufacture.name}}</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Price</span>
             <input type="number" class="form-control" v-model="price">
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Model</span>
             <select class="form-control" @change="getBodyTypes" v-model="modelId">
                 <option v-for="model in models" :value="model.id">{{model.name}}</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Body Type</span>
             <select class="form-control" @change="getMotors" v-model="bodyTypeId">
                 <option v-for="bodyType in bodyTypes" :value="bodyType.id">{{bodyType.name}}</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Motor</span>
             <select class="form-control" v-model="motorId">
                 <option v-for="motor in motors" :value="motor.id">{{motor.name}}</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Mileage</span>
             <input type="number" class="form-control" v-model="mileage">
         </div>
-        <div class="input-group mb-3">
+            </div>
+            <div class="border" style="margin-top: 1em">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Color</span>
             <input type="text" class="form-control" v-model="color">
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Count Owners</span>
             <input type="number" class="form-control" v-model="countOwners">
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Year</span>
             <input type="text" class="form-control" v-model="year">
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Insurance</span>
             <select class="form-control" v-model="insurance">
                 <option selected :value="0">false</option>
                 <option :value="1">true</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">City</span>
             <input type="text" class="form-control" v-model="city">
         </div>
-        <div class="input-group mb-3">
+            </div>
+            <div class="border" style="margin-top: 1em">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Region</span>
             <input type="text" class="form-control" v-model="region">
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Accident</span>
             <select class="form-control" v-model="accident">
                 <option selected :value="0">false</option>
                 <option :value="1">true</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Technical condition</span>
             <select class="form-control" v-model="technicalCondition">
                 <option selected :value="1">not crushed</option>
                 <option :value="0">crushed</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Repainted</span>
             <select class="form-control" v-model="repainted">
                 <option selected :value="0">false</option>
                 <option :value="1">true</option>
             </select>
         </div>
-        <div class="input-group mb-3">
+        <div class="col input-group mb-3">
             <span class="input-group-text">Description</span>
             <textarea class="form-control" v-model="description"></textarea>
         </div>
-        <div class="col">
+            </div>
+        <div class="col" style="margin-top: 1em; margin-bottom: 1em">
             <input type="button" class="btn btn-primary" value="Create" @click="uploadData">
         </div>
+        </div>
     </form>
+    </div>
 </template>
 
 <script>

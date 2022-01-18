@@ -18,10 +18,10 @@ class ManufactureController extends Controller
         return response(['status'=>true]);
     }
 
-    public function  get(Request $request, ManufactureService $manufactureService)
-    {
-        return response(['manufacture'=>$manufactureService->get($request->manufactureId)]);
-    }
+//    public function  get(Request $request, ManufactureService $manufactureService)
+//    {
+//        return response(['manufacture'=>$manufactureService->get($request->manufactureId)]);
+//    }
 
     public function getAll(ManufactureService $manufactureService)
     {

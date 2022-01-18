@@ -3,11 +3,9 @@
 namespace App\Services;
 
 use App\Repositories\BodyTypeRepository;
-use App\Repositories\CarRepository;
 use App\Repositories\FuelRepository;
 use App\Repositories\ManufactureRepository;
 use App\Repositories\ModelRepository;
-use App\Repositories\OfferRepository;
 
 class SearchService
 {

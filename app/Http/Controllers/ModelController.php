@@ -19,13 +19,13 @@ class ModelController extends Controller
         return response(['status'=>true]);
     }
 
-    public function  get(Request $request, ModelService $modelService)
-    {
-        return response(['bodyType'=>$modelService->get($request->modelId)]);
-    }
+//    public function  get(Request $request, ModelService $modelService)
+//    {
+//        return response(['model'=>$modelService->get($request->modelId)]);
+//    }
 
     public function getAll(ModelService $modelService)
     {
-        return response(['bodyTypes'=>$modelService->getAll()]);
+        return response(['models'=>$modelService->getAll()]);
     }
 }

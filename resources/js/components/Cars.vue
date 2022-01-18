@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div class="row border">
             <div class="col">
                 <div class="input-group mb-3">
@@ -31,7 +31,7 @@
             <div v-else>
                 <div class="row row-cols-3">
                     <div class="col" v-for="car in cars">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card product-card" style="width: 18rem;">
                             <img :src=car.image class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ car.name }}</h5>
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import {isEmpty} from "lodash/lang";
+
 export default {
     name: "Cars",
     props: ['cars', 'manufactures'],
@@ -70,7 +72,15 @@ export default {
             })
         },
         searchOffers(){
-            axios.post('car/search/offer',{by:'model', id:this.model},{
+            let dat='';
+            if (isEmpty(this.model))
+            {
+               dat={by:'manufacture', id:this.manufacture}
+            }
+            else {
+                dat={by:'model', id:this.model}
+            }
+            axios.post('car/search/offer',dat,{
                 headers:{
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 }
