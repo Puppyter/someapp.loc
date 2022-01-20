@@ -1,29 +1,49 @@
 <template>
-    <div>
-        <div>
-            <label>Enter Model</label>
-            <input type="text" v-model="name">
+    <div class="container">
+        <div class="row">
+            <label class="text-white h4">Model</label>
+            <div class="col">
+                <input class="form-control border-dark text-white-50"
+                       style="color: white;background-color: rgba(34,30,50,0.5);"
+                       type="text" name="keywords" v-model="name" placeholder="Model...">
+            </div>
         </div>
-        <div>
-            <label>Choose Manufacture</label>
-            <select  v-model="manufactureId">
-                <option v-for="manufacture in manufactures" :value="manufacture.id">{{manufacture.name}}</option>
-            </select>
+        <div  class="row" style="margin-top: 1em">
+            <div class="col" style="width: 400px">
+                <h4 class="border-dark text-white">Brand</h4>
+                <div class="input-group mb-3">
+                    <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="manufactureId">
+                        <option v-for="manufacture in manufactures" :value="manufacture.id">{{manufacture.name}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div>
-            <label>Choose Body Type</label>
-            <select  v-model="bodyTypeId" @change="getMotors">
-                <option v-for="bodyType in bodyTypes" :value="bodyType.id">{{bodyType.name}}</option>
-            </select>
+
+        <div  class="row" style="margin-top: 1em">
+            <div class="col" style="width: 400px">
+                <h4 class="border-dark text-white">Body Type</h4>
+                <div class="input-group mb-3">
+                    <select class="form-select border-dark text-white-50" @change="getMotors" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="bodyTypeId">
+                        <option v-for="bodyType in bodyTypes" :value="bodyType.id">{{bodyType.name}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div>
-            <label>Choose Motor</label>
-            <select v-model="motorId">
-                <option v-for="motor in motors" :value="motor.id">{{motor.name}}</option>
-            </select>
+        <div class="row" style="margin-top: 1em">
+            <div class="col" style="width: 400px">
+                <h4 class="border-dark text-white">Motor</h4>
+                <div class="input-group mb-3">
+
+                    <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="fuelTypeId">
+                        <option v-for="motor in motors" :value="motor.id">{{motor.name}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div>
-            <button @click="createModel">Submit</button>
+        <div class="row">
+            <div class="col">
+                <button class="btn text-white" style="background-color: #FD5631; margin-top: 1em" @click="createModel">Submit</button>
+            </div>
         </div>
     </div>
 </template>

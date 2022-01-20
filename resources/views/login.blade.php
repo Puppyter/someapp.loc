@@ -6,5 +6,5 @@
         </div>
     @endif
     <Login></Login>
-    <a href="{{route('users.create')}}">Register</a>
+
 @endsection

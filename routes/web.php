@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BodyTypeController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\FuelController;
@@ -142,3 +143,8 @@ Route::get('/car/get/bt', [BodyTypeController::class,'get'])
 Route::get('/car/all/bt', [BodyTypeController::class,'getAll'])
     ->name('allBodyType');
 /**  */
+
+/** Admin Routes */
+Route::prefix('admin')->group(function (){
+    Route::get('/', [AdminController::class,'index']);
+});

@@ -1,16 +1,20 @@
 <template>
     <form id="authForm">
-        <div class="input-group mb-3">
-            <span class="input-group-text">User Name</span>
-            <input type="text" class="form-control" v-model="userName">
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text">Password</span>
-            <input type="password" class="form-control" v-model="password">
-        </div>
+        <h3 class="text-white">Login</h3>
+        <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
+            <h5 style="margin-top: 1em">User Name</h5>
+            <div class="input-group mb-3">
+                <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="userName">
+            </div>
+            <h5>Password</h5>
+            <div class="input-group mb-3">
+                <input type="password" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="password">
+            </div>
         <div class="col">
-            <input type="button" class="btn btn-primary" value="Login" @click="uploadData">
+            <input type="button" class="btn text-white" style="background-color: #FD5631;  margin-bottom: 1em" value="Login" @click="uploadData">
         </div>
+        </div>
+        <p class="text-white-50">Or if you not registered <span><a href="/users/create">Register Now</a></span></p>
     </form>
 </template>
 

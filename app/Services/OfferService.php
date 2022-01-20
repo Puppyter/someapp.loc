@@ -27,8 +27,10 @@ class OfferService
         $data = $this->offerRepository->getAll();
         foreach ($data as $offer)
         {
+            $offer->model_id=$offer->model;
+            $offer->manufacture_id = $offer->manufacture;
             if ($offer->images->first()!=null) {
-                $offer->image = Storage::path($offer->images->first()['image']);
+                $offer->image = Storage::url($offer->images->first()['image']);
             }
         }
         return $data;
@@ -42,6 +44,9 @@ class OfferService
         $offer->manufacture = $offer->manufacture->name;
         $offer->body_type = $offer->bodyType->name;
         $offer->motor = $offer->motor->name;
+        foreach ($offer->images as $image) {
+            $image['image'] = Storage::url($image['image']);
+        }
         return $offer;
     }
 

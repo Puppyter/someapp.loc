@@ -1,21 +1,34 @@
 <!doctype HTML>
-<html>
+<html style="position: relative; min-height: 100%">
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SomeApp</title>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Noto Sans',sans-serif;
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body style="height: auto" class="bg-dark">
+<body style="background-color: #191429; margin-bottom: 50px">
 <div class="container" id="app">
+    <header>
 @section("upper")
-    <upper></upper>
+    <upper :auth="{{Auth::check()}}"></upper>
 @show
-<div class="container-fluid" style="height: auto">
+    </header>
+    <main class="main h-100">
+<div class="container-fluid">
     @yield("content")
 </div>
+    </main>
 </div>
-<footer class="fixed-bottom" style="background: #212121">
-    <p style="color: white">asdasdasfasfafs</p>
+<footer class="footer" style="background: #231f32;position: absolute; bottom: 0;left: 0; right: 0; height: 50px; width: 100%">
+    <div class="container">
+    <a class="navbar-brand text-white" href="/">SomeApp</a>
+        <p class="text-light opacity-50">© All rights reserved.</p>
+    </div>
 </footer>
 <script src="{{ mix("js/app.js") }}" defer></script>
 </body>

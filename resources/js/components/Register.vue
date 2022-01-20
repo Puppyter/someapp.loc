@@ -1,33 +1,47 @@
 <template>
     <form ref="registerForm" id="registerForm">
         <input type="hidden" name="_token" :value="csrf">
+        <h4 class="text-white">Register</h4>
+        <div class="row row-cols-2">
+            <div class="col-auto">
+        <div class="card mb-3 text-white" style="width: 43.5em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
+            <h3>Account information</h3>
+            <h5 style="margin-top: 1em">User Name</h5>
+            <div class="input-group mb-3">
+                <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control w-50 border-dark text-white-50" v-model="name">
+            </div>
+            <h5>Email</h5>
         <div class="input-group mb-3">
-            <span class="input-group-text">Username</span>
-            <input type="text" class="form-control" v-model="name">
+            <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="email">
         </div>
+            <h5>Password</h5>
         <div class="input-group mb-3">
-            <span class="input-group-text">Email</span>
-            <input type="text" class="form-control" v-model="email">
+            <input type="password" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="password">
         </div>
+        </div>
+            </div>
+            <div class="col-2">
+        <div class="card mb-3 text-white" style="width: 43.4em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
+            <h4>Personal information</h4>
+            <h5 style="margin-top: 1em">First Name</h5>
         <div class="input-group mb-3">
-            <span class="input-group-text">Password</span>
-            <input type="password" class="form-control" v-model="password">
+            <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="firstName">
         </div>
+            <h5 >Last Name</h5>
         <div class="input-group mb-3">
-            <label class="input-group-text">Phone Number</label>
-            <input type="tel" class="form-control" v-model="phone">
+            <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="lastName">
         </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text">First Name</label>
-            <input type="text" class="form-control" v-model="firstName">
+            <h5 >Phone Number</h5>
+            <div class="input-group mb-3">
+                <input type="tel" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="phone">
+            </div>
         </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text">Last Name</label>
-            <input type="text" class="form-control" v-model="lastName">
-        </div>
+            </div>
         <div class="col">
-            <input type="button" class="btn btn-primary" value="Register" @click="uploadData">
+            <input type="button" style="background-color: #FD5631;  margin-bottom: 1em" class="btn text-white" value="Register" @click="uploadData">
         </div>
+        </div>
+        <p class="text-white-50">Already have account: <a href="/users">Login</a></p>
     </form>
 </template>
 

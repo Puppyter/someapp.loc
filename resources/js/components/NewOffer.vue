@@ -2,105 +2,168 @@
     <div class="container">
     <form ref="newOffer" enctype="multipart/form-data">
         <div class="row">
-            <div class="border">
-        <div class="input-group mb-3">
-            <span class="input-group-text">Images</span>
-            <input type="file" ref="images" multiple @change="fileUpload">
-        </div>
             </div>
-            <div class="border" style="margin-top: 1em">
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Company</span>
-            <select class="form-control" @change="getModels" v-model="manufactureId">
-                <option v-for="manufacture in manufactures" :value="manufacture.id">{{manufacture.name}}</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Price</span>
-            <input type="number" class="form-control" v-model="price">
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Model</span>
-            <select class="form-control" @change="getBodyTypes" v-model="modelId">
-                <option v-for="model in models" :value="model.id">{{model.name}}</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Body Type</span>
-            <select class="form-control" @change="getMotors" v-model="bodyTypeId">
-                <option v-for="bodyType in bodyTypes" :value="bodyType.id">{{bodyType.name}}</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Motor</span>
-            <select class="form-control" v-model="motorId">
-                <option v-for="motor in motors" :value="motor.id">{{motor.name}}</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Mileage</span>
-            <input type="number" class="form-control" v-model="mileage">
-        </div>
+            <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
+                <h4>General Information</h4>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="">Brand</h5>
+                        <div class="col input-group mb-3">
+                            <select class="form-select text-white-50 border-dark" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" @change="getModels" v-model="manufactureId">
+                                <option v-for="manufacture in manufactures" :value="manufacture.id">{{manufacture.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Model</h5>
+                        <div class="col input-group mb-3">
+                            <select class="form-select text-white-50 border-dark" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" @change="getBodyTypes" v-model="modelId">
+                                <option v-for="model in models" :value="model.id">{{model.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Body Type</h5>
+                        <div class="col input-group mb-3">
+                            <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" @change="getMotors" v-model="bodyTypeId">
+                                <option v-for="bodyType in bodyTypes" :value="bodyType.id">{{bodyType.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Motor</h5>
+                        <div class="col input-group mb-3">
+                            <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" v-model="motorId">
+                                <option v-for="motor in motors" :value="motor.id">{{motor.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Mileage</h5>
+                        <div class="col input-group mb-3">
+                            <input type="number" style="background-color:rgba(34,30,50,0.5); font-size: 18px" class="form-control border-dark text-white-50" v-model="mileage">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Year</h5>
+                        <div class="col input-group mb-3">
+                            <input type="number" class="form-control border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" v-model="year">
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <div class="card mb-3 text-white" style="width: 59em; background-color: #231f32">
             </div>
-            <div class="border" style="margin-top: 1em">
+            <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5);">
+                <h5 class="">Price</h5>
         <div class="col input-group mb-3">
-            <span class="input-group-text">Color</span>
-            <input type="text" class="form-control" v-model="color">
+            <input type="number" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="price">
         </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Count Owners</span>
-            <input type="number" class="form-control" v-model="countOwners">
         </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Year</span>
-            <input type="text" class="form-control" v-model="year">
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Insurance</span>
-            <select class="form-control" v-model="insurance">
-                <option selected :value="0">false</option>
-                <option :value="1">true</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">City</span>
-            <input type="text" class="form-control" v-model="city">
-        </div>
+            <div class="card mb-3 text-white" style="width: 59em; background-color: #231f32">
             </div>
-            <div class="border" style="margin-top: 1em">
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Region</span>
-            <input type="text" class="form-control" v-model="region">
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Accident</span>
-            <select class="form-control" v-model="accident">
-                <option selected :value="0">false</option>
-                <option :value="1">true</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Technical condition</span>
-            <select class="form-control" v-model="technicalCondition">
-                <option selected :value="1">not crushed</option>
-                <option :value="0">crushed</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Repainted</span>
-            <select class="form-control" v-model="repainted">
-                <option selected :value="0">false</option>
-                <option :value="1">true</option>
-            </select>
-        </div>
-        <div class="col input-group mb-3">
-            <span class="input-group-text">Description</span>
-            <textarea class="form-control" v-model="description"></textarea>
-        </div>
+            <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
+                <h4>Additional info</h4>
+                <div class="row">
+                    <div class="col">
+                        <h5>Color</h5>
+                        <div class="input-group mb-3">
+                            <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="color">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Repainted</h5>
+                        <div class="col input-group mb-3">
+                            <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" v-model="repainted">
+                                <option selected :value="0">false</option>
+                                <option :value="1">true</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Insurance</h5>
+                        <div class="input-group mb-3">
+                            <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" v-model="insurance">
+                                <option selected :value="0">false</option>
+                                <option :value="1">true</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Accident</h5>
+                        <div class="col input-group mb-3">
+                            <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" v-model="accident">
+                                <option selected :value="0">false</option>
+                                <option :value="1">true</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Technical condition</h5>
+                            <div class="col input-group mb-3">
+                                <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" v-model="technicalCondition">
+                                    <option selected :value="1">not crushed</option>
+                                    <option :value="0">crushed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h5>Count Owners</h5>
+                            <div class="input-group mb-3">
+                                <input type="number" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="countOwners">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
             </div>
-        <div class="col" style="margin-top: 1em; margin-bottom: 1em">
-            <input type="button" class="btn btn-primary" value="Create" @click="uploadData">
+            <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5);">
+            </div>
+            <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
+                <h4>Location</h4>
+                <div class="row">
+                    <div class="col">
+                        <h5>City</h5>
+                        <div class="col input-group mb-3">
+                            <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="city">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h5>Region</h5>
+                        <div class="col input-group mb-3">
+                            <input type="text" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" class="form-control border-dark text-white-50" v-model="region">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 text-white" style="width: 59em; background-color: #231f32">
+            </div>
+            <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
+                <div class="col" style="margin-bottom: 1em">
+            <h5>Description</h5>
+            <textarea class="form-control border-dark text-white" style="background-color:rgba(34,30,50,0.5)" v-model="description"></textarea>
+                </div>
         </div>
+        <div class="card mb-3 text-white" style="width: 59em; background-color: #231f32">
+        </div>
+        <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5);">
+            <span class="filepond h4">Images</span>
+            <div class="input-group mb-3">
+                <input class="filepond" type="file" ref="images" accept="image/*" multiple @input="fileUpload">
+                <div v-for="(image,key) in images" >
+                    {{image.name}}
+                    <img :ref="'image' +parseInt(key)"  style="width: 200px; height: 200px; "/>
+                </div>
+            </div>
+        </div>
+        <div class="col" style="margin-top: 1em;">
+            <input type="button" class="btn text-white" style="background-color: #FD5631;  margin-bottom: 1em" value="Create" @click="uploadData">
         </div>
     </form>
     </div>
@@ -134,10 +197,26 @@ export default {
     }),
     methods: {
         fileUpload(){
-          this.images = this.$refs.images.files;
+            this.images = this.$refs.images.files;
+        //     for( let i = 0; i < uploadedFiles.length; i++ ){
+        //         this.images.push( uploadedFiles[i] );
+        //     }
+            this.getImagePreviews();
+        },
+        getImagePreviews(){
+            for( let i = 0; i < this.images.length; i++ ){
+
+                if ( /\.(jpe?g|png|gif)$/i.test( this.images[i].name ) ) {
+
+                    let reader = new FileReader();
+                    reader.addEventListener("load", function(){
+                        this.$refs['image'+parseInt( i )][0].src = reader.result;
+                    }.bind(this), false);
+                    reader.readAsDataURL( this.images[i] );
+                }
+            }
         },
       searchManufacture(){
-
       },
         getModels(){
             axios.post('/car/search/model', {by: 'manufacture', id: this.manufactureId}, {
