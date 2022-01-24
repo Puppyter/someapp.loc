@@ -9,7 +9,7 @@
                     <div class="col">
                         <h5 class="">Brand</h5>
                         <div class="col input-group mb-3">
-                            <select class="form-select text-white-50 border-dark" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" @change="getModels" v-model="manufactureId">
+                            <select class="form-select text-white-50 border-dark" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" @change="getAll" v-model="manufactureId">
                                 <option v-for="manufacture in manufactures" :value="manufacture.id">{{manufacture.name}}</option>
                             </select>
                         </div>
@@ -52,6 +52,16 @@
                         <h5>Year</h5>
                         <div class="col input-group mb-3">
                             <input type="number" class="form-control border-dark text-white-50" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" v-model="year">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Fuel</h5>
+                        <div class="col input-group mb-3">
+                            <select class="form-select text-white-50 border-dark" style="background-color:rgba(34,30,50,0.5);  font-size: 18px" @change="getModels" v-model="fuelId">
+                                <option v-for="fuel in fuels" :value="fuel.id">{{fuel.name}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -156,9 +166,11 @@
             <span class="filepond h4">Images</span>
             <div class="input-group mb-3">
                 <input class="filepond" type="file" ref="images" accept="image/*" multiple @input="fileUpload">
-                <div v-for="(image,key) in images" >
+                <div class="row row-cols-3">
+                <div class="col" v-for="(image,key) in images" >
                     {{image.name}}
                     <img :ref="'image' +parseInt(key)"  style="width: 200px; height: 200px; "/>
+                </div>
                 </div>
             </div>
         </div>
@@ -174,6 +186,8 @@ export default {
     name: "NewOffer",
     props:['userId', 'manufactures'],
     data: () => ({
+        fuelId: '',
+        fuels: '',
         images: '',
         motors: '',
         bodyTypes: '',
@@ -216,8 +230,26 @@ export default {
                 }
             }
         },
-      searchManufacture(){
+      getAll(){
+            this.getBodyTypes();
+            this.getMotors();
+            this.getModels();
+            this.getFuels();
       },
+        getFuels(){
+            axios.post('/car/search/fuel', {id: this.manufactureId}, {
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                }
+            })
+                .then(({data}) => {
+                    console.log(data)
+                    this.fuels = data.fuels
+                })
+                .catch(error =>{
+                    console.log(error.response)
+                })
+        },
         getModels(){
             axios.post('/car/search/model', {by: 'manufacture', id: this.manufactureId}, {
                 headers: {
@@ -232,7 +264,7 @@ export default {
                     console.log(error.response)
                 })
         }, getBodyTypes(){
-            axios.post('/car/search/bt', {by: 'model', id: this.modelId}, {
+            axios.post('/car/search/bt', {id: this.manufactureId}, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 }
@@ -246,7 +278,7 @@ export default {
                 })
         },
         getMotors(){
-            axios.post('/car/search/motor', {by: 'bodyType', id: this.bodyTypeId}, {
+            axios.post('/car/search/motor', {id: this.manufactureId}, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 }

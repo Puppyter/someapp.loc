@@ -18,17 +18,10 @@ class MotorRepository
 
     public function getAll()
     {
-        return Motor::get();
+        return Motor::all();
     }
 
-    public function searchFuel(int $motorId)
+    public function searchOffers()
     {
-        return $this->get($motorId)->fuel;
     }
-
-    public function searchBodyType(int $motorId)
-    {
-        return $this->get($motorId)->bodyType;
-    }
-
 }

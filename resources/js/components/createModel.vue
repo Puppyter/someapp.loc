@@ -18,28 +18,6 @@
                 </div>
             </div>
         </div>
-
-        <div  class="row" style="margin-top: 1em">
-            <div class="col" style="width: 400px">
-                <h4 class="border-dark text-white">Body Type</h4>
-                <div class="input-group mb-3">
-                    <select class="form-select border-dark text-white-50" @change="getMotors" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="bodyTypeId">
-                        <option v-for="bodyType in bodyTypes" :value="bodyType.id">{{bodyType.name}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 1em">
-            <div class="col" style="width: 400px">
-                <h4 class="border-dark text-white">Motor</h4>
-                <div class="input-group mb-3">
-
-                    <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="fuelTypeId">
-                        <option v-for="motor in motors" :value="motor.id">{{motor.name}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col">
                 <button class="btn text-white" style="background-color: #FD5631; margin-top: 1em" @click="createModel">Submit</button>
@@ -53,13 +31,9 @@ export default {
     name: "create-model",
     props: [],
     data: () =>({
-        motors: '',
         manufactures: '',
-        bodyTypes: '',
         name: '',
-        motorId: '',
         manufactureId: '',
-        bodyTypeId: '',
     }),
     mounted() {
         this.getManufactures();
@@ -69,9 +43,7 @@ export default {
         createModel(){
             axios.post('/car/create/model',{
                 name: this.name,
-                motor_id: this.motorId,
                 manufacture_id: this.manufactureId,
-                body_type_id: this.bodyTypeId,
             }, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -96,35 +68,6 @@ export default {
                 .then(({data})=>{
                     console.log(data)
                     this.manufactures = data.manufactures;
-                })
-                .catch(error =>{
-                    console.log(error.response)
-                })
-        },
-        getMotors() {
-            axios.post('/car/search/motor',{by:'bodyType', id:this.bodyTypeId}, {
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                }
-            })
-                .then(({data})=>{
-                    console.log(data)
-                    this.motors = data.motors;
-                })
-                .catch(error =>{
-                    console.log(error.response)
-                })
-        },
-        getBodyTypes()
-        {
-            axios.get('/car/all/bt', {
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                }
-            })
-                .then(({data})=>{
-                    console.log(data)
-                    this.bodyTypes = data.bodyTypes;
                 })
                 .catch(error =>{
                     console.log(error.response)

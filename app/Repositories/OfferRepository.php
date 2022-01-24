@@ -6,21 +6,33 @@ use App\Models\Offer;
 
 class OfferRepository
 {
+    public $conditions;
+    public $prices;
+
     public function create(array $data)
     {
         return Offer::create($data);
     }
 
-    public function find(int $id)
+    public function search(?array $conditions, ?array $prices)
     {
-        return Offer::find($id);
+        $query = Offer::query();
+
+        if ($conditions != null) {
+            $query->where($conditions);
+        }
+
+        if ($prices != null) {
+            $query->whereBetween('price', $prices);
+        }
+
+        return $query->get();
     }
 
-    public function search(string $param, $value)
+    public function setPrice(int $from, int $to)
     {
-        return Offer::where($param, $value)->get();
+        return [$from, $to];
     }
-
 
     public function getAll()
     {
@@ -30,6 +42,11 @@ class OfferRepository
     public function update(int $id, array $data)
     {
         return $this->find($id)->update($data);
+    }
+
+    public function find(int $id)
+    {
+        return Offer::find($id);
     }
 
     public function destroy(int $id)

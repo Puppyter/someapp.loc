@@ -9,7 +9,9 @@ class Manufacture extends Model
 {
     use HasFactory;
 
-    protected $fillable=['name'];
+    protected $fillable=[
+        'name'
+    ];
 
     public function models()
     {
@@ -19,5 +21,20 @@ class Manufacture extends Model
     public function offers()
     {
         return $this->hasMany(Offer::class);
+    }
+
+    public function motors()
+    {
+        return $this->hasMany(Motor::class);
+    }
+
+    public function bodyTypes()
+    {
+        return $this->hasMany(BodyType::class);
+    }
+
+    public function fuels()
+    {
+        return $this->hasMany(Fuel::class);
     }
 }

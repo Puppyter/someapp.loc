@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBodyTypes1Table extends Migration
+class CreateModel2Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateBodyTypes1Table extends Migration
      */
     public function up()
     {
-        Schema::table('body_types', function (Blueprint $table) {
-            $table->string('name')->change();
+        Schema::table('models', function (Blueprint $table) {
+            $table->dropColumn(['motor_id','body_type_id']);
         });
     }
 
@@ -25,8 +25,9 @@ class CreateBodyTypes1Table extends Migration
      */
     public function down()
     {
-        Schema::table('body_types', function (Blueprint $table) {
-            $table->string('name')->change();
+        Schema::table('models', function (Blueprint $table) {
+            $table->unsignedBigInteger('motor_id');
+            $table->unsignedBigInteger('body_type_id');
         });
     }
 }

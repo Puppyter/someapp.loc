@@ -18,10 +18,6 @@ class ManufactureService
         return $this->manufactureRepository->create($data);
     }
 
-    public function get($id)
-    {
-        return $this->manufactureRepository->get($id);
-    }
 
     public function getAll()
     {

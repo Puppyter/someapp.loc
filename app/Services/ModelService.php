@@ -18,10 +18,6 @@ class ModelService
         return $this->modelRepository->create($data);
     }
 
-    public function get($id)
-    {
-        return $this->modelRepository->get($id);
-    }
 
     public function getAll()
     {

@@ -18,11 +18,6 @@ class BodyTypeController extends Controller
         return response(['status'=>true]);
     }
 
-    public function  get(Request $request, BodyTypeService $bodyTypeService)
-    {
-        return response(['bodyType'=>$bodyTypeService->get($request->bodyTypeId)]);
-    }
-
     public function getAll(BodyTypeService $bodyTypeService)
     {
       return response(['bodyTypes'=>$bodyTypeService->getAll()]);

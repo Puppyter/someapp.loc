@@ -18,11 +18,6 @@ class FuelService
         return $this->fuelRepository->create($data);
     }
 
-    public function get($id)
-    {
-        return $this->fuelRepository->get($id);
-    }
-
     public function getAll()
     {
         return $this->fuelRepository->getAll();

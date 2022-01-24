@@ -18,7 +18,7 @@ class FuelRepository
 
     public function getAll()
     {
-        return Fuel::get();
+        return Fuel::all();
     }
 
     public function searchMotors(int $fuelId)

@@ -17,10 +17,14 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(OfferService $offerService, ManufactureService $manufactureService)
+    public function index(ManufactureService $manufactureService)
     {
-        return response()->view('cars',['cars'=>$offerService->getAll()->items(),
-            'manufactures'=>$manufactureService->getAll()]);
+        return response()->view('cars',['manufactures'=>$manufactureService->getAll()]);
+    }
+
+    public function getAll(OfferService $offerService)
+    {
+        return response(['cars'=>$offerService->getAll()->items()]);
     }
 
     /**

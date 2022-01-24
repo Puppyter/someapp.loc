@@ -18,11 +18,6 @@ class MotorService
         return $this->motorRepository->create($data);
     }
 
-    public function get($id)
-    {
-        return $this->motorRepository->get($id);
-    }
-
     public function getAll()
     {
         return $this->motorRepository->getAll();

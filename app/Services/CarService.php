@@ -19,11 +19,6 @@ class CarService
         return $this->carRepository->create($data);
     }
 
-    public function get($id)
-    {
-        return $this->carRepository->find($id);
-    }
-
     public function update(int $carId,array $data)
     {
         return $this->carRepository->update($carId,$data);

@@ -18,10 +18,6 @@ class BodyTypeService
         return $this->bodyTypeRepository->create($data);
     }
 
-    public function get($id)
-    {
-        return $this->bodyTypeRepository->get($id);
-    }
 
     public function getAll()
     {

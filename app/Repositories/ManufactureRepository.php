@@ -11,23 +11,33 @@ class ManufactureRepository
         return Manufacture::create($data);
     }
 
-    public function get(int $id)
-    {
-        return Manufacture::find($id);
-    }
-
     public function getAll()
     {
         return Manufacture::get();
     }
 
-    public function searchModels($manufactureId)
+    public function searchModels(int $id)
     {
-        return $this->get($manufactureId)->models;
+        return Manufacture::find($id)->models;
     }
 
-    public function searchOffers($manufactureId)
+    public function searchMotors(int $id)
     {
-        return $this->get($manufactureId)->offers;
+        return Manufacture::find($id)->motors;
+    }
+
+    public function searchOffers(int $id)
+    {
+        return Manufacture::find($id)->offers;
+    }
+
+    public function searchBodyTypes(int $id)
+    {
+        return Manufacture::find($id)->bodyTypes;
+    }
+
+    public function searchFuels(int $id)
+    {
+        return Manufacture::find($id)->fuels;
     }
 }

@@ -25,6 +25,6 @@ class FuelController extends Controller
 
     public function getAll(FuelService $fuelService)
     {
-        return response(['bodyTypes'=>$fuelService->getAll()]);
+        return response(['fuels'=>$fuelService->getAll()]);
     }
 }

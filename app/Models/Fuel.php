@@ -10,15 +10,11 @@ class Fuel extends Model
     use HasFactory;
 
     protected $fillable =[
-        'name'
+        'name',
+        'manufacture_id'
     ];
 
-    public function motors()
-    {
-        return $this->hasMany(Motor::class);
-    }
-
-    public function offers()
+      public function offers()
     {
         return $this->hasMany(Offer::class);
     }

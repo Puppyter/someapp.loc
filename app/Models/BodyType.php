@@ -9,17 +9,10 @@ class BodyType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
-
-    public function models()
-    {
-        return $this->hasMany(Modell::class);
-    }
-
-    public function motors()
-    {
-        return $this->hasMany(Motor::class);
-    }
+    protected $fillable = [
+        'name',
+        'manufacture_id',
+    ];
 
     public function offers()
     {

@@ -40,10 +40,10 @@ class OfferService
     {
         $offer = $this->offerRepository->find($offerId);
         $offer->user = $offer->user->firstName;
-        $offer->model = $offer->model->name;
-        $offer->manufacture = $offer->manufacture->name;
-        $offer->body_type = $offer->bodyType->name;
-        $offer->motor = $offer->motor->name;
+        $offer->model_id = $offer->model;
+        $offer->manufacture_id = $offer->manufacture;
+        $offer->body_type_id = $offer->bodyType;
+        $offer->motor_id = $offer->motor;
         foreach ($offer->images as $image) {
             $image['image'] = Storage::url($image['image']);
         }

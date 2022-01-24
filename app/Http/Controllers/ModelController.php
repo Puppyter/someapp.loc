@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ModelRepository;
 use App\Services\CarService;
 use App\Services\ModelService;
 use Illuminate\Http\Request;
@@ -19,13 +20,10 @@ class ModelController extends Controller
         return response(['status'=>true]);
     }
 
-//    public function  get(Request $request, ModelService $modelService)
-//    {
-//        return response(['model'=>$modelService->get($request->modelId)]);
-//    }
-
     public function getAll(ModelService $modelService)
     {
         return response(['models'=>$modelService->getAll()]);
     }
+
+
 }

@@ -10,24 +10,13 @@
         </div>
         <div  class="row" style="margin-top: 1em">
             <div class="col" style="width: 400px">
-                <h4 class="border-dark text-white">Body Type</h4>
+                <h4 class="border-dark text-white">Brand</h4>
                 <div class="input-group mb-3">
-                    <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="bodyTypeId">
-                        <option v-for="bodyType in bodytypes" :value="bodyType.id">{{bodyType.name}}</option>
+                    <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="manufactureId">
+                        <option v-for="manufacture in manufactures" :value="manufacture.id">{{manufacture.name}}</option>
                     </select>
                 </div>
-        </div>
-        </div>
-        <div class="row" style="margin-top: 1em">
-            <div class="col" style="width: 400px">
-                <h4 class="border-dark text-white">Fuel Type</h4>
-                <div class="input-group mb-3">
-
-                    <select class="form-select border-dark text-white-50" style="background-color:rgba(34,30,50,0.5); font-size: 18px" v-model="fuelTypeId">
-                        <option v-for="fuel in fuels" :value="fuel.id">{{fuel.name}}</option>
-                    </select>
-                </div>
-        </div>
+            </div>
         </div>
         <div class="row">
             <div class="col">
@@ -40,18 +29,28 @@
 <script>
 export default {
     name: "create-motors",
-    props: ['bodytypes','fuels'],
     data:() =>({
         name: '',
-        bodyTypeId: '',
-        fuelTypeId: '',
+        manufactures: '',
+        manufactureId:'',
     }),
+    mounted() {
+        this.getManufactures();
+    },
     methods:{
+        getManufactures(){
+            axios.get('/car/all/manufacture')
+                .then(({data})=>{
+                    this.manufactures = data.manufactures;
+                })
+                .catch((error)=>{
+                    console.log(error.response);
+                })
+        },
         createMotor(){
             axios.post('/car/create/motor',{
                 name: this.name,
-                body_type_id: this.bodyTypeId,
-                fuel_id: this.fuelTypeId,
+                manufacture_id: this.manufactureId
             }, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),

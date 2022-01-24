@@ -2,8 +2,8 @@
   <div class="container">
           <slider animation="fade" width="550px" v-model="nextCount">
               <div v-for="image in offer.images">
-              <slider-item>
-                  <img :src="image.image" style="height: 300px; width: 550px">
+              <slider-item >
+                  <img :src="image.image" style="width: 100%; height: 100%">
               </slider-item>
               </div>
           </slider>

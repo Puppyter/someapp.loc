@@ -53,11 +53,13 @@ Route::post('/offers/store',[OfferController::class,'store'])
     ->name('offerStore');
 Route::resource('offers',OfferController::class)
     ->middleware('web');
+Route::get('/offers/get/all', [OfferController::class,'getAll'])
+->name('offersAll');
 /**  */
 
 
 /** Search Routes */
-Route::post('/car/search/manufacture', [SearchController::class,'searchCar'])
+Route::post('/car/search/manufacture', [SearchController::class,'searchManufacture'])
     ->middleware('web')
     ->name('manufactureSearch');
 Route::post('/car/search/model', [SearchController::class,'searchModel'])
@@ -72,6 +74,9 @@ Route::post('/car/search/offer', [SearchController::class,'searchOffer'])
 Route::post('/car/search/bt', [SearchController::class,'searchBodyType'])
     ->middleware('web')
     ->name('bodyTypeSearch');
+Route::post('/car/search/fuel', [SearchController::class,'searchFuel'])
+    ->middleware('web')
+    ->name('fuelSearch');
 /**  */
 
 
@@ -90,8 +95,8 @@ Route::post('/car/create/manufacture', [ManufactureController::class,'create'])
     ->name('createManufacture');
 Route::get('/car/show/create/manufacture', [ManufactureController::class,'show'])
     ->name('createManufactureShow');
-Route::get('/car/get/manufacture', [ManufactureController::class,'get'])
-    ->name('getManufacture');
+//Route::get('/car/get/manufacture', [ManufactureController::class,'get'])
+//    ->name('getManufacture');
 Route::get('/car/all/manufacture', [ManufactureController::class,'getAll'])
     ->name('allManufacture');
 /**  */
@@ -102,8 +107,8 @@ Route::post('/car/create/model', [ModelController::class,'create'])
     ->name('createModel');
 Route::get('/car/show/create/model', [ModelController::class,'show'])
     ->name('createModelShow');
-Route::get('/car/get/model', [ModelController::class,'get'])
-    ->name('getModel');
+//Route::get('/car/get/model', [ModelController::class,'get'])
+//    ->name('getModel');
 Route::get('/car/all/model', [ModelController::class,'getAll'])
     ->name('allModel');
 /**  */
@@ -114,8 +119,8 @@ Route::post('/car/create/fuel', [FuelController::class,'create'])
     ->name('createFuel');
 Route::get('/car/show/create/fuel', [FuelController::class,'show'])
     ->name('createFuelShow');
-Route::get('/car/get/fuel', [FuelController::class,'get'])
-    ->name('getFuel');
+//Route::get('/car/get/fuel', [FuelController::class,'get'])
+//    ->name('getFuel');
 Route::get('/car/all/fuel', [FuelController::class,'getAll'])
     ->name('allFuel');
 /**  */
@@ -126,8 +131,8 @@ Route::post('/car/create/motor', [MotorController::class,'create'])
     ->name('createMotor');
 Route::get('/car/show/create/motor', [MotorController::class,'show'])
     ->name('createMotorShow');
-Route::get('/car/get/motor', [MotorController::class,'get'])
-    ->name('getMotor');
+//Route::get('/car/get/motor', [MotorController::class,'get'])
+//    ->name('getMotor');
 Route::get('/car/all/motor', [MotorController::class,'getAll'])
     ->name('allMotor');
 /**  */
@@ -138,8 +143,8 @@ Route::post('/car/create/bt', [BodyTypeController::class,'create'])
     ->name('createBodyType');
 Route::get('/car/show/create/bt', [BodyTypeController::class,'show'])
     ->name('createBodyTypeShow');
-Route::get('/car/get/bt', [BodyTypeController::class,'get'])
-    ->name('getBodyType');
+//Route::get('/car/get/bt', [BodyTypeController::class,'get'])
+//    ->name('getBodyType');
 Route::get('/car/all/bt', [BodyTypeController::class,'getAll'])
     ->name('allBodyType');
 /**  */

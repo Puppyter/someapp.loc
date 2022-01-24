@@ -14,16 +14,6 @@ class Motor extends Model
         'name'
     ];
 
-    public function fuel()
-    {
-        return $this->belongsTo(Fuel::class);
-    }
-
-    public function bodyType()
-    {
-        return $this->belongsTo(BodyType::class);
-    }
-
     public function offers()
     {
         return $this->hasMany(Offer::class);

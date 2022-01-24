@@ -6,37 +6,22 @@ use App\Repositories\BodyTypeRepository;
 use App\Repositories\FuelRepository;
 use App\Repositories\ManufactureRepository;
 use App\Repositories\ModelRepository;
+use App\Repositories\OfferRepository;
+use Illuminate\Support\Facades\Storage;
 
 class SearchService
 {
-    private $repositories= [
-        'model' => ModelRepository::class,
-        'manufacture' => ManufactureRepository::class,
-        'fuel' => FuelRepository::class,
-        'bodyType' => BodyTypeRepository::class,
-    ];
-
-    public function searchModels(int $id, string $by)
+    public function search(?array $conditions, ?array $prices)
     {
-        $repository = app($this->repositories[$by]);
-        return $repository->searchModels($id);
-    }
+        /** @var OfferRepository $offerRepository */
+        $offerRepository = app(OfferRepository::class);
+        $offers = $offerRepository->search($conditions, $prices);
+        foreach ($offers as $offer) {
+            $offer->model_id = $offer->model;
+            $offer->manufacture_id = $offer->manufacture;
+            $offer->image = Storage::url($offer->images->first()['image']);
+        }
+        return $offers;
 
-    public function searchMotors(int $id, string $by)
-    {
-        $repository = app($this->repositories[$by]);
-        return $repository->searchMotors($id);
-    }
-
-    public function searchOffers(int $id, string $by)
-    {
-        $repository = app($this->repositories[$by]);
-        return $repository->searchOffers($id);
-    }
-
-    public function searchBodyTypes(int $id, string $by)
-    {
-        $repository = app($this->repositories[$by]);
-        return $repository->searchBodyType($id);
     }
 }

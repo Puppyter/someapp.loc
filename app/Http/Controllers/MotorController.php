@@ -27,6 +27,6 @@ class MotorController extends Controller
 
     public function getAll(MotorService $motorService)
     {
-        return response(['bodyTypes'=>$motorService->getAll()]);
+        return response(['motors'=>$motorService->getAll()]);
     }
 }

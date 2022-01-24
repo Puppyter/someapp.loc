@@ -2,29 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ManufactureRepository;
+use App\Repositories\ModelRepository;
+use App\Repositories\OfferRepository;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
 
-    public function searchOffer(Request $request, SearchService $searchService)
+    public function searchOffer(Request $request, SearchService $searchService, OfferRepository $offerRepository)
     {
-        return response(['offers'=>$searchService->searchOffers($request->id, $request->by)]);
+        return response(['offers'=>$searchService->search($request->conditions, $offerRepository->setPrice($request->minPrice,$request->maxPrice))]);
     }
 
-    public function searchModel(Request $request, SearchService $searchService)
+    public function searchModel(Request $request, ManufactureRepository $manufactureRepository)
     {
-        return response(['models'=>$searchService->searchModels($request->id,$request->by)]);
+        return response(['models'=>$manufactureRepository->searchModels($request->id)]);
     }
 
-    public function searchMotor(Request $request, SearchService $searchService)
+    public function searchMotor(Request $request, ManufactureRepository $manufactureRepository)
     {
-        return response(['motors'=>$searchService->searchMotors($request->id, $request->by)]);
+        return response(['motors'=>$manufactureRepository->searchMotors($request->id)]);
     }
 
-    public function searchBodyType(Request $request, SearchService $searchService)
+    public function searchBodyType(Request $request, ManufactureRepository $manufactureRepository)
     {
-        return response(['bodyTypes'=>[$searchService->searchBodyTypes($request->id, $request->by)]]);
+        return response(['bodyTypes'=>$manufactureRepository->searchBodyTypes($request->id)]);
+    }
+
+    public function searchFuel(Request $request, ManufactureRepository $manufactureRepository)
+    {
+        return response(['fuels'=>$manufactureRepository->searchFuels($request->id)]);
+    }
+
+    public function searchManufacture(ModelRepository $modelRepository, Request $request)
+    {
+        return response(['manufacture'=>$modelRepository->getManufacture($request->id)]);
     }
 }
