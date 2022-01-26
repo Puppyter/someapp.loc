@@ -48,7 +48,7 @@ export default {
                 })
         },
         createMotor(){
-            axios.post('/car/create/motor',{
+            axios.post('/admin/car/create/motor',{
                 name: this.name,
                 manufacture_id: this.manufactureId
             }, {

@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Services\FuelService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FuelController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        return response()->view('createFuel');
+        return $request->user()->can('isAdmin',Auth::user())
+            ? response()->view('createFuel')
+            : redirect()->back();
     }
 
     public function  create(Request $request, FuelService $fuelService)

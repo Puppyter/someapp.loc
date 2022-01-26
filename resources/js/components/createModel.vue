@@ -41,7 +41,7 @@ export default {
     },
     methods:{
         createModel(){
-            axios.post('/car/create/model',{
+            axios.post('/admin/car/create/model',{
                 name: this.name,
                 manufacture_id: this.manufactureId,
             }, {

@@ -24,7 +24,7 @@ export default {
     }),
     methods: {
         createManufacture() {
-            axios.post('/car/create/manufacture', {name: this.manufactureName}, {
+            axios.post('/admin/car/create/manufacture', {name: this.manufactureName}, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 }

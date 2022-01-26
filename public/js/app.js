@@ -6119,6 +6119,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getAllMotors: function getAllMotors() {},
     fileUpload: function fileUpload() {
       this.images = this.$refs.images.files; //     for( let i = 0; i < uploadedFiles.length; i++ ){
       //         this.images.push( uploadedFiles[i] );
@@ -6226,6 +6227,7 @@ __webpack_require__.r(__webpack_exports__);
         data.append('images[' + i + ']', image);
       }
 
+      data.append('fuel_id', this.fuelId);
       data.append('price', this.price);
       data.append('user_id', this.userId);
       data.append('manufacture_id', this.manufactureId);
@@ -6653,7 +6655,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "adminUpper"
+  name: "adminUpper",
+  props: ['auth'],
+  methods: {
+    logout: function logout() {
+      axios.get('/logout').then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.status === true) {
+          window.location.href = '/users';
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -6721,7 +6735,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createBodyType: function createBodyType() {
-      axios.post('/car/create/bt', {
+      axios.post('/admin/car/create/bt', {
         name: this.name,
         manufacture_id: this.manufactureId
       }, {
@@ -6807,7 +6821,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createFuel: function createFuel() {
-      axios.post('/car/create/fuel', {
+      axios.post('/admin/car/create/fuel', {
         name: this.name,
         manufacture_id: this.manufactureId
       }, {
@@ -6868,7 +6882,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createManufacture: function createManufacture() {
-      axios.post('/car/create/manufacture', {
+      axios.post('/admin/car/create/manufacture', {
         name: this.manufactureName
       }, {
         headers: {
@@ -6943,7 +6957,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createModel: function createModel() {
-      axios.post('/car/create/model', {
+      axios.post('/admin/car/create/model', {
         name: this.name,
         manufacture_id: this.manufactureId
       }, {
@@ -7053,7 +7067,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createMotor: function createMotor() {
-      axios.post('/car/create/motor', {
+      axios.post('/admin/car/create/motor', {
         name: this.name,
         manufacture_id: this.manufactureId
       }, {
@@ -34607,10 +34621,11 @@ var render = function () {
           "div",
           { staticClass: "col-2", staticStyle: { "margin-top": "0.5em" } },
           [
-            _vm.auth === true
+            _vm.auth === "1"
               ? _c(
                   "a",
                   {
+                    staticClass: "text-white-50",
                     staticStyle: {
                       "text-decoration": "none",
                       "margin-right": "1em",
@@ -34902,10 +34917,11 @@ var render = function () {
               [
                 _vm._m(3),
                 _vm._v(" "),
-                _vm.auth === true
+                _vm.auth === "1"
                   ? _c(
                       "a",
                       {
+                        staticClass: "text-white-50",
                         staticStyle: {
                           "text-decoration": "none",
                           "margin-right": "1em",
@@ -34944,7 +34960,7 @@ var render = function () {
                           "text-decoration": "none",
                           "margin-right": "1em",
                         },
-                        attrs: { href: "/users" },
+                        on: { click: _vm.logout },
                       },
                       [
                         _c(
@@ -35205,7 +35221,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "dropdown-item",
-                  attrs: { href: "/car/show/create/manufacture" },
+                  attrs: { href: "/admin/car/show/create/manufacture" },
                 },
                 [_vm._v("Brand")]
               ),
@@ -35216,7 +35232,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "dropdown-item",
-                  attrs: { href: "/car/show/create/fuel" },
+                  attrs: { href: "/admin/car/show/create/fuel" },
                 },
                 [_vm._v("Fuel")]
               ),
@@ -35227,7 +35243,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "dropdown-item",
-                  attrs: { href: "/car/show/create/bt" },
+                  attrs: { href: "/admin/car/show/create/bt" },
                 },
                 [_vm._v("Body Type")]
               ),
@@ -35238,7 +35254,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "dropdown-item",
-                  attrs: { href: "/car/show/create/motor" },
+                  attrs: { href: "/admin/car/show/create/motor" },
                 },
                 [_vm._v("Motor")]
               ),
@@ -35249,7 +35265,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "dropdown-item",
-                  attrs: { href: "/car/show/create/model" },
+                  attrs: { href: "/admin/car/show/create/model" },
                 },
                 [_vm._v("Model")]
               ),

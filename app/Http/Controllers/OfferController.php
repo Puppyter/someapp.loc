@@ -76,8 +76,7 @@ class OfferController extends Controller
      */
     public function edit(Request $request,OfferService $offerService)
     {
-        $car = $offerService->get($request->offer);
-        return response()->view('offerEdit',['car'=>$car]);
+        return response()->view('offerEdit',['offer'=>$offerService->get($request->offer)]);
     }
 
     /**

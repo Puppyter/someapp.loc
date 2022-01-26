@@ -1,4 +1,10 @@
 @extends('layouts.layout')
 @section('content')
-    <edit-offer :offer="{{json_encode($car)}}"></edit-offer>
+    @can('update',$offer)
+    <edit-offer :offer="{{json_encode($offer)}}"></edit-offer>
+    @else
+        @can('isAdmin',Auth::user())
+            <edit-offer :offer="{{json_encode($offer)}}"></edit-offer>
+        @endcan
+    @endcan
 @endsection

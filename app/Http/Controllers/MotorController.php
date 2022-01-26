@@ -6,12 +6,15 @@ use App\Services\BodyTypeService;
 use App\Services\FuelService;
 use App\Services\MotorService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MotorController extends Controller
 {
-    public function show(FuelService $fuelService, BodyTypeService $bodyTypeService)
+    public function show(Request $request)
     {
-        return response()->view('createMotor',['fuels'=>$fuelService->getAll(), 'bodyTypes'=>$bodyTypeService->getAll()]);
+        return $request->user()->can('isAdmin',Auth::user())
+            ? response()->view('createMotor')
+            : redirect()->back();
     }
 
     public function  create(Request $request, MotorService $motorService)

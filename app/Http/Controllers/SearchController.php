@@ -13,7 +13,7 @@ class SearchController extends Controller
 
     public function searchOffer(Request $request, SearchService $searchService, OfferRepository $offerRepository)
     {
-        return response(['offers'=>$searchService->search($request->conditions, $offerRepository->setPrice($request->minPrice,$request->maxPrice))]);
+        return response(['offers'=>$searchService->search($request->conditions, $request->minPrice,$request->maxPrice)]);
     }
 
     public function searchModel(Request $request, ManufactureRepository $manufactureRepository)

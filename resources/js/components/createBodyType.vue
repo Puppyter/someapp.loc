@@ -48,7 +48,7 @@ export default {
             })
         },
         createBodyType(){
-            axios.post('/car/create/bt',{name: this.name, manufacture_id: this.manufactureId}, {
+            axios.post('/admin/car/create/bt',{name: this.name, manufacture_id: this.manufactureId}, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 }

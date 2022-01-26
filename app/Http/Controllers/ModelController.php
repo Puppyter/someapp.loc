@@ -6,12 +6,15 @@ use App\Repositories\ModelRepository;
 use App\Services\CarService;
 use App\Services\ModelService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ModelController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-      return response()->view('createModel');
+        return $request->user()->can('isAdmin',Auth::user())
+            ? response()->view('createModel')
+            : redirect()->back();
     }
 
     public function  create(Request $request, ModelService $modelService)

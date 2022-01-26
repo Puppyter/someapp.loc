@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BodyTypeRequest;
 use App\Services\BodyTypeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BodyTypeController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        return response()->view('createBodyType');
+        return $request->user()->can('isAdmin',Auth::user())
+            ?response()->view('createBodyType')
+            :redirect()->back();
     }
 
     public function  create(Request $request, BodyTypeService $bodyTypeService)

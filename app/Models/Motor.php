@@ -9,8 +9,7 @@ class Motor extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'fuel_id',
-        'body_type_id',
+        'manufacture_id',
         'name'
     ];
 

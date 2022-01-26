@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class SearchService
 {
-    public function search(?array $conditions, ?array $prices)
+    public function search(?array $conditions, ?int $from, ?int $to)
     {
         /** @var OfferRepository $offerRepository */
         $offerRepository = app(OfferRepository::class);
-        $offers = $offerRepository->search($conditions, $prices);
+        $offers = $offerRepository->search($conditions, $offerRepository->setPrice($from,$to));
         foreach ($offers as $offer) {
             $offer->model_id = $offer->model;
             $offer->manufacture_id = $offer->manufacture;

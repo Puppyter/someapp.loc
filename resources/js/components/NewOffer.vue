@@ -210,6 +210,9 @@ export default {
         price: 0,
     }),
     methods: {
+        getAllMotors(){
+
+        },
         fileUpload(){
             this.images = this.$refs.images.files;
         //     for( let i = 0; i < uploadedFiles.length; i++ ){
@@ -297,6 +300,7 @@ export default {
                 let image = this.images[i];
                 data.append('images['+i+']', image)
             }
+            data.append('fuel_id', this.fuelId);
             data.append('price', this.price);
             data.append('user_id', this.userId);
             data.append('manufacture_id', this.manufactureId);

@@ -15,7 +15,11 @@
 <div class="container" id="app">
     <header>
 @section("upper")
-    <upper :auth="{{Auth::check()}}"></upper>
+    @can('isAdmin',Auth::user())
+        <admin-upper auth="{{Auth::check()}}"></admin-upper>
+            @else
+                <upper auth="{{Auth::check()}}"></upper>
+            @endcan
 @show
     </header>
     <main class="main h-100">

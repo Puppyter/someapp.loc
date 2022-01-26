@@ -34,7 +34,7 @@
                         </ul>
                     </div>
                     <div class="col-2" style="margin-top: 0.5em">
-                        <a class="" v-if="auth===true" style="text-decoration: none;margin-right: 1em;" href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <a class="text-white-50" v-if="auth==='1'" style="text-decoration: none;margin-right: 1em;" href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         </svg>Logout</a>
                         <a class="text-white-50" style="text-decoration: none; margin-right: 1em;" href="/users" v-else><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">

@@ -1,7 +1,11 @@
 @extends('layouts.layout')
 @section('content')
     <Offer :offer="{{json_encode($offer)}}"></Offer>
-    @if($offer->user_id === Auth::id())
+    @can('update',$offer)
         <a href="{{route('offers.edit',['offer'=>$offer->id])}}" style="background-color: #FD5631;" class="btn text-white">EditOffer</a>
-    @endif
+    @else
+        @can( 'isAdmin',Auth::user())
+            <a href="{{route('offers.edit',['offer'=>$offer->id])}}" style="background-color: #FD5631;" class="btn text-white">EditOffer</a>
+        @endcan
+    @endcan
 @endsection

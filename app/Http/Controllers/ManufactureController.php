@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Services\ManufactureService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManufactureController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        return response()->view('createManufacture');
+        return $request->user()->can('isAdmin',Auth::user())
+            ? response()->view('createManufacture')
+            : redirect()->back();
     }
 
     public function  create(Request $request, ManufactureService $manufactureService)

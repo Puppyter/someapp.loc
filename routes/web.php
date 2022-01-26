@@ -12,6 +12,7 @@ use App\Http\Controllers\MotorController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,10 +92,6 @@ Route::post('/car/store',[CarController::class,'store'])
 
 
 /** Manufacture Routes */
-Route::post('/car/create/manufacture', [ManufactureController::class,'create'])
-    ->name('createManufacture');
-Route::get('/car/show/create/manufacture', [ManufactureController::class,'show'])
-    ->name('createManufactureShow');
 //Route::get('/car/get/manufacture', [ManufactureController::class,'get'])
 //    ->name('getManufacture');
 Route::get('/car/all/manufacture', [ManufactureController::class,'getAll'])
@@ -103,10 +100,6 @@ Route::get('/car/all/manufacture', [ManufactureController::class,'getAll'])
 
 
 /** Model Routes */
-Route::post('/car/create/model', [ModelController::class,'create'])
-    ->name('createModel');
-Route::get('/car/show/create/model', [ModelController::class,'show'])
-    ->name('createModelShow');
 //Route::get('/car/get/model', [ModelController::class,'get'])
 //    ->name('getModel');
 Route::get('/car/all/model', [ModelController::class,'getAll'])
@@ -115,10 +108,6 @@ Route::get('/car/all/model', [ModelController::class,'getAll'])
 
 
 /** Fuel Routes */
-Route::post('/car/create/fuel', [FuelController::class,'create'])
-    ->name('createFuel');
-Route::get('/car/show/create/fuel', [FuelController::class,'show'])
-    ->name('createFuelShow');
 //Route::get('/car/get/fuel', [FuelController::class,'get'])
 //    ->name('getFuel');
 Route::get('/car/all/fuel', [FuelController::class,'getAll'])
@@ -127,10 +116,6 @@ Route::get('/car/all/fuel', [FuelController::class,'getAll'])
 
 
 /** Motor Routes */
-Route::post('/car/create/motor', [MotorController::class,'create'])
-    ->name('createMotor');
-Route::get('/car/show/create/motor', [MotorController::class,'show'])
-    ->name('createMotorShow');
 //Route::get('/car/get/motor', [MotorController::class,'get'])
 //    ->name('getMotor');
 Route::get('/car/all/motor', [MotorController::class,'getAll'])
@@ -139,10 +124,6 @@ Route::get('/car/all/motor', [MotorController::class,'getAll'])
 
 
 /** Body Type Routes */
-Route::post('/car/create/bt', [BodyTypeController::class,'create'])
-    ->name('createBodyType');
-Route::get('/car/show/create/bt', [BodyTypeController::class,'show'])
-    ->name('createBodyTypeShow');
 //Route::get('/car/get/bt', [BodyTypeController::class,'get'])
 //    ->name('getBodyType');
 Route::get('/car/all/bt', [BodyTypeController::class,'getAll'])
@@ -152,4 +133,24 @@ Route::get('/car/all/bt', [BodyTypeController::class,'getAll'])
 /** Admin Routes */
 Route::prefix('admin')->group(function (){
     Route::get('/', [AdminController::class,'index']);
+    Route::post('/car/create/bt', [BodyTypeController::class,'create'])
+        ->name('createBodyType');
+    Route::get('/car/show/create/bt', [BodyTypeController::class,'show'])
+        ->name('createBodyTypeShow');
+    Route::post('/car/create/motor', [MotorController::class,'create'])
+        ->name('createMotor');
+    Route::get('/car/show/create/motor', [MotorController::class,'show'])
+        ->name('createMotorShow');
+    Route::post('/car/create/fuel', [FuelController::class,'create'])
+        ->name('createFuel');
+    Route::get('/car/show/create/fuel', [FuelController::class,'show'])
+        ->name('createFuelShow');
+    Route::post('/car/create/model', [ModelController::class,'create'])
+        ->name('createModel');
+    Route::get('/car/show/create/model', [ModelController::class,'show'])
+        ->name('createModelShow');
+    Route::post('/car/create/manufacture', [ManufactureController::class,'create'])
+        ->name('createManufacture');
+    Route::get('/car/show/create/manufacture', [ManufactureController::class,'show'])
+        ->name('createManufactureShow') ;
 });
