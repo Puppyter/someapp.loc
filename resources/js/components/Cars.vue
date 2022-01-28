@@ -103,6 +103,13 @@
                     <h1>No Orders Yet</h1>
                 </div>
                 <div v-else>
+                    <ais-instant-search
+                        :search-client="searchClient"
+                        index-name="offers"
+                    >
+                        <ais-search-box placeholder="keywodrds"/>
+                        <ais-hits />
+                        <ais-index index-name="offers">
                     <div v-model="cars">
                         <div class="col" v-for="car in cars" :key="car.id">
                             <div class="card mb-3 text-white" style="width: 133%; background-color: #231f32">
@@ -128,6 +135,9 @@
                             </div>
                         </div>
                     </div>
+                            <ais-hits/>
+                        </ais-index>
+                    </ais-instant-search>
                 </div>
             </form>
         </div>
@@ -135,6 +145,7 @@
 </template>
 
 <script>
+import algoliasearch from 'algoliasearch/lite';
 export default {
     name: "Cars",
     data: () => ({
@@ -152,6 +163,10 @@ export default {
         body_type_id: '',
         motors: '',
         motor_id: '',
+        searchClient: algoliasearch(
+            'K4ZXU1LBWR',
+            '79feba9df561d10ac7ab7ee5bb5a694e'
+        ),
     }),
     mounted() {
         this.getAllManufactures();

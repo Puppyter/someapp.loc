@@ -5,10 +5,17 @@
  */
 
 require('./bootstrap');
-import EasySlider from 'vue-easy-slider';
 
 window.Vue = require('vue').default;
 
+import algoliasearch from 'algoliasearch/lite';
+window.algoliasearch = algoliasearch;
+
+import InstantSearch from 'vue-instantsearch';
+Vue.use(InstantSearch);
+
+import EasySlider from 'vue-easy-slider';
+Vue.use(EasySlider)
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,7 +38,5 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 const app = new Vue({
     el: '#app',
-    components: {
-        EasySlider,
-    }
+
 });

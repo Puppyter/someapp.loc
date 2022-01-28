@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Scout\Searchable;
 
 class Offer extends Model
 {
-    use HasFactory;
+    use HasFactory; use Searchable;
 
     protected $fillable = [
         'user_id',
@@ -58,5 +60,18 @@ class Offer extends Model
     public function motor()
     {
         return $this->belongsTo(Motor::class);
+    }
+
+    public function toSearchableArray()
+    {
+        $offers = $this->toArray();
+        $offers = $this->transform($offers);
+        $offers['model_id'] = $this->model->name;
+        $offers['manufacture_id'] = $this->manufacture->name;
+        $offers['body_type_id'] = $this->bodyType->name;
+        $offers['motor_id'] = $this->motor->name;
+        $offers['images'] = Storage::url($this->images[0]->image);
+
+        return $offers;
     }
 }
