@@ -54,4 +54,8 @@ class OfferRepository
         return Offer::destroy($id);
     }
 
+    public function updateToTop(int $userId)
+    {
+        Offer::where('user_id',$userId)->update(['is_top'=>true]);
+    }
 }

@@ -2,8 +2,7 @@
 
 namespace App\Services;
 
-
-
+use App\Repositories\OfferRepository;
 use App\Repositories\UserRepository;
 
 class UserService
@@ -15,13 +14,10 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function create(array $data)
+    public function updateOffersToTop(int $user_id)
     {
-        return $this->userRepository->create($data);
-    }
-
-    public function find(int $userId)
-    {
-        return $this->userRepository->find($userId);
+        /** @var OfferRepository $offerRepository */
+        $offerRepository = app(OfferRepository::class);
+        $offerRepository->updateToTop($user_id);
     }
 }

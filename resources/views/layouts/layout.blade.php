@@ -3,7 +3,9 @@
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SomeApp</title>
+ <script  src="https://js.stripe.com/v3/"></script>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
     <style>
         *{
             font-family: 'Noto Sans',sans-serif;
@@ -35,5 +37,6 @@
     </div>
 </footer>
 <script src="{{ mix("js/app.js") }}" defer></script>
+
 </body>
 </html>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BodyTypeController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CashController;
 use App\Http\Controllers\FuelController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[IndexController::class,'index']);
+Route::get('/',[IndexController::class,'index'])->name('welcome');
 
 /** User Routes */
 Route::resource('users',UserController::class)
@@ -132,6 +134,10 @@ Route::get('/car/all/bt', [BodyTypeController::class,'getAll'])
 
 /** Admin Routes */
 Route::prefix('admin')->group(function (){
+    Route::get('/user/invoices/show', [AdminController::class,'takeUserInvoices'])
+        ->name('takeInvoicesShow');
+    Route::post('/user/invoices', [AdminController::class,'takeUserInvoicesShow'])
+        ->name('takeInvoices');
     Route::get('/', [AdminController::class,'index']);
     Route::post('/car/create/bt', [BodyTypeController::class,'create'])
         ->name('createBodyType');
@@ -154,3 +160,18 @@ Route::prefix('admin')->group(function (){
     Route::get('/car/show/create/manufacture', [ManufactureController::class,'show'])
         ->name('createManufactureShow') ;
 });
+
+/** Cash Routes */
+Route::get('/offer/up/show', [CashController::class, 'show'])
+    ->middleware('web')
+    ->name('upToTop');
+Route::get('/setup-intent',[CashController::class, 'createIntent'])
+    ->middleware('web');
+Route::post('/accept/payment/show',[CashController::class,'acceptPayment'])
+    ->middleware('web');
+Route::post('/accept/payment/subscription', [CashController::class,'subscription'])
+    ->middleware('web');
+Route::post('/accept/payment/one_time', [CashController::class,'oneTimePayment'])
+    ->middleware('web');
+    Route::post('/stripe/webhook',[CashController::class,'handleWebhook']);
+

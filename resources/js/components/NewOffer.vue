@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-    <form ref="newOffer" enctype="multipart/form-data">
         <div class="row">
-            </div>
+            <div class="col">
+    <form ref="newOffer" enctype="multipart/form-data">
             <div class="card mb-3 text-white" style="width: 59em; background-color:rgba(34,30,50,0.5); margin-top: 1em">
                 <h4>General Information</h4>
                 <div class="row">
@@ -178,6 +178,14 @@
             <input type="button" class="btn text-white" style="background-color: #FD5631;  margin-bottom: 1em" value="Create" @click="uploadData">
         </div>
     </form>
+            </div>
+            <div class="col">
+                <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5); margin-top: 1em">
+                    <h4>Or you can use our marketers $200</h4>
+                    <input type="button" @click="parchMarketer">
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -210,8 +218,8 @@ export default {
         price: 0,
     }),
     methods: {
-        getAllMotors(){
-
+        parchMarketer(){
+            window.location.href = '/offer/up/show?price'
         },
         fileUpload(){
             this.images = this.$refs.images.files;

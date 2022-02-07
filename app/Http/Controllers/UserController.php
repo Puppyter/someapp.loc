@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -36,11 +37,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request, UserService $userService)
+    public function store(UserRequest $request, UserRepository $userRepository)
     {
         $data = $request->all();
         $data["password"] = Hash::make($data['password']);
-        $userService->create($data);
+        $userRepository->create($data);
         return response(['status'=>true]);
     }
 

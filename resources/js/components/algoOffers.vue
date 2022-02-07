@@ -4,9 +4,7 @@
     index-name="offers">
     <div class="row row-cols-2  ">
         <div class="col" style="width: 400px">
-            <ais-search-box placeholder="Input keywords">
-
-            </ais-search-box>
+            <ais-search-box placeholder="Input keywords"></ais-search-box>
             <h4 class="text-white-50">Brand</h4>
             <ais-menu-select attribute="manufacture_id" />
             <h4 class="text-white-50">Model</h4>
@@ -29,9 +27,32 @@
                 refineNext,
                 isLastPage,
                 sendEvent,
-            }">
+            }"
+            >
                     <div class="col" v-for="item in items" :key="item.objectID">
-                        <div class="card mb-3 text-white" style="width: 133%; background-color: #231f32">
+                        <div class="card mb-3 text-white" v-if="item.is_top === 1" style="width: 133%; background-color: #231f32">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img class="img-fluid rounded-start"
+                                         style="width: 223px; height: 225px"
+                                         :src="item.images"
+                                         alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body bg-opacity-50">
+                                        <h4 class="text-warning">PRIME</h4>
+                                        <a :href="'/offers/show'+'?'+'id='+item.id" style="text-decoration: none">
+                                            <h3 class="card-title text-white">
+                                                {{ item.manufacture_id + ' ' + item.model_id }}
+                                            </h3>
+                                        </a>
+                                        <p class="card-text">{{ '$' + item.price }}</p>
+                                        <p class="card-text"><small class="text-muted">{{ item.city }}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3 text-white" v-else style="width: 133%;  background-color: #231f32">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img class="img-fluid rounded-start"

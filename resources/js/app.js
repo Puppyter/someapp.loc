@@ -14,8 +14,11 @@ window.algoliasearch = algoliasearch;
 import InstantSearch from 'vue-instantsearch';
 Vue.use(InstantSearch);
 
+import { StripeElementCard } from '@vue-stripe/vue-stripe';
+Vue.use(StripeElementCard);
+
 import EasySlider from 'vue-easy-slider';
-Vue.use(EasySlider)
+Vue.use(EasySlider);
 
 /**
  * The following block of code may be used to automatically register your
@@ -35,6 +38,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 const app = new Vue({
     el: '#app',

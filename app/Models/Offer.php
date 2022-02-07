@@ -29,7 +29,8 @@ class Offer extends Model
         'price',
         'fuel_id',
         'technical_condition',
-        'repainted'
+        'repainted',
+        'is_prime',
     ];
 
     public function images()
