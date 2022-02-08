@@ -8,7 +8,9 @@ class InvoiceRepository
 {
     public function getInvoice(string $invoice_number)
     {
-        return Invoice::where('invoice_number',$invoice_number)->get()->user;
+        $invoice = Invoice::where('invoice_number',$invoice_number)->first();
+        $invoice->user_id = $invoice->user;
+        return $invoice;
     }
 
     public function create(array $data)

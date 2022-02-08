@@ -134,9 +134,9 @@ Route::get('/car/all/bt', [BodyTypeController::class,'getAll'])
 
 /** Admin Routes */
 Route::prefix('admin')->group(function (){
-    Route::get('/user/invoices/show', [AdminController::class,'takeUserInvoices'])
+    Route::post('/user/invoices', [AdminController::class,'takeUserInvoice'])
         ->name('takeInvoicesShow');
-    Route::post('/user/invoices', [AdminController::class,'takeUserInvoicesShow'])
+    Route::get('/user/invoices/show', [AdminController::class,'takeUserInvoicesShow'])
         ->name('takeInvoices');
     Route::get('/', [AdminController::class,'index']);
     Route::post('/car/create/bt', [BodyTypeController::class,'create'])
@@ -162,7 +162,7 @@ Route::prefix('admin')->group(function (){
 });
 
 /** Cash Routes */
-Route::get('/offer/up/show', [CashController::class, 'show'])
+Route::get('/payment/show', [CashController::class, 'show'])
     ->middleware('web')
     ->name('upToTop');
 Route::get('/setup-intent',[CashController::class, 'createIntent'])

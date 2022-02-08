@@ -1,5 +1,4 @@
 @extends('layouts.layout')
 @section('content')
-    <payment></payment>
+    <payment :paymentType=@json($paymentType)></payment>
 @endsection
-<script  src="https://js.stripe.com/v3/"></script>

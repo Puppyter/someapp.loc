@@ -90,7 +90,7 @@
                     <div class="col-2" style="margin-top: 0.5em">
                         <a class="text-white-50"
                            style="text-decoration: none;margin-right: 1em;"
-                           href="/offer/up/show"
+                           href="/payment/show?paymentType=subscription "
                         >
                             Up to Prime
                         </a>
@@ -151,6 +151,11 @@
 export default {
     name: "Upper",
     props: ['auth'],
+    methods:{
+        PaymentShow(){
+            window.location.href = '/payment/show?paymentType=subscription'
+        }
+    }
 }
 </script>
 

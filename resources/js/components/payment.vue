@@ -25,15 +25,14 @@
                 </button>
             </div>
         </div>
-        <accept-payment v-else :payment-method="this.paymentMethod"></accept-payment>
+        <accept-payment v-else :payment-type=this.paymenttype :payment-method="this.paymentMethod"></accept-payment>
     </div>
 </template>
 
 <script>
-import AcceptPayment from "./acceptPayment";
 export default {
     name: "payment",
-    components: {AcceptPayment},
+    props:['paymenttype'],
     data: ()=>({
         stripe: '',
         elements: '',

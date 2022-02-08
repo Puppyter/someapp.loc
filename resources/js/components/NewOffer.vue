@@ -219,7 +219,7 @@ export default {
     }),
     methods: {
         parchMarketer(){
-            window.location.href = '/offer/up/show?price'
+            window.location.href = '/payment/show?paymentType=marketer';
         },
         fileUpload(){
             this.images = this.$refs.images.files;

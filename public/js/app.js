@@ -11829,7 +11829,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     parchMarketer: function parchMarketer() {
-      window.location.href = '/offer/up/show?price';
+      window.location.href = '/payment/show?paymentType=marketer';
     },
     fileUpload: function fileUpload() {
       this.images = this.$refs.images.files; //     for( let i = 0; i < uploadedFiles.length; i++ ){
@@ -12373,7 +12373,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Upper",
-  props: ['auth']
+  props: ['auth'],
+  methods: {
+    PaymentShow: function PaymentShow() {
+      window.location.href = '/payment/show?paymentType=subscription';
+    }
+  }
 });
 
 /***/ }),
@@ -12431,7 +12436,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "acceptPayment",
-  props: ['paymentMethod', 'price'],
+  props: ['paymentMethod', 'paymentType'],
   data: function data() {
     return {
       acceptShow: true,
@@ -12443,13 +12448,16 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.acceptShow = false;
-      axios.post('/accept/payment/one_time', {
-        paymentMethod: this.paymentMethod
+      axios.post(this.paymentType.url, {
+        paymentMethod: this.paymentMethod,
+        price: this.paymentType.price,
+        name: this.paymentType.name
       }).then(function (_ref) {
         var data = _ref.data;
         console.log(data);
 
-        if (data.status === true) {// window.location.href = '/offers';
+        if (data.status === true) {
+          window.location.href = '/offers';
         }
 
         _this.alertShow = true;
@@ -12473,6 +12481,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -13553,23 +13562,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "invoices",
   data: function data() {
     return {
-      userEmail: '',
-      invoices: {}
+      invoiceNumber: '',
+      invoice: ''
     };
   },
   methods: {
-    takeInvoices: function takeInvoices() {
+    takeInvoice: function takeInvoice() {
       var _this = this;
 
       axios.post('/admin/user/invoices', {
-        userEmail: this.userEmail
+        invoiceNumber: this.invoiceNumber
       }).then(function (_ref) {
         var data = _ref.data;
-        _this.invoices = data.invoices;
+        _this.invoice = data.invoice;
+        console.log(data);
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -13590,7 +13619,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _acceptPayment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./acceptPayment */ "./resources/js/components/acceptPayment.vue");
 //
 //
 //
@@ -13622,12 +13650,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "payment",
-  components: {
-    AcceptPayment: _acceptPayment__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
+  props: ['paymenttype'],
   data: function data() {
     return {
       stripe: '',
@@ -43641,7 +43666,7 @@ var render = function () {
                   "text-decoration": "none",
                   "margin-right": "1em",
                 },
-                attrs: { href: "/offer/up/show" },
+                attrs: { href: "/payment/show?paymentType=subscription " },
               },
               [_vm._v("\n                Up to Prime\n            ")]
             ),
@@ -43940,7 +43965,9 @@ var render = function () {
         : _vm._e(),
       _vm._v(" "),
       _c("h3", { staticClass: "text-white-50" }, [
-        _vm._v("\n        Subscription for the month 10$\n    "),
+        _vm._v(
+          "\n        Parches on " + _vm._s(_vm.paymentType.amount) + "$\n    "
+        ),
       ]),
       _vm._v(" "),
       _c("h3", { staticClass: "text-white-50" }, [
@@ -43987,10 +44014,7 @@ var render = function () {
       _vm.acceptShow === true
         ? _c(
             "a",
-            {
-              staticClass: "btn btn-danger",
-              attrs: { href: "/offer/up/show" },
-            },
+            { staticClass: "btn btn-danger", attrs: { href: "/payment/show" } },
             [_vm._v("\n        Decline\n    ")]
           )
         : _vm._e(),
@@ -44054,7 +44078,7 @@ var render = function () {
                 _c(
                   "div",
                   {
-                    staticClass: "col-2",
+                    staticClass: "col-auto",
                     staticStyle: { "margin-top": "0.5em" },
                   },
                   [
@@ -44311,10 +44335,10 @@ var staticRenderFns = [
             _c(
               "a",
               {
+                staticClass: "text-white-50",
                 staticStyle: {
                   "text-decoration": "none",
                   "margin-left": "1em",
-                  "margin-top": "0.5em",
                 },
                 attrs: { href: "/admin/user/invoices/show" },
               },
@@ -46208,20 +46232,81 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("input", { attrs: { type: "text", placeholder: "input user Email" } }),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.invoiceNumber,
+          expression: "invoiceNumber",
+        },
+      ],
+      attrs: { type: "text", placeholder: "input invoice number" },
+      domProps: { value: _vm.invoiceNumber },
+      on: {
+        input: function ($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.invoiceNumber = $event.target.value
+        },
+      },
+    }),
     _vm._v(" "),
-    _vm.invoices !== {}
-      ? _c(
-          "table",
-          _vm._l(_vm.invoices, function (invoice) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(invoice.date))]),
-              _vm._v(" "),
-              _c("td", [_vm._v("{{}}")]),
-            ])
-          }),
-          0
-        )
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-danger text-white",
+        staticStyle: { "background-color": "#FD5631" },
+        on: { click: _vm.takeInvoice },
+      },
+      [_vm._v("Take Invoice")]
+    ),
+    _vm._v(" "),
+    _vm.invoice !== ""
+      ? _c("table", { staticClass: "table" }, [
+          _c("tr", [
+            _c("td", { staticClass: "text-white" }, [
+              _vm._v("id: " + _vm._s(_vm.invoice.id)),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { staticClass: "text-white" }, [
+              _vm._v("Amount Due: " + _vm._s(_vm.invoice.amount_due)),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { staticClass: "text-white" }, [
+              _vm._v("Amount Paid: " + _vm._s(_vm.invoice.amount_paid)),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { staticClass: "text-white" }, [
+              _vm._v("Count: " + _vm._s(_vm.invoice.attempt_count)),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { staticClass: "text-white" }, [
+              _vm._v("Customer: " + _vm._s(_vm.invoice.customer_name)),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { staticClass: "text-white" }, [
+              _vm._v("Email: " + _vm._s(_vm.invoice.customer_email)),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", { staticClass: "text-white" }, [
+              _vm._v("Phone: " + _vm._s(_vm.invoice.customer_phone)),
+            ]),
+          ]),
+        ])
       : _vm._e(),
   ])
 }
@@ -46328,7 +46413,10 @@ var render = function () {
             ),
           ])
         : _c("accept-payment", {
-            attrs: { "payment-method": this.paymentMethod },
+            attrs: {
+              "payment-type": this.paymenttype,
+              "payment-method": this.paymentMethod,
+            },
           }),
     ],
     1

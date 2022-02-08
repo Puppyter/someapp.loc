@@ -4,7 +4,7 @@
             You already subscriber!!!!
         </div>
         <h3 class="text-white-50">
-            Subscription for the month 10$
+            Parches on {{paymentType.amount}}$
         </h3>
         <h3 class="text-white-50">
             Cardholder name: {{paymentMethod.billing_details.name}}
@@ -30,7 +30,7 @@
             Accept
         </button>
         <a v-if="acceptShow===true"
-            href="/offer/up/show"
+            href="/payment/show"
            class="btn btn-danger"
         >
             Decline
@@ -41,7 +41,7 @@
 <script>
 export default {
     name: "acceptPayment",
-    props: ['paymentMethod','price'],
+    props: ['paymentMethod','paymentType'],
     data:() =>({
        acceptShow:true,
         alertShow: false,
@@ -49,12 +49,12 @@ export default {
     methods: {
         AcceptPayment(){
             this.acceptShow=false
-            axios.post('/accept/payment/one_time',{paymentMethod: this.paymentMethod})
+            axios.post(this.paymentType.url,{paymentMethod: this.paymentMethod,price:this.paymentType.price, name: this.paymentType.name})
             .then(({data})=>{
                 console.log(data)
                 if (data.status === true)
                 {
-                    // window.location.href = '/offers';
+                     window.location.href = '/offers';
                 }
                 this.alertShow = true;
             })

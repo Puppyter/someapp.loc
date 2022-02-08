@@ -73,7 +73,8 @@
                     </li>
                     <li class="nav-item">
                         <a href="/admin/user/invoices/show"
-                           style="text-decoration: none;margin-left: 1em;margin-top: 0.5em">
+                           class="text-white-50"
+                           style="text-decoration: none;margin-left: 1em">
                             Search user invoices
                         </a>
 
@@ -151,7 +152,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <div class="col-2" style="margin-top: 0.5em">
+                    <div class="col-auto" style="margin-top: 0.5em">
                     <a class="text-white-50"
                        v-if="auth==='1'"
                        style="text-decoration: none;margin-right: 1em;"
