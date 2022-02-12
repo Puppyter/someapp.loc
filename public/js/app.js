@@ -12690,8 +12690,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "adminUpper",
   props: ['auth'],
@@ -12811,6 +12809,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "algoOffers",
@@ -12820,7 +12836,7 @@ __webpack_require__.r(__webpack_exports__);
       maxPrice: 9999999,
       manufactureName: '',
       manufactures: '',
-      cars: {},
+      cars: [],
       manufacture_id: '',
       model_id: '',
       models: '',
@@ -12832,6 +12848,160 @@ __webpack_require__.r(__webpack_exports__);
       motor_id: '',
       searchClient: algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0___default()('K4ZXU1LBWR', '79feba9df561d10ac7ab7ee5bb5a694e')
     };
+  },
+  methods: {
+    addCar: function addCar(car) {
+      var el = this.findInCars(car);
+
+      if (el !== false) {
+        this.removeCar(el);
+      } else {
+        this.cars.push(car);
+        this.saveCars();
+      }
+    },
+    removeCar: function removeCar(x) {
+      this.cars.splice(x, 1);
+      this.saveCars();
+    },
+    saveCars: function saveCars() {
+      var parsed = JSON.stringify(this.cars);
+      window.localStorage.setItem('cars', parsed);
+    },
+    findInCars: function findInCars(item) {
+      var el = false;
+      this.cars.forEach(function (car, key) {
+        if (car.id === item.id) {
+          el = key;
+        }
+      });
+      return el;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/compareCars.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/compareCars.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "compareCars",
+  data: function data() {
+    return {
+      cars: []
+    };
+  },
+  mounted: function mounted() {
+    if (localStorage.getItem('cars')) {
+      try {
+        this.cars = JSON.parse(localStorage.getItem('cars'));
+      } catch (e) {
+        localStorage.removeItem('cars');
+      }
+    }
   }
 });
 
@@ -39818,6 +39988,45 @@ component.options.__file = "resources/js/components/algoOffers.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/compareCars.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/compareCars.vue ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _compareCars_vue_vue_type_template_id_771b02a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./compareCars.vue?vue&type=template&id=771b02a9&scoped=true& */ "./resources/js/components/compareCars.vue?vue&type=template&id=771b02a9&scoped=true&");
+/* harmony import */ var _compareCars_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./compareCars.vue?vue&type=script&lang=js& */ "./resources/js/components/compareCars.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _compareCars_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _compareCars_vue_vue_type_template_id_771b02a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _compareCars_vue_vue_type_template_id_771b02a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "771b02a9",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/compareCars.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/createBodyType.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/createBodyType.vue ***!
@@ -40345,6 +40554,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/compareCars.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/compareCars.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_compareCars_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./compareCars.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/compareCars.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_compareCars_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/createBodyType.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/createBodyType.vue?vue&type=script&lang=js& ***!
@@ -40672,6 +40897,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_algoOffers_vue_vue_type_template_id_24ce7955_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_algoOffers_vue_vue_type_template_id_24ce7955_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./algoOffers.vue?vue&type=template&id=24ce7955&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/algoOffers.vue?vue&type=template&id=24ce7955&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/compareCars.vue?vue&type=template&id=771b02a9&scoped=true&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/compareCars.vue?vue&type=template&id=771b02a9&scoped=true& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_compareCars_vue_vue_type_template_id_771b02a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_compareCars_vue_vue_type_template_id_771b02a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_compareCars_vue_vue_type_template_id_771b02a9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./compareCars.vue?vue&type=template&id=771b02a9&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/compareCars.vue?vue&type=template&id=771b02a9&scoped=true&");
 
 
 /***/ }),
@@ -43053,29 +43295,39 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [
-        _c(
-          "div",
-          {
-            staticClass: "card mb-3 text-white",
-            staticStyle: {
-              "background-color": "rgba(34,30,50,0.5)",
-              "margin-top": "1em",
-            },
+        _vm._m(0),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "btn text-white",
+          staticStyle: {
+            "background-color": "#FD5631",
+            "margin-bottom": "1em",
           },
-          [
-            _c("h4", [_vm._v("Or you can use our marketers $200")]),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "button" },
-              on: { click: _vm.parchMarketer },
-            }),
-          ]
-        ),
+          attrs: { type: "button", value: "Parch" },
+          on: { click: _vm.parchMarketer },
+        }),
       ]),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card mb-3 text-white",
+        staticStyle: {
+          "background-color": "rgba(34,30,50,0.5)",
+          "margin-top": "1em",
+        },
+      },
+      [_c("h4", [_vm._v("Or you can use our marketers $200")])]
+    )
+  },
+]
 render._withStripped = true
 
 
@@ -43898,8 +44150,15 @@ var staticRenderFns = [
           _c("li", { staticClass: "nav-item" }, [
             _c(
               "a",
-              { staticClass: "nav-link text-white-50", attrs: { href: "#" } },
-              [_vm._v("\n                        Link\n                    ")]
+              {
+                staticClass: "nav-link text-white-50",
+                attrs: { href: "/cars/compare" },
+              },
+              [
+                _vm._v(
+                  "\n                        Compare\n                    "
+                ),
+              ]
             ),
           ]),
           _vm._v(" "),
@@ -44355,11 +44614,11 @@ var staticRenderFns = [
               "a",
               {
                 staticClass: "nav-link text-white-50",
-                attrs: { href: "#", tabindex: "-1", "aria-disabled": "true" },
+                attrs: { href: "/cars/compare" },
               },
               [
                 _vm._v(
-                  "\n                        Disabled\n                    "
+                  "\n                        Compare\n                    "
                 ),
               ]
             ),
@@ -44674,6 +44933,41 @@ var render = function () {
                                                 ),
                                               ]
                                             ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.addCar(item)
+                                                  },
+                                                },
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    staticClass:
+                                                      "bi bi-bar-chart-line",
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      width: "16",
+                                                      height: "16",
+                                                      fill: "currentColor",
+                                                      viewBox: "0 0 16 16",
+                                                    },
+                                                  },
+                                                  [
+                                                    _c("path", {
+                                                      attrs: {
+                                                        d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
+                                                      },
+                                                    }),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
                                           ]
                                         ),
                                       ]),
@@ -44722,9 +45016,7 @@ var render = function () {
                                                 },
                                                 attrs: {
                                                   href:
-                                                    "/offers/show" +
-                                                    "?" +
-                                                    "id=" +
+                                                    "/offers/show?id=" +
                                                     item.id,
                                                 },
                                               },
@@ -44767,6 +45059,42 @@ var render = function () {
                                                 ),
                                               ]
                                             ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-danger",
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.addCar(item)
+                                                  },
+                                                },
+                                              },
+                                              [
+                                                _c(
+                                                  "svg",
+                                                  {
+                                                    staticClass:
+                                                      "bi bi-bar-chart-line",
+                                                    attrs: {
+                                                      xmlns:
+                                                        "http://www.w3.org/2000/svg",
+                                                      width: "16",
+                                                      height: "16",
+                                                      fill: "currentColor",
+                                                      viewBox: "0 0 16 16",
+                                                    },
+                                                  },
+                                                  [
+                                                    _c("path", {
+                                                      attrs: {
+                                                        d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
+                                                      },
+                                                    }),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
                                           ]
                                         ),
                                       ]),
@@ -44799,6 +45127,263 @@ var render = function () {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/compareCars.vue?vue&type=template&id=771b02a9&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/compareCars.vue?vue&type=template&id=771b02a9&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row row-cols-auto text-white" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.cars, function (car) {
+        return _c("div", [
+          _c(
+            "div",
+            {
+              staticClass: "col",
+              staticStyle: { "background-color": "#231f32" },
+            },
+            [
+              _c("p", [
+                _vm._v(_vm._s(car.manufacture_id + " " + car.model_id)),
+              ]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.price))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.body_type_id))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.motor_id))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.fuel_id))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.mileage))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.accident === 0
+                ? _c("p", [_vm._v("Non accident")])
+                : _c("p", [_vm._v("Accident")]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.year))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.technical_condition === 1
+                ? _c("p", [_vm._v("Not crushed")])
+                : _c("p", [_vm._v("Crushed")]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.count_owners))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.insurance === 0
+                ? _c("p", [_vm._v("Without Insurance")])
+                : _c("p", [_vm._v("With Insurance")]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.repainted === 1
+                ? _c("p", [_vm._v("Repainted")])
+                : _c("p", [_vm._v("Not Repainted")]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(car.color))]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { href: "/offers/show?id=" + car.id },
+                },
+                [_vm._v("View Offer")]
+              ),
+            ]
+          ),
+        ])
+      }),
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col", staticStyle: { "background-color": "#231f32" } },
+      [
+        _c("p", [_vm._v("Brand and Model:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Price:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Body Type:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Motor:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Fuel:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Mileage:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Accident:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Year:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Technical Condition:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Count Owners:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Insurance:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Repainted:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Color:")]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "card mb-3 text-white",
+          staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+        }),
+      ]
+    )
+  },
+]
 render._withStripped = true
 
 
@@ -58629,6 +59214,7 @@ var map = {
 	"./components/acceptPayment.vue": "./resources/js/components/acceptPayment.vue",
 	"./components/adminUpper.vue": "./resources/js/components/adminUpper.vue",
 	"./components/algoOffers.vue": "./resources/js/components/algoOffers.vue",
+	"./components/compareCars.vue": "./resources/js/components/compareCars.vue",
 	"./components/createBodyType.vue": "./resources/js/components/createBodyType.vue",
 	"./components/createFuel.vue": "./resources/js/components/createFuel.vue",
 	"./components/createManufacture.vue": "./resources/js/components/createManufacture.vue",

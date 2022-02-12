@@ -48,6 +48,9 @@
                                         </a>
                                         <p class="card-text">{{ '$' + item.price }}</p>
                                         <p class="card-text"><small class="text-muted">{{ item.city }}</small></p>
+                                        <button @click="addCar(item)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+                                            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+                                        </svg></button>
                                     </div>
                                 </div>
                             </div>
@@ -62,13 +65,28 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body bg-opacity-50">
-                                        <a :href="'/offers/show'+'?'+'id='+item.id" style="text-decoration: none">
+                                        <a :href="'/offers/show?id='+item.id" style="text-decoration: none">
                                             <h3 class="card-title text-white">
                                                 {{ item.manufacture_id + ' ' + item.model_id }}
                                             </h3>
                                         </a>
                                         <p class="card-text">{{ '$' + item.price }}</p>
                                         <p class="card-text"><small class="text-muted">{{ item.city }}</small></p>
+
+                                        <button
+                                            class="btn btn-danger"
+                                                @click="addCar(item)"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="16"
+                                                 height="16"
+                                                 fill="currentColor"
+                                                 class="bi bi-bar-chart-line"
+                                                 viewBox="0 0 16 16"
+                                            >
+                                                <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +113,7 @@ export default {
         maxPrice: 9999999,
         manufactureName: '',
         manufactures: '',
-        cars: {},
+        cars: [],
         manufacture_id: '',
         model_id: '',
         models: '',
@@ -108,7 +126,36 @@ export default {
         searchClient: algoliasearch(
             'K4ZXU1LBWR',
             '79feba9df561d10ac7ab7ee5bb5a694e'),
-    })
+    }),
+    methods: {
+        addCar(car) {
+           const el = this.findInCars(car);
+            if (el!==false) {
+                this.removeCar(el);
+            }
+            else {
+                this.cars.push(car);
+                this.saveCars();
+            }
+        },
+        removeCar(x) {
+            this.cars.splice(x,1);
+            this.saveCars();
+        },
+        saveCars() {
+          const parsed = JSON.stringify(this.cars);
+          window.localStorage.setItem('cars',parsed);
+        },
+        findInCars(item){
+            let el =false;
+            this.cars.forEach((car, key)=>{
+                if (car.id === item.id){
+                    el = key;
+                }
+            })
+            return el
+        }
+    },
 }
 </script>
 

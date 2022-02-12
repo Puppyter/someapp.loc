@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CarRequest;
+use App\Models\Offer;
+use App\Repositories\OfferRepository;
 use App\Services\CarService;
 use App\Services\ManufactureService;
 use App\Services\OfferService;
@@ -27,6 +29,10 @@ class OfferController extends Controller
         return response(['cars'=>$offerService->getAll()->items()]);
     }
 
+    public function  compare(Request $request)
+    {
+        return response()->view('showCompare');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -47,11 +53,12 @@ class OfferController extends Controller
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
-        $car = $offerService->create($data);
+        $data['image']=Storage::put('public',$request->images[0]);
+        $offer = $offerService->create($data);
         foreach($request->images as $image)
         {
             $path = Storage::put('public',$image);
-            $offerService->createImage(['offer_id'=>$car->id, 'image'=>$path]);
+            $offerService->createImage(['offer_id'=>$offer->id, 'image'=>$path]);
         }
         return response(['status'=>true]);
     }
@@ -98,9 +105,11 @@ class OfferController extends Controller
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,CarService $carService)
+    public function destroy(Request $request,OfferRepository $offerRepository)
     {
-        $carService->destroy($request->carId);
+        $car= $offerRepository->find($request->carId);
+        $car->delete();
+        $offerRepository->destroy($request->carId);
         return response(['status'=>true]);
     }
 }

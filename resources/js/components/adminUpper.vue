@@ -81,11 +81,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white-50"
-                           href="#"
-                           tabindex="-1"
-                           aria-disabled="true"
+                           href="/cars/compare"
                         >
-                            Disabled
+                            Compare
                         </a>
                     </li>
                 </ul>

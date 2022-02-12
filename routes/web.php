@@ -58,6 +58,8 @@ Route::resource('offers',OfferController::class)
     ->middleware('web');
 Route::get('/offers/get/all', [OfferController::class,'getAll'])
 ->name('offersAll');
+Route::get('/cars/compare',[OfferController::class, 'compare'])
+    ->name('show.compare');
 /**  */
 
 
@@ -163,6 +165,9 @@ Route::prefix('admin')->group(function (){
 
 /** Cash Routes */
 Route::get('/payment/show', [CashController::class, 'show'])
+    ->middleware('web')
+    ->name('upToTop');
+Route::get('/offer/up/show', [CashController::class, 'show'])
     ->middleware('web')
     ->name('upToTop');
 Route::get('/setup-intent',[CashController::class, 'createIntent'])

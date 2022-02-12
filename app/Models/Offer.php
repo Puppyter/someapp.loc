@@ -31,6 +31,7 @@ class Offer extends Model
         'technical_condition',
         'repainted',
         'is_prime',
+        'image'
     ];
 
     public function images()
@@ -53,6 +54,11 @@ class Offer extends Model
         return $this->belongsTo(BodyType::class);
     }
 
+    public function fuel()
+    {
+        return $this->belongsTo(Fuel::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -71,7 +77,8 @@ class Offer extends Model
         $offers['manufacture_id'] = $this->manufacture->name;
         $offers['body_type_id'] = $this->bodyType->name;
         $offers['motor_id'] = $this->motor->name;
-        $offers['images'] = Storage::url($this->images[0]->image);
+        $offers['fuel_id'] = $this->fuel->name;
+        $offers['image'] = Storage::url($offers['image']);
 
         return $offers;
     }

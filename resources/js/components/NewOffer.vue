@@ -182,8 +182,8 @@
             <div class="col">
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5); margin-top: 1em">
                     <h4>Or you can use our marketers $200</h4>
-                    <input type="button" @click="parchMarketer">
                 </div>
+                <input type="button"  class="btn text-white" style="background-color: #FD5631;  margin-bottom: 1em" value="Parch" @click="parchMarketer">
             </div>
         </div>
     </div>

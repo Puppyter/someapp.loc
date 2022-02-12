@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOffers3Table extends Migration
+class CreateOffer5Table extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,7 @@ class CreateOffers3Table extends Migration
     public function up()
     {
         Schema::table('offers', function (Blueprint $table) {
-            $table->index('manufacture_id');
-            $table->index('model_id');
-            $table->unsignedBigInteger('fuel_id');
-            $table->index('body_type_id');
-            $table->index('motor_id');
+            $table->text('image')->nullable();
         });
     }
 
@@ -30,12 +26,7 @@ class CreateOffers3Table extends Migration
     public function down()
     {
         Schema::table('offers', function (Blueprint $table) {
-            $table->dropIndex('manufacture_id');
-            $table->dropIndex('model_id');
-            $table->dropIndex('fuel_id');
-            $table->dropIndex('body_type_id');
-            $table->dropIndex('motor_id');
-
+            $table->dropColumn(['image']);
         });
     }
 }

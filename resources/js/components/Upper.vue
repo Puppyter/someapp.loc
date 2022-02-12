@@ -64,9 +64,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white-50"
-                                   href="#"
+                                   href="/cars/compare"
                                 >
-                                    Link
+                                    Compare
                                 </a>
                             </li>
                             <li class="nav-item">
