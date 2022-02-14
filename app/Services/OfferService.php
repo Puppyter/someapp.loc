@@ -66,6 +66,11 @@ class OfferService
 
     public function destroy(int $offerId)
     {
+        $images = $this->imageRepository->getAllOffersImages($offerId);
+        foreach ($images as $image)
+        {
+            $this->imageRepository->destroy($image->id);
+        }
         return $this->offerRepository->destroy($offerId);
     }
 

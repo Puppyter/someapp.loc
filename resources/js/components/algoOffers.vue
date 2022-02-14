@@ -35,7 +35,7 @@
                                 <div class="col-md-4">
                                     <img class="img-fluid rounded-start"
                                          style="width: 223px; height: 225px"
-                                         :src="item.images"
+                                         :src="item.image"
                                          alt="...">
                                 </div>
                                 <div class="col-md-8">
@@ -60,7 +60,7 @@
                                 <div class="col-md-4">
                                     <img class="img-fluid rounded-start"
                                          style="width: 223px; height: 225px"
-                                         :src="item.images"
+                                         :src="item.image"
                                          alt="...">
                                 </div>
                                 <div class="col-md-8">

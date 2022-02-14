@@ -51,6 +51,7 @@ class OfferRepository
 
     public function destroy(int $id)
     {
+
         return Offer::destroy($id);
     }
 

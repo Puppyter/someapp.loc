@@ -60,6 +60,8 @@ Route::get('/offers/get/all', [OfferController::class,'getAll'])
 ->name('offersAll');
 Route::get('/cars/compare',[OfferController::class, 'compare'])
     ->name('show.compare');
+Route::get('/offer/{offer}/destroy',[OfferController::class,'destroy'])
+    ->name('offer.destroy');
 /**  */
 
 

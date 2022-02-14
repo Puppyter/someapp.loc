@@ -44860,7 +44860,7 @@ var render = function () {
                                             height: "225px",
                                           },
                                           attrs: {
-                                            src: item.images,
+                                            src: item.image,
                                             alt: "...",
                                           },
                                         }),
@@ -44994,7 +44994,7 @@ var render = function () {
                                             height: "225px",
                                           },
                                           attrs: {
-                                            src: item.images,
+                                            src: item.image,
                                             alt: "...",
                                           },
                                         }),

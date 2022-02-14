@@ -103,13 +103,12 @@ class OfferController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request,OfferRepository $offerRepository)
+    public function destroy(Request $request,OfferService $offerRepository)
     {
-        $car= $offerRepository->find($request->carId);
-        $car->delete();
-        $offerRepository->destroy($request->carId);
-        return response(['status'=>true]);
+//        $car->delete();
+        $offerRepository->destroy($request->offer);
+        return redirect()->route('offers.index');
     }
 }

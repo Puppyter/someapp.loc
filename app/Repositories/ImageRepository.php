@@ -12,10 +12,15 @@ class ImageRepository
         return Image::create($data);
     }
 
+    public function getAllOffersImages($offer_id)
+    {
+        return Image::where('offer_id', $offer_id)->get();
+    }
+
     public function destroy($imageId)
     {
         $image = Image::find($imageId);
         Storage::delete($image->image);
-        return $image->destroy();
+        return Image::destroy($imageId);
     }
 }
