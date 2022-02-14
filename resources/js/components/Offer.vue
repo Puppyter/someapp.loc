@@ -3,7 +3,7 @@
           <slider animation="fade" width="550px" v-model="nextCount">
               <div v-for="image in offer.images">
               <slider-item >
-                  <img :src="image.image" style="width: 100%; height: 100%">
+                  <img  :src="image.image" style=" height:100%; width: 100%; vertical-align: middle;">
               </slider-item>
               </div>
           </slider>

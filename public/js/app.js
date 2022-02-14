@@ -12827,6 +12827,113 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "algoOffers",
@@ -12893,6 +13000,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
 //
 //
 //
@@ -43372,7 +43481,11 @@ var render = function () {
             [
               _c("slider-item", [
                 _c("img", {
-                  staticStyle: { width: "100%", height: "100%" },
+                  staticStyle: {
+                    height: "100%",
+                    width: "100%",
+                    "vertical-align": "middle",
+                  },
                   attrs: { src: image.image },
                 }),
               ]),
@@ -44788,33 +44901,384 @@ var render = function () {
       _c("div", { staticClass: "row row-cols-2  " }, [
         _c(
           "div",
-          { staticClass: "col", staticStyle: { width: "400px" } },
+          {
+            staticClass: "col",
+            staticStyle: { width: "400px", "margin-top": "1em" },
+          },
           [
-            _c("ais-search-box", { attrs: { placeholder: "Input keywords" } }),
+            _c("ais-search-box", {
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function (ref) {
+                    var currentRefinement = ref.currentRefinement
+                    var isSearchStalled = ref.isSearchStalled
+                    var refine = ref.refine
+                    return [
+                      _c("input", {
+                        staticClass: "text-white-50 form-control border-dark",
+                        staticStyle: { "background-color": "#231f32" },
+                        attrs: { type: "search", placeholder: "input keyword" },
+                        domProps: { value: currentRefinement },
+                        on: {
+                          input: function ($event) {
+                            return refine($event.currentTarget.value)
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("span", { attrs: { hidden: !isSearchStalled } }, [
+                        _vm._v("Loading..."),
+                      ]),
+                    ]
+                  },
+                },
+              ]),
+            }),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-white-50" }, [_vm._v("Brand")]),
+            _c(
+              "h4",
+              {
+                staticClass: "text-white-50",
+                staticStyle: { "margin-top": "1em" },
+              },
+              [_vm._v("Brand")]
+            ),
             _vm._v(" "),
-            _c("ais-menu-select", { attrs: { attribute: "manufacture_id" } }),
+            _c("ais-menu-select", {
+              attrs: { attribute: "manufacture_id" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function (ref) {
+                    var items = ref.items
+                    var canRefine = ref.canRefine
+                    var refine = ref.refine
+                    var sendEvent = ref.sendEvent
+                    return [
+                      _c(
+                        "select",
+                        {
+                          staticClass:
+                            "text-white-50 form-select w-50 border-dark",
+                          staticStyle: { "background-color": "#231f32" },
+                          attrs: { disabled: !canRefine },
+                          on: {
+                            change: function ($event) {
+                              return refine($event.currentTarget.value)
+                            },
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(items, function (item) {
+                            return _c(
+                              "option",
+                              {
+                                key: item.value,
+                                domProps: {
+                                  value: item.value,
+                                  selected: item.isRefined,
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(item.label) +
+                                    "\n                        "
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ]
+                  },
+                },
+              ]),
+            }),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-white-50" }, [_vm._v("Model")]),
+            _c(
+              "h4",
+              {
+                staticClass: "text-white-50",
+                staticStyle: { "margin-top": "1em" },
+              },
+              [_vm._v("Model")]
+            ),
             _vm._v(" "),
-            _c("ais-menu-select", { attrs: { attribute: "model_id" } }),
+            _c("ais-menu-select", {
+              attrs: { attribute: "model_id" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function (ref) {
+                    var items = ref.items
+                    var canRefine = ref.canRefine
+                    var refine = ref.refine
+                    var sendEvent = ref.sendEvent
+                    return [
+                      _c(
+                        "select",
+                        {
+                          staticClass:
+                            "text-white-50 form-select w-50 border-dark",
+                          staticStyle: { "background-color": "#231f32" },
+                          attrs: { disabled: !canRefine },
+                          on: {
+                            change: function ($event) {
+                              return refine($event.currentTarget.value)
+                            },
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(items, function (item) {
+                            return _c(
+                              "option",
+                              {
+                                key: item.value,
+                                domProps: {
+                                  value: item.value,
+                                  selected: item.isRefined,
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(item.label) +
+                                    "\n                        "
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ]
+                  },
+                },
+              ]),
+            }),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-white-50" }, [_vm._v("Fuel")]),
+            _c(
+              "h4",
+              {
+                staticClass: "text-white-50",
+                staticStyle: { "margin-top": "1em" },
+              },
+              [_vm._v("Fuel")]
+            ),
             _vm._v(" "),
-            _c("ais-menu-select", { attrs: { attribute: "fuel_id" } }),
+            _c("ais-menu-select", {
+              attrs: { attribute: "fuel_id" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function (ref) {
+                    var items = ref.items
+                    var canRefine = ref.canRefine
+                    var refine = ref.refine
+                    var sendEvent = ref.sendEvent
+                    return [
+                      _c(
+                        "select",
+                        {
+                          staticClass:
+                            "text-white-50 form-select w-50 border-dark",
+                          staticStyle: { "background-color": "#231f32" },
+                          attrs: { disabled: !canRefine },
+                          on: {
+                            change: function ($event) {
+                              return refine($event.currentTarget.value)
+                            },
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(items, function (item) {
+                            return _c(
+                              "option",
+                              {
+                                key: item.value,
+                                domProps: {
+                                  value: item.value,
+                                  selected: item.isRefined,
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(item.label) +
+                                    "\n                        "
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ]
+                  },
+                },
+              ]),
+            }),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-white-50" }, [_vm._v("Body Type")]),
+            _c(
+              "h4",
+              {
+                staticClass: "text-white-50",
+                staticStyle: { "margin-top": "1em" },
+              },
+              [_vm._v("Body Type")]
+            ),
             _vm._v(" "),
-            _c("ais-menu-select", { attrs: { attribute: "body_type_id" } }),
+            _c("ais-menu-select", {
+              attrs: { attribute: "body_type_id" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function (ref) {
+                    var items = ref.items
+                    var canRefine = ref.canRefine
+                    var refine = ref.refine
+                    var sendEvent = ref.sendEvent
+                    return [
+                      _c(
+                        "select",
+                        {
+                          staticClass:
+                            "text-white-50 form-select w-50 border-dark",
+                          staticStyle: { "background-color": "#231f32" },
+                          attrs: { disabled: !canRefine },
+                          on: {
+                            change: function ($event) {
+                              return refine($event.currentTarget.value)
+                            },
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(items, function (item) {
+                            return _c(
+                              "option",
+                              {
+                                key: item.value,
+                                domProps: {
+                                  value: item.value,
+                                  selected: item.isRefined,
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(item.label) +
+                                    "\n                        "
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ]
+                  },
+                },
+              ]),
+            }),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-white-50" }, [_vm._v("Motor")]),
+            _c(
+              "h4",
+              {
+                staticClass: "text-white-50",
+                staticStyle: { "margin-top": "1em" },
+              },
+              [_vm._v("Motor")]
+            ),
             _vm._v(" "),
-            _c("ais-menu-select", { attrs: { attribute: "motor_id" } }),
+            _c("ais-menu-select", {
+              attrs: { attribute: "motor_id" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function (ref) {
+                    var items = ref.items
+                    var canRefine = ref.canRefine
+                    var refine = ref.refine
+                    var sendEvent = ref.sendEvent
+                    return [
+                      _c(
+                        "select",
+                        {
+                          staticClass:
+                            "text-white-50 form-select w-50 border-dark",
+                          staticStyle: { "background-color": "#231f32" },
+                          attrs: { disabled: !canRefine },
+                          on: {
+                            change: function ($event) {
+                              return refine($event.currentTarget.value)
+                            },
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("All"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(items, function (item) {
+                            return _c(
+                              "option",
+                              {
+                                key: item.value,
+                                domProps: {
+                                  value: item.value,
+                                  selected: item.isRefined,
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(item.label) +
+                                    "\n                        "
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ]
+                  },
+                },
+              ]),
+            }),
             _vm._v(" "),
-            _c("h4", { staticClass: "text-white-50" }, [_vm._v("Price")]),
+            _c(
+              "h4",
+              {
+                staticClass: "text-white-50",
+                staticStyle: { "margin-top": "1em" },
+              },
+              [_vm._v("Price")]
+            ),
             _vm._v(" "),
-            _c("ais-range-input", { attrs: { attribute: "price" } }),
+            _c("ais-range-input", {
+              staticClass: "text-white-50",
+              attrs: { attribute: "price" },
+            }),
           ],
           1
         ),
@@ -44990,8 +45454,9 @@ var render = function () {
                                           staticClass:
                                             "img-fluid rounded-start",
                                           staticStyle: {
-                                            width: "223px",
-                                            height: "225px",
+                                            width: "100%",
+                                            height: "100%",
+                                            "object-fit": "cover",
                                           },
                                           attrs: {
                                             src: item.image,
@@ -45164,101 +45629,17 @@ var render = function () {
               staticStyle: { "background-color": "#231f32" },
             },
             [
-              _c("p", [
-                _vm._v(_vm._s(car.manufacture_id + " " + car.model_id)),
-              ]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.price))]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.body_type_id))]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.motor_id))]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.fuel_id))]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.mileage))]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              car.accident === 0
-                ? _c("p", [_vm._v("Non accident")])
-                : _c("p", [_vm._v("Accident")]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.year))]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              car.technical_condition === 1
-                ? _c("p", [_vm._v("Not crushed")])
-                : _c("p", [_vm._v("Crushed")]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.count_owners))]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              car.insurance === 0
-                ? _c("p", [_vm._v("Without Insurance")])
-                : _c("p", [_vm._v("With Insurance")]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              car.repainted === 1
-                ? _c("p", [_vm._v("Repainted")])
-                : _c("p", [_vm._v("Not Repainted")]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "card mb-3 text-white",
-                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(car.color))]),
+              _c(
+                "p",
+                {
+                  staticStyle: {
+                    "margin-left": "1em",
+                    "margin-right": "1em",
+                    "margin-bottom": "1em",
+                  },
+                },
+                [_vm._v(_vm._s(car.manufacture_id + " " + car.model_id))]
+              ),
               _vm._v(" "),
               _c("div", {
                 staticClass: "card mb-3 text-white",
@@ -45266,12 +45647,233 @@ var render = function () {
               }),
               _vm._v(" "),
               _c(
-                "a",
+                "p",
                 {
-                  staticClass: "btn btn-danger",
-                  attrs: { href: "/offers/show?id=" + car.id },
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
                 },
-                [_vm._v("View Offer")]
+                [_vm._v(_vm._s(car.price))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [_vm._v(_vm._s(car.body_type_id))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [_vm._v(_vm._s(car.motor_id))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [_vm._v(_vm._s(car.fuel_id))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [_vm._v(_vm._s(car.mileage))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.accident === 0
+                ? _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("Non accident")]
+                  )
+                : _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("Accident")]
+                  ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [_vm._v(_vm._s(car.year))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.technical_condition === 1
+                ? _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("Not crushed")]
+                  )
+                : _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("Crushed")]
+                  ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [_vm._v(_vm._s(car.count_owners))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.insurance === 0
+                ? _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("Without Insurance")]
+                  )
+                : _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("With Insurance")]
+                  ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              car.repainted === 1
+                ? _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("Repainted")]
+                  )
+                : _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        "margin-left": "1em",
+                        "margin-right": "1em",
+                      },
+                    },
+                    [_vm._v("Not Repainted")]
+                  ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [_vm._v(_vm._s(car.color))]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card mb-3 text-white",
+                staticStyle: { "background-color": "rgba(34,30,50,0.5)" },
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: { "margin-left": "1em", "margin-right": "1em" },
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-danger",
+                      staticStyle: { "margin-bottom": "1em" },
+                      attrs: { href: "/offers/show?id=" + car.id },
+                    },
+                    [_vm._v("View Offer")]
+                  ),
+                ]
               ),
             ]
           ),

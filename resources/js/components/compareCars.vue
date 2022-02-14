@@ -43,50 +43,52 @@
         </div>
         <div v-for="car in cars">
             <div class="col" style="background-color: #231f32">
-                <p>{{car.manufacture_id + ' ' + car.model_id}}</p>
+                <p style="margin-left: 1em; margin-right: 1em; margin-bottom: 1em">{{car.manufacture_id + ' ' + car.model_id}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.price}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.price}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.body_type_id}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.body_type_id}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.motor_id}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.motor_id}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.fuel_id}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.fuel_id}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.mileage}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.mileage}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p v-if="car.accident === 0">Non accident</p>
-                <p v-else>Accident</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-if="car.accident === 0">Non accident</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-else>Accident</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.year}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.year}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p v-if="car.technical_condition === 1">Not crushed</p>
-                <p v-else>Crushed</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-if="car.technical_condition === 1">Not crushed</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-else>Crushed</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.count_owners}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.count_owners}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p v-if="car.insurance === 0">Without Insurance</p>
-                <p v-else>With Insurance</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-if="car.insurance === 0">Without Insurance</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-else>With Insurance</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p v-if="car.repainted === 1">Repainted</p>
-                <p v-else>Not Repainted</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-if="car.repainted === 1">Repainted</p>
+                <p style="margin-left: 1em; margin-right: 1em;" v-else>Not Repainted</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <p>{{car.color}}</p>
+                <p style="margin-left: 1em; margin-right: 1em;">{{car.color}}</p>
                 <div class="card mb-3 text-white" style="background-color:rgba(34,30,50,0.5);">
                 </div>
-                <a :href="'/offers/show?id='+ car.id" class="btn btn-danger">View Offer</a>
+                <div style="margin-left: 1em; margin-right: 1em">
+                    <a style="margin-bottom: 1em" :href="'/offers/show?id='+ car.id" class="btn btn-danger">View Offer</a>
+                </div>
             </div>
         </div>
     </div>

@@ -3,21 +3,127 @@
     :search-client="searchClient"
     index-name="offers">
     <div class="row row-cols-2  ">
-        <div class="col" style="width: 400px">
-            <ais-search-box placeholder="Input keywords"></ais-search-box>
-            <h4 class="text-white-50">Brand</h4>
-            <ais-menu-select attribute="manufacture_id" />
-            <h4 class="text-white-50">Model</h4>
-            <ais-menu-select attribute="model_id" />
-            <h4 class="text-white-50">Fuel</h4>
-            <ais-menu-select attribute="fuel_id" />
-            <h4 class="text-white-50">Body Type</h4>
-            <ais-menu-select attribute="body_type_id" />
-            <h4 class="text-white-50">Motor</h4>
-            <ais-menu-select attribute="motor_id" />
-            <h4 class="text-white-50">Price</h4>
-            <ais-range-input attribute="price"
-                              />
+        <div class="col" style="width: 400px; margin-top: 1em">
+            <ais-search-box>
+                <template v-slot="{ currentRefinement, isSearchStalled, refine }">
+                    <input
+                        class="text-white-50 form-control border-dark"
+                        style="background-color: #231f32"
+                        type="search"
+                        :value="currentRefinement"
+                        @input="refine($event.currentTarget.value)"
+                        placeholder="input keyword"
+                    >
+                    <span :hidden="!isSearchStalled">Loading...</span>
+                </template>
+            </ais-search-box>
+            <h4 class="text-white-50" style="margin-top: 1em">Brand</h4>
+            <ais-menu-select attribute="manufacture_id">
+                <template v-slot="{ items, canRefine, refine, sendEvent }">
+                    <select
+                        style="background-color: #231f32"
+                        class="text-white-50 form-select w-50 border-dark"
+                        :disabled="!canRefine"
+                        @change="refine($event.currentTarget.value)"
+                    >
+                        <option value="">All</option>
+                        <option
+                            v-for="item in items"
+                            :key="item.value"
+                            :value="item.value"
+                            :selected="item.isRefined"
+                        >
+                            {{ item.label }}
+                        </option>
+                    </select>
+                </template>
+            </ais-menu-select>
+            <h4 class="text-white-50" style="margin-top: 1em">Model</h4>
+            <ais-menu-select attribute="model_id">
+                <template v-slot="{ items, canRefine, refine, sendEvent }">
+                    <select
+                        style="background-color: #231f32"
+                        class="text-white-50 form-select w-50 border-dark"
+                        :disabled="!canRefine"
+                        @change="refine($event.currentTarget.value)"
+                    >
+                        <option value="">All</option>
+                        <option
+                            v-for="item in items"
+                            :key="item.value"
+                            :value="item.value"
+                            :selected="item.isRefined"
+                        >
+                            {{ item.label }}
+                        </option>
+                    </select>
+                </template>
+            </ais-menu-select>
+            <h4 class="text-white-50" style="margin-top: 1em">Fuel</h4>
+            <ais-menu-select attribute="fuel_id">
+                <template v-slot="{ items, canRefine, refine, sendEvent }">
+                    <select
+                        style="background-color: #231f32"
+                        class="text-white-50 form-select w-50 border-dark"
+                        :disabled="!canRefine"
+                        @change="refine($event.currentTarget.value)"
+                    >
+                        <option value="">All</option>
+                        <option
+                            v-for="item in items"
+                            :key="item.value"
+                            :value="item.value"
+                            :selected="item.isRefined"
+                        >
+                            {{ item.label }}
+                        </option>
+                    </select>
+                </template>
+            </ais-menu-select>
+            <h4 class="text-white-50" style="margin-top: 1em">Body Type</h4>
+            <ais-menu-select attribute="body_type_id">
+                <template v-slot="{ items, canRefine, refine, sendEvent }">
+                    <select
+                        style="background-color: #231f32"
+                        class="text-white-50 form-select w-50 border-dark"
+                        :disabled="!canRefine"
+                        @change="refine($event.currentTarget.value)"
+                    >
+                        <option value="">All</option>
+                        <option
+                            v-for="item in items"
+                            :key="item.value"
+                            :value="item.value"
+                            :selected="item.isRefined"
+                        >
+                            {{ item.label }}
+                        </option>
+                    </select>
+                </template>
+            </ais-menu-select>
+            <h4 class="text-white-50" style="margin-top: 1em">Motor</h4>
+            <ais-menu-select attribute="motor_id">
+                <template v-slot="{ items, canRefine, refine, sendEvent }">
+                    <select
+                        style="background-color: #231f32"
+                        class="text-white-50 form-select w-50 border-dark"
+                        :disabled="!canRefine"
+                        @change="refine($event.currentTarget.value)"
+                    >
+                        <option value="">All</option>
+                        <option
+                            v-for="item in items"
+                            :key="item.value"
+                            :value="item.value"
+                            :selected="item.isRefined"
+                        >
+                            {{ item.label }}
+                        </option>
+                    </select>
+                </template>
+            </ais-menu-select>
+            <h4 class="text-white-50" style="margin-top: 1em">Price</h4>
+            <ais-range-input class="text-white-50" attribute="price"/>
         </div>
     <div class="col">
         <ais-infinite-hits>
@@ -58,8 +164,9 @@
                         <div class="card mb-3 text-white" v-else style="width: 133%;  background-color: #231f32">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img class="img-fluid rounded-start"
-                                         style="width: 223px; height: 225px"
+                                    <img
+                                        class="img-fluid rounded-start"
+                                         style="width: 100%; height: 100%; object-fit: cover;"
                                          :src="item.image"
                                          alt="...">
                                 </div>
