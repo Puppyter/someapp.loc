@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BodyTypeRequest;
 use App\Services\BodyTypeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

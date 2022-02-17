@@ -8,6 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+import VueObserveVisibility from 'vue-observe-visibility';
+Vue.use(VueObserveVisibility);
+
 import algoliasearch from 'algoliasearch/lite';
 window.algoliasearch = algoliasearch;
 

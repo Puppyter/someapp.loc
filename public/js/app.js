@@ -11474,6 +11474,46 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/vue2/es/src/mixins/widget.js");
+/* harmony import */ var instantsearch_js_es_connectors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! instantsearch.js/es/connectors */ "./node_modules/instantsearch.js/es/connectors/infinite-hits/connectInfiniteHits.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "InfiniteHits",
+  mixins: [(0,vue_instantsearch__WEBPACK_IMPORTED_MODULE_0__.createWidgetMixin)({
+    connector: instantsearch_js_es_connectors__WEBPACK_IMPORTED_MODULE_1__["default"]
+  })],
+  methods: {
+    visibilityChanged: function visibilityChanged(isVisible) {
+      if (isVisible && !this.state.isLastPage) {
+        this.state.showMore();
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Login.vue?vue&type=script&lang=js& ***!
@@ -12719,8 +12759,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! algoliasearch/lite */ "./node_modules/algoliasearch/dist/algoliasearch-lite.umd.js");
-/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! algoliasearch/lite */ "./node_modules/algoliasearch/dist/algoliasearch-lite.umd.js");
+/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/vue2/es/src/mixins/widget.js");
+/* harmony import */ var instantsearch_js_es_connectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! instantsearch.js/es/connectors */ "./node_modules/instantsearch.js/es/connectors/infinite-hits/connectInfiniteHits.js");
+/* harmony import */ var _InfiniteHits__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InfiniteHits */ "./resources/js/components/InfiniteHits.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -12935,7 +12982,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    InfiniteHits: _InfiniteHits__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  mixins: [(0,vue_instantsearch__WEBPACK_IMPORTED_MODULE_1__.createWidgetMixin)({
+    connector: instantsearch_js_es_connectors__WEBPACK_IMPORTED_MODULE_2__["default"]
+  })],
   name: "algoOffers",
   data: function data() {
     return {
@@ -12953,10 +13009,15 @@ __webpack_require__.r(__webpack_exports__);
       body_type_id: '',
       motors: '',
       motor_id: '',
-      searchClient: algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0___default()('K4ZXU1LBWR', '79feba9df561d10ac7ab7ee5bb5a694e')
+      searchClient: algoliasearch_lite__WEBPACK_IMPORTED_MODULE_3___default()('K4ZXU1LBWR', '79feba9df561d10ac7ab7ee5bb5a694e')
     };
   },
   methods: {
+    visibilityChanged: function visibilityChanged(isVisible, e) {
+      if (isVisible && !this.state.isLastPage) {
+        this.state.showMore();
+      }
+    },
     addCar: function addCar(car) {
       var el = this.findInCars(car);
 
@@ -14054,11 +14115,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! algoliasearch/lite */ "./node_modules/algoliasearch/dist/algoliasearch-lite.umd.js");
-/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/vue2/es/index.js");
-/* harmony import */ var _vue_stripe_vue_stripe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue-stripe/vue-stripe */ "./node_modules/@vue-stripe/vue-stripe/dist/index.js");
-/* harmony import */ var vue_easy_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-easy-slider */ "./node_modules/vue-easy-slider/dist/vue-easy-slider.esm.js");
+/* harmony import */ var vue_observe_visibility__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-observe-visibility */ "./node_modules/vue-observe-visibility/dist/vue-observe-visibility.esm.js");
+/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! algoliasearch/lite */ "./node_modules/algoliasearch/dist/algoliasearch-lite.umd.js");
+/* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(algoliasearch_lite__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/vue2/es/index.js");
+/* harmony import */ var _vue_stripe_vue_stripe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vue-stripe/vue-stripe */ "./node_modules/@vue-stripe/vue-stripe/dist/index.js");
+/* harmony import */ var vue_easy_slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-easy-slider */ "./node_modules/vue-easy-slider/dist/vue-easy-slider.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -14068,13 +14130,15 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 
-window.algoliasearch = (algoliasearch_lite__WEBPACK_IMPORTED_MODULE_0___default());
+Vue.use(vue_observe_visibility__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
-Vue.use(vue_instantsearch__WEBPACK_IMPORTED_MODULE_1__["default"]);
+window.algoliasearch = (algoliasearch_lite__WEBPACK_IMPORTED_MODULE_1___default());
 
-Vue.use(_vue_stripe_vue_stripe__WEBPACK_IMPORTED_MODULE_2__.StripeElementCard);
+Vue.use(vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
-Vue.use(vue_easy_slider__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.use(_vue_stripe_vue_stripe__WEBPACK_IMPORTED_MODULE_3__.StripeElementCard);
+
+Vue.use(vue_easy_slider__WEBPACK_IMPORTED_MODULE_4__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -19161,6 +19225,106 @@ defineJQueryPlugin(Toast);
 
 //# sourceMappingURL=bootstrap.esm.js.map
 
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.sentinel[data-v-b6c3a542] {\n    list-style-type: none;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === "string") {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, ""]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
 
 /***/ }),
 
@@ -37475,6 +37639,315 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_style_index_0_id_b6c3a542_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_style_index_0_id_b6c3a542_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_style_index_0_id_b6c3a542_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : 0;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && typeof btoa !== 'undefined') {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+
 /***/ "./node_modules/vue-easy-slider/dist/vue-easy-slider.esm.js":
 /*!******************************************************************!*\
   !*** ./node_modules/vue-easy-slider/dist/vue-easy-slider.esm.js ***!
@@ -39746,6 +40219,47 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/InfiniteHits.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/InfiniteHits.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _InfiniteHits_vue_vue_type_template_id_b6c3a542_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true& */ "./resources/js/components/InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true&");
+/* harmony import */ var _InfiniteHits_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InfiniteHits.vue?vue&type=script&lang=js& */ "./resources/js/components/InfiniteHits.vue?vue&type=script&lang=js&");
+/* harmony import */ var _InfiniteHits_vue_vue_type_style_index_0_id_b6c3a542_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css& */ "./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _InfiniteHits_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _InfiniteHits_vue_vue_type_template_id_b6c3a542_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _InfiniteHits_vue_vue_type_template_id_b6c3a542_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "b6c3a542",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/InfiniteHits.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Login.vue":
 /*!*******************************************!*\
   !*** ./resources/js/components/Login.vue ***!
@@ -40519,6 +41033,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/InfiniteHits.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/InfiniteHits.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InfiniteHits.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Login.vue?vue&type=script&lang=js&":
 /*!********************************************************************!*\
   !*** ./resources/js/components/Login.vue?vue&type=script&lang=js& ***!
@@ -40823,6 +41353,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css& ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_style_index_0_id_b6c3a542_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=style&index=0&id=b6c3a542&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Cars.vue?vue&type=template&id=b8156aec&scoped=true&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/Cars.vue?vue&type=template&id=b8156aec&scoped=true& ***!
@@ -40853,6 +41396,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_template_id_b6c3a542_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_template_id_b6c3a542_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfiniteHits_vue_vue_type_template_id_b6c3a542_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true&");
 
 
 /***/ }),
@@ -42297,6 +42857,58 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InfiniteHits.vue?vue&type=template&id=b6c3a542&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.state
+    ? _c(
+        "ol",
+        [
+          _vm._l(_vm.state.hits, function (hit) {
+            return _c(
+              "li",
+              { key: hit.objectID },
+              [_vm._t("item", null, { item: hit })],
+              2
+            )
+          }),
+          _vm._v(" "),
+          _c("li", {
+            directives: [
+              {
+                name: "observe-visibility",
+                rawName: "v-observe-visibility",
+                value: _vm.visibilityChanged,
+                expression: "visibilityChanged",
+              },
+            ],
+            staticClass: "sentinel",
+          }),
+        ],
+        2
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44898,696 +45510,800 @@ var render = function () {
     "ais-instant-search",
     { attrs: { "search-client": _vm.searchClient, "index-name": "offers" } },
     [
-      _c("div", { staticClass: "row row-cols-2  " }, [
-        _c(
-          "div",
-          {
-            staticClass: "col",
-            staticStyle: { width: "400px", "margin-top": "1em" },
-          },
-          [
-            _c("ais-search-box", {
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function (ref) {
-                    var currentRefinement = ref.currentRefinement
-                    var isSearchStalled = ref.isSearchStalled
-                    var refine = ref.refine
-                    return [
-                      _c("input", {
-                        staticClass: "text-white-50 form-control border-dark",
-                        staticStyle: { "background-color": "#231f32" },
-                        attrs: { type: "search", placeholder: "input keyword" },
-                        domProps: { value: currentRefinement },
-                        on: {
-                          input: function ($event) {
-                            return refine($event.currentTarget.value)
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("span", { attrs: { hidden: !isSearchStalled } }, [
-                        _vm._v("Loading..."),
-                      ]),
-                    ]
-                  },
-                },
-              ]),
-            }),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "text-white-50",
-                staticStyle: { "margin-top": "1em" },
+      _c(
+        "div",
+        { staticClass: "row row-cols-2  " },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "col",
+              staticStyle: {
+                width: "400px",
+                "background-color": "rgba(34,30,50,0.5)",
               },
-              [_vm._v("Brand")]
-            ),
-            _vm._v(" "),
-            _c("ais-menu-select", {
-              attrs: { attribute: "manufacture_id" },
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function (ref) {
-                    var items = ref.items
-                    var canRefine = ref.canRefine
-                    var refine = ref.refine
-                    var sendEvent = ref.sendEvent
-                    return [
-                      _c(
-                        "select",
-                        {
-                          staticClass:
-                            "text-white-50 form-select w-50 border-dark",
-                          staticStyle: { "background-color": "#231f32" },
-                          attrs: { disabled: !canRefine },
+            },
+            [
+              _c("ais-search-box", {
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function (ref) {
+                      var currentRefinement = ref.currentRefinement
+                      var isSearchStalled = ref.isSearchStalled
+                      var refine = ref.refine
+                      return [
+                        _c("input", {
+                          staticClass: "text-white-50 form-control border-dark",
+                          staticStyle: {
+                            "background-color": "#231f32",
+                            "margin-top": "1em",
+                          },
+                          attrs: {
+                            type: "search",
+                            placeholder: "input keyword",
+                          },
+                          domProps: { value: currentRefinement },
                           on: {
-                            change: function ($event) {
+                            input: function ($event) {
                               return refine($event.currentTarget.value)
                             },
                           },
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All"),
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(items, function (item) {
-                            return _c(
-                              "option",
-                              {
-                                key: item.value,
-                                domProps: {
-                                  value: item.value,
-                                  selected: item.isRefined,
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(item.label) +
-                                    "\n                        "
-                                ),
-                              ]
-                            )
-                          }),
-                        ],
-                        2
-                      ),
-                    ]
+                        }),
+                        _vm._v(" "),
+                        _c("span", { attrs: { hidden: !isSearchStalled } }, [
+                          _vm._v("Loading..."),
+                        ]),
+                      ]
+                    },
                   },
-                },
-              ]),
-            }),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "text-white-50",
-                staticStyle: { "margin-top": "1em" },
-              },
-              [_vm._v("Model")]
-            ),
-            _vm._v(" "),
-            _c("ais-menu-select", {
-              attrs: { attribute: "model_id" },
-              scopedSlots: _vm._u([
+                ]),
+              }),
+              _vm._v(" "),
+              _c(
+                "h4",
                 {
-                  key: "default",
-                  fn: function (ref) {
-                    var items = ref.items
-                    var canRefine = ref.canRefine
-                    var refine = ref.refine
-                    var sendEvent = ref.sendEvent
-                    return [
-                      _c(
-                        "select",
-                        {
-                          staticClass:
-                            "text-white-50 form-select w-50 border-dark",
-                          staticStyle: { "background-color": "#231f32" },
-                          attrs: { disabled: !canRefine },
-                          on: {
-                            change: function ($event) {
-                              return refine($event.currentTarget.value)
+                  staticClass: "text-white-50",
+                  staticStyle: { "margin-top": "1em" },
+                },
+                [_vm._v("Brand")]
+              ),
+              _vm._v(" "),
+              _c("ais-menu-select", {
+                attrs: { attribute: "manufacture_id" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function (ref) {
+                      var items = ref.items
+                      var canRefine = ref.canRefine
+                      var refine = ref.refine
+                      var sendEvent = ref.sendEvent
+                      return [
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "text-white-50 form-select w-50 border-dark",
+                            staticStyle: { "background-color": "#231f32" },
+                            attrs: { disabled: !canRefine },
+                            on: {
+                              change: function ($event) {
+                                return refine($event.currentTarget.value)
+                              },
                             },
                           },
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All"),
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(items, function (item) {
-                            return _c(
-                              "option",
-                              {
-                                key: item.value,
-                                domProps: {
-                                  value: item.value,
-                                  selected: item.isRefined,
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(item.label) +
-                                    "\n                        "
-                                ),
-                              ]
-                            )
-                          }),
-                        ],
-                        2
-                      ),
-                    ]
-                  },
-                },
-              ]),
-            }),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "text-white-50",
-                staticStyle: { "margin-top": "1em" },
-              },
-              [_vm._v("Fuel")]
-            ),
-            _vm._v(" "),
-            _c("ais-menu-select", {
-              attrs: { attribute: "fuel_id" },
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function (ref) {
-                    var items = ref.items
-                    var canRefine = ref.canRefine
-                    var refine = ref.refine
-                    var sendEvent = ref.sendEvent
-                    return [
-                      _c(
-                        "select",
-                        {
-                          staticClass:
-                            "text-white-50 form-select w-50 border-dark",
-                          staticStyle: { "background-color": "#231f32" },
-                          attrs: { disabled: !canRefine },
-                          on: {
-                            change: function ($event) {
-                              return refine($event.currentTarget.value)
-                            },
-                          },
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All"),
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(items, function (item) {
-                            return _c(
-                              "option",
-                              {
-                                key: item.value,
-                                domProps: {
-                                  value: item.value,
-                                  selected: item.isRefined,
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(item.label) +
-                                    "\n                        "
-                                ),
-                              ]
-                            )
-                          }),
-                        ],
-                        2
-                      ),
-                    ]
-                  },
-                },
-              ]),
-            }),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "text-white-50",
-                staticStyle: { "margin-top": "1em" },
-              },
-              [_vm._v("Body Type")]
-            ),
-            _vm._v(" "),
-            _c("ais-menu-select", {
-              attrs: { attribute: "body_type_id" },
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function (ref) {
-                    var items = ref.items
-                    var canRefine = ref.canRefine
-                    var refine = ref.refine
-                    var sendEvent = ref.sendEvent
-                    return [
-                      _c(
-                        "select",
-                        {
-                          staticClass:
-                            "text-white-50 form-select w-50 border-dark",
-                          staticStyle: { "background-color": "#231f32" },
-                          attrs: { disabled: !canRefine },
-                          on: {
-                            change: function ($event) {
-                              return refine($event.currentTarget.value)
-                            },
-                          },
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All"),
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(items, function (item) {
-                            return _c(
-                              "option",
-                              {
-                                key: item.value,
-                                domProps: {
-                                  value: item.value,
-                                  selected: item.isRefined,
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(item.label) +
-                                    "\n                        "
-                                ),
-                              ]
-                            )
-                          }),
-                        ],
-                        2
-                      ),
-                    ]
-                  },
-                },
-              ]),
-            }),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "text-white-50",
-                staticStyle: { "margin-top": "1em" },
-              },
-              [_vm._v("Motor")]
-            ),
-            _vm._v(" "),
-            _c("ais-menu-select", {
-              attrs: { attribute: "motor_id" },
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function (ref) {
-                    var items = ref.items
-                    var canRefine = ref.canRefine
-                    var refine = ref.refine
-                    var sendEvent = ref.sendEvent
-                    return [
-                      _c(
-                        "select",
-                        {
-                          staticClass:
-                            "text-white-50 form-select w-50 border-dark",
-                          staticStyle: { "background-color": "#231f32" },
-                          attrs: { disabled: !canRefine },
-                          on: {
-                            change: function ($event) {
-                              return refine($event.currentTarget.value)
-                            },
-                          },
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All"),
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(items, function (item) {
-                            return _c(
-                              "option",
-                              {
-                                key: item.value,
-                                domProps: {
-                                  value: item.value,
-                                  selected: item.isRefined,
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(item.label) +
-                                    "\n                        "
-                                ),
-                              ]
-                            )
-                          }),
-                        ],
-                        2
-                      ),
-                    ]
-                  },
-                },
-              ]),
-            }),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "text-white-50",
-                staticStyle: { "margin-top": "1em" },
-              },
-              [_vm._v("Price")]
-            ),
-            _vm._v(" "),
-            _c("ais-range-input", {
-              staticClass: "text-white-50",
-              attrs: { attribute: "price" },
-            }),
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col" },
-          [
-            _c("ais-infinite-hits", {
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function (ref) {
-                    var items = ref.items
-                    var refinePrevious = ref.refinePrevious
-                    var refineNext = ref.refineNext
-                    var isLastPage = ref.isLastPage
-                    var sendEvent = ref.sendEvent
-                    return [
-                      _vm._l(items, function (item) {
-                        return _c(
-                          "div",
-                          { key: item.objectID, staticClass: "col" },
                           [
-                            item.is_top === 1
-                              ? _c(
-                                  "div",
-                                  {
-                                    staticClass: "card mb-3 text-white",
-                                    staticStyle: {
-                                      width: "133%",
-                                      "background-color": "#231f32",
-                                    },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "row g-0" }, [
-                                      _c("div", { staticClass: "col-md-4" }, [
-                                        _c("img", {
-                                          staticClass:
-                                            "img-fluid rounded-start",
-                                          staticStyle: {
-                                            width: "223px",
-                                            height: "225px",
-                                          },
-                                          attrs: {
-                                            src: item.image,
-                                            alt: "...",
-                                          },
-                                        }),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "col-md-8" }, [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "card-body bg-opacity-50",
-                                          },
-                                          [
-                                            _c(
-                                              "h4",
-                                              { staticClass: "text-warning" },
-                                              [_vm._v("PRIME")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "a",
-                                              {
-                                                staticStyle: {
-                                                  "text-decoration": "none",
-                                                },
-                                                attrs: {
-                                                  href:
-                                                    "/offers/show" +
-                                                    "?" +
-                                                    "id=" +
-                                                    item.id,
-                                                },
-                                              },
-                                              [
-                                                _c(
-                                                  "h3",
-                                                  {
-                                                    staticClass:
-                                                      "card-title text-white",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                                " +
-                                                        _vm._s(
-                                                          item.manufacture_id +
-                                                            " " +
-                                                            item.model_id
-                                                        ) +
-                                                        "\n                                            "
-                                                    ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "p",
-                                              { staticClass: "card-text" },
-                                              [_vm._v(_vm._s("$" + item.price))]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "p",
-                                              { staticClass: "card-text" },
-                                              [
-                                                _c(
-                                                  "small",
-                                                  { staticClass: "text-muted" },
-                                                  [_vm._v(_vm._s(item.city))]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "button",
-                                              {
-                                                on: {
-                                                  click: function ($event) {
-                                                    return _vm.addCar(item)
-                                                  },
-                                                },
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass:
-                                                      "bi bi-bar-chart-line",
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg",
-                                                      width: "16",
-                                                      height: "16",
-                                                      fill: "currentColor",
-                                                      viewBox: "0 0 16 16",
-                                                    },
-                                                  },
-                                                  [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
-                                                      },
-                                                    }),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]),
-                                    ]),
-                                  ]
-                                )
-                              : _c(
-                                  "div",
-                                  {
-                                    staticClass: "card mb-3 text-white",
-                                    staticStyle: {
-                                      width: "133%",
-                                      "background-color": "#231f32",
-                                    },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "row g-0" }, [
-                                      _c("div", { staticClass: "col-md-4" }, [
-                                        _c("img", {
-                                          staticClass:
-                                            "img-fluid rounded-start",
-                                          staticStyle: {
-                                            width: "100%",
-                                            height: "100%",
-                                            "object-fit": "cover",
-                                          },
-                                          attrs: {
-                                            src: item.image,
-                                            alt: "...",
-                                          },
-                                        }),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "col-md-8" }, [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "card-body bg-opacity-50",
-                                          },
-                                          [
-                                            _c(
-                                              "a",
-                                              {
-                                                staticStyle: {
-                                                  "text-decoration": "none",
-                                                },
-                                                attrs: {
-                                                  href:
-                                                    "/offers/show?id=" +
-                                                    item.id,
-                                                },
-                                              },
-                                              [
-                                                _c(
-                                                  "h3",
-                                                  {
-                                                    staticClass:
-                                                      "card-title text-white",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                                " +
-                                                        _vm._s(
-                                                          item.manufacture_id +
-                                                            " " +
-                                                            item.model_id
-                                                        ) +
-                                                        "\n                                            "
-                                                    ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "p",
-                                              { staticClass: "card-text" },
-                                              [_vm._v(_vm._s("$" + item.price))]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "p",
-                                              { staticClass: "card-text" },
-                                              [
-                                                _c(
-                                                  "small",
-                                                  { staticClass: "text-muted" },
-                                                  [_vm._v(_vm._s(item.city))]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass: "btn btn-danger",
-                                                on: {
-                                                  click: function ($event) {
-                                                    return _vm.addCar(item)
-                                                  },
-                                                },
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass:
-                                                      "bi bi-bar-chart-line",
-                                                    attrs: {
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg",
-                                                      width: "16",
-                                                      height: "16",
-                                                      fill: "currentColor",
-                                                      viewBox: "0 0 16 16",
-                                                    },
-                                                  },
-                                                  [
-                                                    _c("path", {
-                                                      attrs: {
-                                                        d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
-                                                      },
-                                                    }),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]),
-                                    ]),
-                                  ]
-                                ),
-                          ]
-                        )
-                      }),
-                      _vm._v(" "),
-                      !isLastPage
-                        ? _c("li", [
-                            _c("button", { on: { click: refineNext } }, [
-                              _vm._v(
-                                "\n                            Show more results\n                        "
-                              ),
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All"),
                             ]),
-                          ])
-                        : _vm._e(),
-                    ]
+                            _vm._v(" "),
+                            _vm._l(items, function (item) {
+                              return _c(
+                                "option",
+                                {
+                                  key: item.value,
+                                  domProps: {
+                                    value: item.value,
+                                    selected: item.isRefined,
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(item.label) +
+                                      "\n                        "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                      ]
+                    },
                   },
+                ]),
+              }),
+              _vm._v(" "),
+              _c(
+                "h4",
+                {
+                  staticClass: "text-white-50",
+                  staticStyle: { "margin-top": "1em" },
                 },
-              ]),
-            }),
-          ],
-          1
-        ),
-      ]),
+                [_vm._v("Model")]
+              ),
+              _vm._v(" "),
+              _c("ais-menu-select", {
+                attrs: { attribute: "model_id" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function (ref) {
+                      var items = ref.items
+                      var canRefine = ref.canRefine
+                      var refine = ref.refine
+                      var sendEvent = ref.sendEvent
+                      return [
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "text-white-50 form-select w-50 border-dark",
+                            staticStyle: { "background-color": "#231f32" },
+                            attrs: { disabled: !canRefine },
+                            on: {
+                              change: function ($event) {
+                                return refine($event.currentTarget.value)
+                              },
+                            },
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(items, function (item) {
+                              return _c(
+                                "option",
+                                {
+                                  key: item.value,
+                                  domProps: {
+                                    value: item.value,
+                                    selected: item.isRefined,
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(item.label) +
+                                      "\n                        "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                      ]
+                    },
+                  },
+                ]),
+              }),
+              _vm._v(" "),
+              _c(
+                "h4",
+                {
+                  staticClass: "text-white-50",
+                  staticStyle: { "margin-top": "1em" },
+                },
+                [_vm._v("Fuel")]
+              ),
+              _vm._v(" "),
+              _c("ais-menu-select", {
+                attrs: { attribute: "fuel_id" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function (ref) {
+                      var items = ref.items
+                      var canRefine = ref.canRefine
+                      var refine = ref.refine
+                      var sendEvent = ref.sendEvent
+                      return [
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "text-white-50 form-select w-50 border-dark",
+                            staticStyle: { "background-color": "#231f32" },
+                            attrs: { disabled: !canRefine },
+                            on: {
+                              change: function ($event) {
+                                return refine($event.currentTarget.value)
+                              },
+                            },
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(items, function (item) {
+                              return _c(
+                                "option",
+                                {
+                                  key: item.value,
+                                  domProps: {
+                                    value: item.value,
+                                    selected: item.isRefined,
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(item.label) +
+                                      "\n                        "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                      ]
+                    },
+                  },
+                ]),
+              }),
+              _vm._v(" "),
+              _c(
+                "h4",
+                {
+                  staticClass: "text-white-50",
+                  staticStyle: { "margin-top": "1em" },
+                },
+                [_vm._v("Body Type")]
+              ),
+              _vm._v(" "),
+              _c("ais-menu-select", {
+                attrs: { attribute: "body_type_id" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function (ref) {
+                      var items = ref.items
+                      var canRefine = ref.canRefine
+                      var refine = ref.refine
+                      var sendEvent = ref.sendEvent
+                      return [
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "text-white-50 form-select w-50 border-dark",
+                            staticStyle: { "background-color": "#231f32" },
+                            attrs: { disabled: !canRefine },
+                            on: {
+                              change: function ($event) {
+                                return refine($event.currentTarget.value)
+                              },
+                            },
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(items, function (item) {
+                              return _c(
+                                "option",
+                                {
+                                  key: item.value,
+                                  domProps: {
+                                    value: item.value,
+                                    selected: item.isRefined,
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(item.label) +
+                                      "\n                        "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                      ]
+                    },
+                  },
+                ]),
+              }),
+              _vm._v(" "),
+              _c(
+                "h4",
+                {
+                  staticClass: "text-white-50",
+                  staticStyle: { "margin-top": "1em" },
+                },
+                [_vm._v("Motor")]
+              ),
+              _vm._v(" "),
+              _c("ais-menu-select", {
+                attrs: { attribute: "motor_id" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function (ref) {
+                      var items = ref.items
+                      var canRefine = ref.canRefine
+                      var refine = ref.refine
+                      var sendEvent = ref.sendEvent
+                      return [
+                        _c(
+                          "select",
+                          {
+                            staticClass:
+                              "text-white-50 form-select w-50 border-dark",
+                            staticStyle: { "background-color": "#231f32" },
+                            attrs: { disabled: !canRefine },
+                            on: {
+                              change: function ($event) {
+                                return refine($event.currentTarget.value)
+                              },
+                            },
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("All"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(items, function (item) {
+                              return _c(
+                                "option",
+                                {
+                                  key: item.value,
+                                  domProps: {
+                                    value: item.value,
+                                    selected: item.isRefined,
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(item.label) +
+                                      "\n                        "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                      ]
+                    },
+                  },
+                ]),
+              }),
+              _vm._v(" "),
+              _c(
+                "h4",
+                {
+                  staticClass: "text-white-50",
+                  staticStyle: { "margin-top": "1em" },
+                },
+                [_vm._v("Price")]
+              ),
+              _vm._v(" "),
+              _c("ais-range-input", {
+                staticClass: "text-white-50",
+                attrs: { attribute: "price" },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col" },
+            [
+              _c(
+                "ais-infinite-hits",
+                [
+                  _c("infinite-hits", {
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var items = ref.items
+                          var refinePrevious = ref.refinePrevious
+                          var refineNext = ref.refineNext
+                          var isLastPage = ref.isLastPage
+                          var sendEvent = ref.sendEvent
+                          return [
+                            _vm._l(items, function (item) {
+                              return _c(
+                                "div",
+                                { key: item.objectID, staticClass: "col" },
+                                [
+                                  item.is_top === 1
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass: "card mb-3 text-white",
+                                          staticStyle: {
+                                            width: "133%",
+                                            "background-color": "#231f32",
+                                          },
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "row g-0" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-4" },
+                                                [
+                                                  _c("img", {
+                                                    staticClass:
+                                                      "img-fluid rounded-start",
+                                                    staticStyle: {
+                                                      width: "223px",
+                                                      height: "225px",
+                                                    },
+                                                    attrs: {
+                                                      src: item.image,
+                                                      alt: "...",
+                                                    },
+                                                  }),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-8" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "card-body bg-opacity-50",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "h4",
+                                                        {
+                                                          staticClass:
+                                                            "text-warning",
+                                                        },
+                                                        [_vm._v("PRIME")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          staticStyle: {
+                                                            "text-decoration":
+                                                              "none",
+                                                          },
+                                                          attrs: {
+                                                            href:
+                                                              "/offers/show" +
+                                                              "?" +
+                                                              "id=" +
+                                                              item.id,
+                                                          },
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "h3",
+                                                            {
+                                                              staticClass:
+                                                                "card-title text-white",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                                " +
+                                                                  _vm._s(
+                                                                    item.manufacture_id +
+                                                                      " " +
+                                                                      item.model_id
+                                                                  ) +
+                                                                  "\n                                            "
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "card-text",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              "$" + item.price
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "card-text",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "small",
+                                                            {
+                                                              staticClass:
+                                                                "text-muted",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.city
+                                                                )
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          on: {
+                                                            click: function (
+                                                              $event
+                                                            ) {
+                                                              return _vm.addCar(
+                                                                item
+                                                              )
+                                                            },
+                                                          },
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "svg",
+                                                            {
+                                                              staticClass:
+                                                                "bi bi-bar-chart-line",
+                                                              attrs: {
+                                                                xmlns:
+                                                                  "http://www.w3.org/2000/svg",
+                                                                width: "16",
+                                                                height: "16",
+                                                                fill: "currentColor",
+                                                                viewBox:
+                                                                  "0 0 16 16",
+                                                              },
+                                                            },
+                                                            [
+                                                              _c("path", {
+                                                                attrs: {
+                                                                  d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
+                                                                },
+                                                              }),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      )
+                                    : _c(
+                                        "div",
+                                        {
+                                          staticClass: "card mb-3 text-white",
+                                          staticStyle: {
+                                            width: "133%",
+                                            "background-color": "#231f32",
+                                          },
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "row g-0" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-4" },
+                                                [
+                                                  _c("img", {
+                                                    staticClass:
+                                                      "img-fluid rounded-start",
+                                                    staticStyle: {
+                                                      width: "100%",
+                                                      height: "100%",
+                                                      "object-fit": "cover",
+                                                    },
+                                                    attrs: {
+                                                      src: item.image,
+                                                      alt: "...",
+                                                    },
+                                                  }),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-8" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "card-body bg-opacity-50",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          staticStyle: {
+                                                            "text-decoration":
+                                                              "none",
+                                                          },
+                                                          attrs: {
+                                                            href:
+                                                              "/offers/show?id=" +
+                                                              item.id,
+                                                          },
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "h3",
+                                                            {
+                                                              staticClass:
+                                                                "card-title text-white",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                                " +
+                                                                  _vm._s(
+                                                                    item.manufacture_id +
+                                                                      " " +
+                                                                      item.model_id
+                                                                  ) +
+                                                                  "\n                                            "
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "card-text",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              "$" + item.price
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "p",
+                                                        {
+                                                          staticClass:
+                                                            "card-text",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "small",
+                                                            {
+                                                              staticClass:
+                                                                "text-muted",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  item.city
+                                                                )
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "btn btn-danger",
+                                                          on: {
+                                                            click: function (
+                                                              $event
+                                                            ) {
+                                                              return _vm.addCar(
+                                                                item
+                                                              )
+                                                            },
+                                                          },
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "svg",
+                                                            {
+                                                              staticClass:
+                                                                "bi bi-bar-chart-line",
+                                                              attrs: {
+                                                                xmlns:
+                                                                  "http://www.w3.org/2000/svg",
+                                                                width: "16",
+                                                                height: "16",
+                                                                fill: "currentColor",
+                                                                viewBox:
+                                                                  "0 0 16 16",
+                                                              },
+                                                            },
+                                                            [
+                                                              _c("path", {
+                                                                attrs: {
+                                                                  d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
+                                                                },
+                                                              }),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            !isLastPage
+                              ? _c("li", [
+                                  _c("button", { on: { click: refineNext } }, [
+                                    _vm._v(
+                                      "\n                            Show more results\n                        "
+                                    ),
+                                  ]),
+                                ])
+                              : _vm._e(),
+                          ]
+                        },
+                      },
+                    ]),
+                  }),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("ais-pagination"),
+        ],
+        1
+      ),
     ]
   )
 }
@@ -47750,6 +48466,325 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-observe-visibility/dist/vue-observe-visibility.esm.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/vue-observe-visibility/dist/vue-observe-visibility.esm.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "ObserveVisibility": () => (/* binding */ ObserveVisibility),
+/* harmony export */   "install": () => (/* binding */ install)
+/* harmony export */ });
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+function processOptions(value) {
+  var options;
+
+  if (typeof value === 'function') {
+    // Simple options (callback-only)
+    options = {
+      callback: value
+    };
+  } else {
+    // Options object
+    options = value;
+  }
+
+  return options;
+}
+function throttle(callback, delay) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var timeout;
+  var lastState;
+  var currentArgs;
+
+  var throttled = function throttled(state) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    currentArgs = args;
+    if (timeout && state === lastState) return;
+    var leading = options.leading;
+
+    if (typeof leading === 'function') {
+      leading = leading(state, lastState);
+    }
+
+    if ((!timeout || state !== lastState) && leading) {
+      callback.apply(void 0, [state].concat(_toConsumableArray(currentArgs)));
+    }
+
+    lastState = state;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      callback.apply(void 0, [state].concat(_toConsumableArray(currentArgs)));
+      timeout = 0;
+    }, delay);
+  };
+
+  throttled._clear = function () {
+    clearTimeout(timeout);
+    timeout = null;
+  };
+
+  return throttled;
+}
+function deepEqual(val1, val2) {
+  if (val1 === val2) return true;
+
+  if (_typeof(val1) === 'object') {
+    for (var key in val1) {
+      if (!deepEqual(val1[key], val2[key])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
+var VisibilityState =
+/*#__PURE__*/
+function () {
+  function VisibilityState(el, options, vnode) {
+    _classCallCheck(this, VisibilityState);
+
+    this.el = el;
+    this.observer = null;
+    this.frozen = false;
+    this.createObserver(options, vnode);
+  }
+
+  _createClass(VisibilityState, [{
+    key: "createObserver",
+    value: function createObserver(options, vnode) {
+      var _this = this;
+
+      if (this.observer) {
+        this.destroyObserver();
+      }
+
+      if (this.frozen) return;
+      this.options = processOptions(options);
+
+      this.callback = function (result, entry) {
+        _this.options.callback(result, entry);
+
+        if (result && _this.options.once) {
+          _this.frozen = true;
+
+          _this.destroyObserver();
+        }
+      }; // Throttle
+
+
+      if (this.callback && this.options.throttle) {
+        var _ref = this.options.throttleOptions || {},
+            _leading = _ref.leading;
+
+        this.callback = throttle(this.callback, this.options.throttle, {
+          leading: function leading(state) {
+            return _leading === 'both' || _leading === 'visible' && state || _leading === 'hidden' && !state;
+          }
+        });
+      }
+
+      this.oldResult = undefined;
+      this.observer = new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+
+        if (entries.length > 1) {
+          var intersectingEntry = entries.find(function (e) {
+            return e.isIntersecting;
+          });
+
+          if (intersectingEntry) {
+            entry = intersectingEntry;
+          }
+        }
+
+        if (_this.callback) {
+          // Use isIntersecting if possible because browsers can report isIntersecting as true, but intersectionRatio as 0, when something very slowly enters the viewport.
+          var result = entry.isIntersecting && entry.intersectionRatio >= _this.threshold;
+          if (result === _this.oldResult) return;
+          _this.oldResult = result;
+
+          _this.callback(result, entry);
+        }
+      }, this.options.intersection); // Wait for the element to be in document
+
+      vnode.context.$nextTick(function () {
+        if (_this.observer) {
+          _this.observer.observe(_this.el);
+        }
+      });
+    }
+  }, {
+    key: "destroyObserver",
+    value: function destroyObserver() {
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      } // Cancel throttled call
+
+
+      if (this.callback && this.callback._clear) {
+        this.callback._clear();
+
+        this.callback = null;
+      }
+    }
+  }, {
+    key: "threshold",
+    get: function get() {
+      return this.options.intersection && typeof this.options.intersection.threshold === 'number' ? this.options.intersection.threshold : 0;
+    }
+  }]);
+
+  return VisibilityState;
+}();
+
+function bind(el, _ref2, vnode) {
+  var value = _ref2.value;
+  if (!value) return;
+
+  if (typeof IntersectionObserver === 'undefined') {
+    console.warn('[vue-observe-visibility] IntersectionObserver API is not available in your browser. Please install this polyfill: https://github.com/w3c/IntersectionObserver/tree/master/polyfill');
+  } else {
+    var state = new VisibilityState(el, value, vnode);
+    el._vue_visibilityState = state;
+  }
+}
+
+function update(el, _ref3, vnode) {
+  var value = _ref3.value,
+      oldValue = _ref3.oldValue;
+  if (deepEqual(value, oldValue)) return;
+  var state = el._vue_visibilityState;
+
+  if (!value) {
+    unbind(el);
+    return;
+  }
+
+  if (state) {
+    state.createObserver(value, vnode);
+  } else {
+    bind(el, {
+      value: value
+    }, vnode);
+  }
+}
+
+function unbind(el) {
+  var state = el._vue_visibilityState;
+
+  if (state) {
+    state.destroyObserver();
+    delete el._vue_visibilityState;
+  }
+}
+
+var ObserveVisibility = {
+  bind: bind,
+  update: update,
+  unbind: unbind
+};
+
+function install(Vue) {
+  Vue.directive('observe-visibility', ObserveVisibility);
+  /* -- Add more components here -- */
+}
+/* -- Plugin definition & Auto-install -- */
+
+/* You shouldn't have to modify the code below */
+// Plugin
+
+var plugin = {
+  // eslint-disable-next-line no-undef
+  version: "1.0.0",
+  install: install
+};
+
+var GlobalVue = null;
+
+if (typeof window !== 'undefined') {
+  GlobalVue = window.Vue;
+} else if (typeof __webpack_require__.g !== 'undefined') {
+  GlobalVue = __webpack_require__.g.Vue;
+}
+
+if (GlobalVue) {
+  GlobalVue.use(plugin);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (plugin);
+
 
 
 /***/ }),
@@ -59807,6 +60842,7 @@ Vue.compile = compileToFunctions;
 var map = {
 	"./components/Cars.vue": "./resources/js/components/Cars.vue",
 	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue",
+	"./components/InfiniteHits.vue": "./resources/js/components/InfiniteHits.vue",
 	"./components/Login.vue": "./resources/js/components/Login.vue",
 	"./components/NewCar.vue": "./resources/js/components/NewCar.vue",
 	"./components/NewOffer.vue": "./resources/js/components/NewOffer.vue",

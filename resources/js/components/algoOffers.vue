@@ -3,12 +3,12 @@
     :search-client="searchClient"
     index-name="offers">
     <div class="row row-cols-2  ">
-        <div class="col" style="width: 400px; margin-top: 1em">
+        <div class="col" style="width: 400px; background-color: rgba(34,30,50,0.5)">
             <ais-search-box>
                 <template v-slot="{ currentRefinement, isSearchStalled, refine }">
                     <input
                         class="text-white-50 form-control border-dark"
-                        style="background-color: #231f32"
+                        style="background-color: #231f32; margin-top: 1em;"
                         type="search"
                         :value="currentRefinement"
                         @input="refine($event.currentTarget.value)"
@@ -127,6 +127,7 @@
         </div>
     <div class="col">
         <ais-infinite-hits>
+            <infinite-hits>
             <template v-slot="{
                 items,
                 refinePrevious,
@@ -205,15 +206,23 @@
                         </button>
                     </li>
             </template>
+            </infinite-hits>
         </ais-infinite-hits>
+
     </div>
+        <ais-pagination />
     </div>
 </ais-instant-search>
 </template>
 
 <script>
 import algoliasearch from 'algoliasearch/lite';
+import { createWidgetMixin } from 'vue-instantsearch';
+import { connectInfiniteHits } from 'instantsearch.js/es/connectors';
+import InfiniteHits from "./InfiniteHits";
 export default {
+    components: {InfiniteHits},
+    mixins: [createWidgetMixin({ connector: connectInfiniteHits })],
     name: "algoOffers",
     data: () => ({
         minPrice: 0,
@@ -235,6 +244,11 @@ export default {
             '79feba9df561d10ac7ab7ee5bb5a694e'),
     }),
     methods: {
+        visibilityChanged(isVisible, e) {
+            if (isVisible && !this.state.isLastPage) {
+                this.state.showMore();
+            }
+        },
         addCar(car) {
            const el = this.findInCars(car);
             if (el!==false) {
