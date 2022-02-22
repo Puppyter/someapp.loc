@@ -1,4 +1,4 @@
 @extends('layouts.layout')
 @section('content')
-    <example-component></example-component>
+    <example-component :tops="{{$top}}" :topsById="{{$topById}}"></example-component>
 @endsection

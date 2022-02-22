@@ -78,7 +78,7 @@ class Offer extends Model
         $offers['body_type_id'] = $this->bodyType->name;
         $offers['motor_id'] = $this->motor->name;
         $offers['fuel_id'] = $this->fuel->name;
-        $offers['image'] = Storage::url($offers['image']);
+        $offers['image'] = Storage::disk('s3')->url($offers['image']);
 
         return $offers;
     }

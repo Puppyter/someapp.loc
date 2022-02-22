@@ -11328,7 +11328,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['tops', 'topsById'],
   mounted: function mounted() {
     console.log('Component mounted.');
   }
@@ -39912,6 +39979,224 @@ var render = function () {
             _vm._v(" "),
             _vm._m(4),
           ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.tops, function (top) {
+            return _c("div", { staticClass: "col" }, [
+              top.offer.is_top === 1
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "card mb-3 text-white",
+                      staticStyle: {
+                        width: "133%",
+                        "background-color": "#231f32",
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "row g-0" }, [
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("img", {
+                            staticClass: "img-fluid rounded-start",
+                            staticStyle: { width: "223px", height: "225px" },
+                            attrs: { src: top.image, alt: "..." },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-8" }, [
+                          _c(
+                            "div",
+                            { staticClass: "card-body bg-opacity-50" },
+                            [
+                              _c("h4", { staticClass: "text-warning" }, [
+                                _vm._v("PRIME"),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticStyle: { "text-decoration": "none" },
+                                  attrs: {
+                                    href: "/offers/show" + "?" + "id=" + top.id,
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "h3",
+                                    { staticClass: "card-title text-white" },
+                                    [
+                                      _vm._v(
+                                        "\n                                        " +
+                                          _vm._s(
+                                            top.offer.manufacture_id +
+                                              " " +
+                                              top.offer.model_id
+                                          ) +
+                                          "\n                                    "
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "card-text" }, [
+                                _vm._v(_vm._s("$" + top.offer.price)),
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "card-text" }, [
+                                _c("small", { staticClass: "text-muted" }, [
+                                  _vm._v(_vm._s(top.offer.city)),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.addCar(_vm.item)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "bi bi-bar-chart-line",
+                                      attrs: {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        width: "16",
+                                        height: "16",
+                                        fill: "currentColor",
+                                        viewBox: "0 0 16 16",
+                                      },
+                                    },
+                                    [
+                                      _c("path", {
+                                        attrs: {
+                                          d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
+                                        },
+                                      }),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  )
+                : _c(
+                    "div",
+                    {
+                      staticClass: "card mb-3 text-white",
+                      staticStyle: {
+                        width: "133%",
+                        "background-color": "#231f32",
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "row g-0" }, [
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("img", {
+                            staticClass: "img-fluid rounded-start",
+                            staticStyle: {
+                              width: "100%",
+                              height: "100%",
+                              "object-fit": "cover",
+                            },
+                            attrs: { src: top.offer.image, alt: "..." },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-8" }, [
+                          _c(
+                            "div",
+                            { staticClass: "card-body bg-opacity-50" },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticStyle: { "text-decoration": "none" },
+                                  attrs: {
+                                    href: "/offers/show?id=" + top.offer.id,
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "h3",
+                                    { staticClass: "card-title text-white" },
+                                    [
+                                      _vm._v(
+                                        "\n                                        " +
+                                          _vm._s(
+                                            top.offer.manufacture_id +
+                                              " " +
+                                              top.offer.model_id
+                                          ) +
+                                          "\n                                    "
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "card-text" }, [
+                                _vm._v(_vm._s("$" + top.offer.price)),
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "card-text" }, [
+                                _c("small", { staticClass: "text-muted" }, [
+                                  _vm._v(_vm._s(top.offer.city)),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.addCar(_vm.item)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "bi bi-bar-chart-line",
+                                      attrs: {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        width: "16",
+                                        height: "16",
+                                        fill: "currentColor",
+                                        viewBox: "0 0 16 16",
+                                      },
+                                    },
+                                    [
+                                      _c("path", {
+                                        attrs: {
+                                          d: "M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z",
+                                        },
+                                      }),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  ),
+            ])
+          }),
+          0
         ),
       ]
     ),
