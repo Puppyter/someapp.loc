@@ -20,7 +20,7 @@ class ImageRepository
     public function destroy($imageId)
     {
         $image = Image::find($imageId);
-        Storage::delete($image->image);
+        Storage::disk('s3')->delete($image->image);
         return Image::destroy($imageId);
     }
 }

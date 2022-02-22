@@ -127,7 +127,6 @@
         </div>
     <div class="col">
         <ais-infinite-hits>
-            <infinite-hits>
             <template v-slot="{
                 items,
                 refinePrevious,
@@ -200,29 +199,15 @@
                             </div>
                         </div>
                     </div>
-                    <li v-if="!isLastPage">
-                        <button @click="refineNext">
-                            Show more results
-                        </button>
-                    </li>
             </template>
-            </infinite-hits>
         </ais-infinite-hits>
-
     </div>
-        <ais-pagination />
     </div>
 </ais-instant-search>
 </template>
-
 <script>
 import algoliasearch from 'algoliasearch/lite';
-import { createWidgetMixin } from 'vue-instantsearch';
-import { connectInfiniteHits } from 'instantsearch.js/es/connectors';
-import InfiniteHits from "./InfiniteHits";
 export default {
-    components: {InfiniteHits},
-    mixins: [createWidgetMixin({ connector: connectInfiniteHits })],
     name: "algoOffers",
     data: () => ({
         minPrice: 0,
@@ -244,11 +229,6 @@ export default {
             '79feba9df561d10ac7ab7ee5bb5a694e'),
     }),
     methods: {
-        visibilityChanged(isVisible, e) {
-            if (isVisible && !this.state.isLastPage) {
-                this.state.showMore();
-            }
-        },
         addCar(car) {
            const el = this.findInCars(car);
             if (el!==false) {

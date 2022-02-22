@@ -254,11 +254,11 @@ export default {
                 }
             })
                 .then(({data}) => {
-                    console.log(data)
-                    this.fuels = data.fuels
+                    console.log(data);
+                    this.fuels = data.fuels;
                 })
                 .catch(error =>{
-                    console.log(error.response)
+                    console.log(error.response);
                 })
         },
         getModels(){
@@ -281,11 +281,11 @@ export default {
                 }
             })
                 .then(({data}) => {
-                    console.log(data)
+                    console.log(data);
                     this.bodyTypes = data.bodyTypes
                 })
                 .catch(error =>{
-                    console.log(error.response)
+                    console.log(error.response);
                 })
         },
         getMotors(){
@@ -295,18 +295,18 @@ export default {
                 }
             })
                 .then(({data}) => {
-                    console.log(data)
-                    this.motors = data.motors
+                    console.log(data);
+                    this.motors = data.motors;
                 })
                 .catch(error =>{
-                    console.log(error.response)
+                    console.log(error.response);
                 })
         },
         uploadData(){
             const data = new FormData(this.$refs.newOffer)
             for (let i=0; i<this.images.length; i++){
                 let image = this.images[i];
-                data.append('images['+i+']', image)
+                data.append('images['+i+']', image);
             }
             data.append('fuel_id', this.fuelId);
             data.append('price', this.price);
@@ -333,13 +333,13 @@ export default {
                 }
             })
                 .then(({data}) => {
-                    console.log(data)
+                    console.log(data);
                     if (data.status === true) {
                         window.location.href = 'http://someapp.loc/offers/';
                     }
                 })
                 .catch(error =>{
-                    console.log(error.response)
+                    console.log(error.response);
                 })
         },
     },

@@ -11,6 +11,8 @@ use App\Services\OfferService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Puppyter\Tracker\repositories\Watch;
+use Puppyter\Tracker\repositories\WatchIp;
 
 class OfferController extends Controller
 {
@@ -53,11 +55,11 @@ class OfferController extends Controller
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
-        $data['image']=Storage::put('public',$request->images[0]);
+        $data['image']=Storage::disk('s3')->put('public/',$request->images[0]);
         $offer = $offerService->create($data);
         foreach($request->images as $image)
         {
-            $path = Storage::put('public',$image);
+            $path = Storage::disk('s3')->put('public/',$request->images[0]);
             $offerService->createImage(['offer_id'=>$offer->id, 'image'=>$path]);
         }
         return response(['status'=>true]);
@@ -69,8 +71,10 @@ class OfferController extends Controller
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,OfferService $offerService)
+    public function show(Request $request,OfferService $offerService, WatchIp $ipViewRepository, Watch $offerViewRepository)
     {
+        $ipViewRepository->collect($request->id,$request->ip());
+        $offerViewRepository->collect($request->id);
         $offer = $offerService->get($request->id);
         return response()->view('offer',['offer'=>$offer]);
     }

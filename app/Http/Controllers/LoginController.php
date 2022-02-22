@@ -11,7 +11,7 @@ class LoginController extends Controller
     {
         if (Auth::attempt($request->all(), true)) {
             $request->session()->regenerate();
-            return response(['status'=>true, 'userId'=>Auth::id()]);
+            return response(['status'=>true]);
         }
         return back()->withErrors(['email' => 'Account with this email not found']);
     }

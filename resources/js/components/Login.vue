@@ -38,7 +38,7 @@ export default {
             })
                 .then(({data}) => {
                     console.log(data)
-                    if (data.status === true) {
+                    if (data[0].status === true) {
                         window.location.href = 'http://someapp.loc/offers/';
                     }
                 })
