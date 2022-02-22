@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-$DATABASE_URL=parse_url('mysql://b0bf81a32fbfea:6b872b4a@us-cdbr-east-05.cleardb.net/heroku_41bb614d0b63878?reconnect=true');
+$DATABASE_URL=parse_url('mysql://l4thg0t0eaoe89us:g2cru1oidbjoyfk6@eanl4i1omny740jw.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/u45jeofgzm28xc99');
 
 return [
     /*
