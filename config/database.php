@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Str;
 
-return [
+$DATABASE_URL=parse_url('mysql://b0bf81a32fbfea:6b872b4a@us-cdbr-east-05.cleardb.net/heroku_41bb614d0b63878?reconnect=true');
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
