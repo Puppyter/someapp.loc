@@ -67,7 +67,7 @@ export default {
             data.append('name', this.name)
             data.append('password', this.password)
             data.append('email', this.email)
-            axios.post('http://someapp.loc/users/create/store', data, {
+            axios.post('/users/create/store', data, {
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 }

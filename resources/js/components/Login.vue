@@ -39,7 +39,7 @@ export default {
                 .then(({data}) => {
                     console.log(data)
                     if (data[0].status === true) {
-                        window.location.href = 'http://someapp.loc/offers/';
+                        window.location.href = '/offers/';
                     }
                 })
                 .catch(error =>{

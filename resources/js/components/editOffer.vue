@@ -225,7 +225,7 @@ export default {
             this.description = this.offer.description;
         },
         uploadData(){
-            
+
             const data = new FormData(this.$refs.newOffer)
             for (let i=0; i<this.images.length; i++){
                 let image = this.images[i];
@@ -252,7 +252,7 @@ export default {
                 .then(({data}) => {
                     console.log(data)
                     if (data.status === true) {
-                        window.location.href = 'http://someapp.loc/offers/';
+                        window.location.href = '/offers/';
                     }
                 })
                 .catch(error =>{
