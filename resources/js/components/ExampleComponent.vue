@@ -171,81 +171,38 @@
                     </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col" v-for="top in tops">
-                    <div class="card mb-3 text-white" v-if="top.offer.is_top === 1" style="width: 133%; background-color: #231f32">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img class="img-fluid rounded-start"
-                                     style="width: 223px; height: 225px"
-                                     :src="top.image"
-                                     alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body bg-opacity-50">
-                                    <h4 class="text-warning">PRIME</h4>
-                                    <a :href="'/offers/show'+'?'+'id='+top.id" style="text-decoration: none">
-                                        <h3 class="card-title text-white">
-                                            {{ top.offer.manufacture_id + ' ' + top.offer.model_id }}
-                                        </h3>
-                                    </a>
-                                    <p class="card-text">{{ '$' + top.offer.price }}</p>
-                                    <p class="card-text"><small class="text-muted">{{ top.offer.city }}</small></p>
-                                    <button @click="addCar(item)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
-                                        <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
-                                    </svg></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 text-white" v-else style="width: 133%;  background-color: #231f32">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img
-                                    class="img-fluid rounded-start"
-                                    style="width: 100%; height: 100%; object-fit: cover;"
-                                    :src="top.offer.image"
-                                    alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body bg-opacity-50">
-                                    <a :href="'/offers/show?id='+top.offer.id" style="text-decoration: none">
-                                        <h3 class="card-title text-white">
-                                            {{ top.offer.manufacture_id + ' ' + top.offer.model_id }}
-                                        </h3>
-                                    </a>
-                                    <p class="card-text">{{ '$' + top.offer.price }}</p>
-                                    <p class="card-text"><small class="text-muted">{{ top.offer.city }}</small></p>
-
-                                    <button
-                                        class="btn btn-danger"
-                                        @click="addCar(item)"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                             width="16"
-                                             height="16"
-                                             fill="currentColor"
-                                             class="bi bi-bar-chart-line"
-                                             viewBox="0 0 16 16"
-                                        >
-                                            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
 </template>
 
 <script>
 export default {
-    props:['tops','topsById'],
+    data:()=>({
+     tops: {},
+     topsByIp:{},
+    }),
     mounted() {
-        console.log('Component mounted.')
+        console.log('Component mounted.');
+    },
+    methods:{
+        getTop(){
+            axios.get('/top/get')
+            .then(({data})=>{
+                this.tops = data.tops;
+            })
+            .catch((error)=>{
+                console.log(error.response);
+            })
+        },
+        getTopIP(){
+            axios.get('/top/ip/get')
+                .then(({data})=>{
+                    this.topsByIp = data.topsByIp;
+                })
+                .catch((error)=>{
+                    console.log(error.response);
+                })
+        },
     }
 }
 </script>

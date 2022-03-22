@@ -41,8 +41,7 @@ class OfferService
     public function getTopViewedIp()
     {
         /** @var  $watchIp WatchIp */
-        $watchIp = WatchIp::class;
-        $tops = $watchIp->get();
+        $tops = WatchIp::get();
         foreach ($tops as $top)
         {
             $top['offer'] = $this->get($top->offer_id);
@@ -53,8 +52,7 @@ class OfferService
     public function getTopViewed()
     {
         /** @var $watch Watch */
-        $watch = Watch::class;
-        $tops = $watch->get();
+        $tops = Watch::get();
         foreach ($tops as $top)
         {
             $top['offer'] = $this->get($top->offer_id);
@@ -64,11 +62,15 @@ class OfferService
 
     public function get(int $offerId)
     {
+        $watchIp = app(WatchIp::class);
+        $watch = app(Watch::class);
         $offer = $this->offerRepository->find($offerId);
         $offer->model_id = $offer->model;
         $offer->manufacture_id = $offer->manufacture;
         $offer->body_type_id = $offer->bodyType;
         $offer->motor_id = $offer->motor;
+        $offer->views  = $watch->getForId($offerId);
+        $offer->viewsIp  = $watchIp->getForId($offerId);
         foreach ($offer->images as $image) {
             $image['image'] = Storage::disk('s3')->url($image['image']);
         }

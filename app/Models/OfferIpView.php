@@ -17,4 +17,9 @@ class OfferIpView extends Model
     {
         return $this->hasMany(ViewerIp::class);
     }
+
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
+    }
 }

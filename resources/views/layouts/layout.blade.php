@@ -37,6 +37,6 @@
     </div>
 </footer>
 <script src="{{ mix("js/app.js") }}" defer></script>
-
+<script src=”{{ asset('vendor/tracker/js/admin.js') }}”></script>
 </body>
 </html>

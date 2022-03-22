@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Cashier\Http\Controllers\WebhookController;
+use Puppyter\Tracker\TrackerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ use Laravel\Cashier\Http\Controllers\WebhookController;
 */
 
 Route::get('/',[IndexController::class,'index'])->name('welcome');
+
 
 /** User Routes */
 Route::resource('users',UserController::class)

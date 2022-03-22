@@ -13,4 +13,9 @@ class OfferView extends Model
         'offer_id',
         'views'
     ];
+
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
+    }
 }

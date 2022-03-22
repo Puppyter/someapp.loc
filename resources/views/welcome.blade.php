@@ -1,4 +1,4 @@
 @extends('layouts.layout')
 @section('content')
-    <example-component :tops="{{$top}}" :topsById="{{$topById}}"></example-component>
+    <x-puppyter-track :tops=$tops :topsIp=$topsIp />
 @endsection
