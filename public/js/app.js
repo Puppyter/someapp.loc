@@ -11417,8 +11417,8 @@ __webpack_require__.r(__webpack_exports__);
         var data = _ref.data;
         console.log(data);
 
-        if (data[0].status === true) {
-          window.location.href = '/offers/';
+        if (data.status === true) {
+          window.location.href = '/offers ';
         }
       })["catch"](function (error) {
         console.log(error.response);
@@ -12592,6 +12592,9 @@ __webpack_require__.r(__webpack_exports__);
           window.location.href = '/users';
         }
       });
+    },
+    PaymentShow: function PaymentShow() {
+      window.location.href = '/payment/show/?paymentType=subscription';
     }
   }
 });
@@ -42505,13 +42508,46 @@ var render = function () {
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
-        _vm._m(1),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarNavDarkDropdown" },
+          },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("ul", { staticClass: "navbar-nav" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-white-50",
+                    staticStyle: { "text-decoration": "none" },
+                    on: { click: _vm.PaymentShow },
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Up to Prime\n                    "
+                    ),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+            ]),
+          ]
+        ),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "col-2", staticStyle: { "margin-top": "0.5em" } },
           [
-            _vm._m(2),
+            _vm._m(5),
             _vm._v(" "),
             _c(
               "div",
@@ -42520,7 +42556,7 @@ var render = function () {
                 attrs: { id: "adminNavbarNavDarkDropdown" },
               },
               [
-                _vm._m(3),
+                _vm._m(6),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -42675,145 +42711,107 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "collapse navbar-collapse",
-        attrs: { id: "navbarNavDarkDropdown" },
-      },
-      [
-        _c("ul", { staticClass: "navbar-nav" }, [
-          _c("li", { staticClass: "nav-item dropdown" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link dropdown-toggle",
-                attrs: {
-                  href: "#",
-                  id: "navbarDarkDropdownMenuLink",
-                  role: "button",
-                  "data-bs-toggle": "dropdown",
-                  "aria-expanded": "false",
-                },
-              },
-              [
-                _vm._v(
-                  "\n                        Dropdown\n                    "
-                ),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "ul",
-              {
-                staticClass: "dropdown-menu dropdown-menu-dark",
-                attrs: { "aria-labelledby": "navbarDarkDropdownMenuLink" },
-              },
-              [
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _vm._v(
-                        "\n                                Action\n                            "
-                      ),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _vm._v(
-                        "\n                                Another action\n                            "
-                      ),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _vm._v(
-                        "\n                                Something else here\n                            "
-                      ),
-                    ]
-                  ),
-                ]),
-              ]
-            ),
-          ]),
-        ]),
+    return _c("ul", { staticClass: "navbar-nav" }, [
+      _c("li", { staticClass: "nav-item dropdown" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link dropdown-toggle",
+            attrs: {
+              href: "#",
+              id: "navbarDarkDropdownMenuLink",
+              role: "button",
+              "data-bs-toggle": "dropdown",
+              "aria-expanded": "false",
+            },
+          },
+          [_vm._v("\n                        Dropdown\n                    ")]
+        ),
         _vm._v(" "),
-        _c("ul", { staticClass: "navbar-nav" }, [
-          _c("li", { staticClass: "nav-item dropdown" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link active text-white-50",
-                attrs: { "aria-current": "page", href: "/offers" },
-              },
-              [_vm._v("\n                        Offers\n                    ")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "text-white-50",
-                staticStyle: { "text-decoration": "none" },
-                attrs: { href: "/offer/up/show" },
-              },
-              [
+        _c(
+          "ul",
+          {
+            staticClass: "dropdown-menu dropdown-menu-dark",
+            attrs: { "aria-labelledby": "navbarDarkDropdownMenuLink" },
+          },
+          [
+            _c("li", [
+              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _vm._v(
-                  "\n                        Up to Prime\n                    "
+                  "\n                                Action\n                            "
                 ),
-              ]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "text-white-50",
-                staticStyle: {
-                  "text-decoration": "none",
-                  "margin-left": "1em",
-                },
-                attrs: { href: "/admin/user/invoices/show" },
-              },
-              [
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _vm._v(
-                  "\n                        Search user invoices\n                    "
+                  "\n                                Another action\n                            "
                 ),
-              ]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link text-white-50",
-                attrs: { href: "/cars/compare" },
-              },
-              [
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _vm._v(
-                  "\n                        Compare\n                    "
+                  "\n                                Something else here\n                            "
                 ),
-              ]
-            ),
-          ]),
-        ]),
-      ]
-    )
+              ]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item dropdown" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active text-white-50",
+          attrs: { "aria-current": "page", href: "/offers" },
+        },
+        [_vm._v("\n                        Offers\n                    ")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "text-white-50",
+          staticStyle: { "text-decoration": "none", "margin-left": "1em" },
+          attrs: { href: "/admin/user/invoices/show" },
+        },
+        [
+          _vm._v(
+            "\n                        Search user invoices\n                    "
+          ),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link text-white-50",
+          attrs: { href: "/cars/compare" },
+        },
+        [_vm._v("\n                        Compare\n                    ")]
+      ),
+    ])
   },
   function () {
     var _vm = this

@@ -56,15 +56,15 @@ class CashController extends WebhookController
         }
         $user->updateDefaultPaymentMethod($request->paymentMethod['id']);
         $user->invoicePrice($request->price);
-//        return response(['status'=>true]);
+        return response(['status'=>true]);
     }
 
     public function subscription(Request $request, OfferRepository $offerRepository)
     {
         $user = Auth::user();
-//        if($user->subscribed($request->name)){
-//            return response(['status'=>false]);
-//        }
+        if($user->subscribed($request->name)){
+            return response(['status'=>false]);
+        }
         $user->createOrGetStripeCustomer();
         if (!$user->hasPaymentMethod()){
             $user->addPaymentMethod($request->paymentMethod['id']);
@@ -72,7 +72,7 @@ class CashController extends WebhookController
         $user->newSubscription($request->name, $request->price)
             ->create($request->paymentMethod['id']);
         $offerRepository->updateToTop(Auth::id());
-//        return response(['status'=>true]);
+        return response(['status'=>true]);
     }
     public function handleWebhook(Request $request)
     {

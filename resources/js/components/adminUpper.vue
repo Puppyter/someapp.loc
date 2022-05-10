@@ -65,7 +65,7 @@
                     <li class="nav-item">
                         <a class="text-white-50"
                            style="text-decoration: none"
-                           href="/offer/up/show"
+                           @click="PaymentShow"
                         >
                             Up to Prime
                         </a>
@@ -220,6 +220,9 @@ export default {
                     window.location.href = '/users'
                 }
             })
+        },
+        PaymentShow(){
+            window.location.href = '/payment/show/?paymentType=subscription'
         }
     }
 }

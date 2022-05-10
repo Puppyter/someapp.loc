@@ -38,8 +38,8 @@ export default {
             })
                 .then(({data}) => {
                     console.log(data)
-                    if (data[0].status === true) {
-                        window.location.href = '/offers/';
+                    if (data.status === true) {
+                        window.location.href = '/offers ';
                     }
                 })
                 .catch(error =>{
