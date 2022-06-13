@@ -10,8 +10,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $tops = Track::get(false);
-        $topsIp = Track::get(true);
-        return response()->view('welcome',['tops'=>$tops,'topsIp'=>$topsIp]);
+//        $tops = Track::get(false);
+//        $topsIp = Track::get(true);
+        return response()->view('welcome');
     }
 }
